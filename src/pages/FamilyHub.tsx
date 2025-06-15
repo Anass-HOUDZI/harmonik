@@ -1,5 +1,6 @@
 
 import React, { useState } from 'react';
+import Hero from "@/components/Hero";
 import FamilyHubSearchFilters from "@/components/family-hub/FamilyHubSearchFilters";
 import FamilyHubStats from "@/components/family-hub/FamilyHubStats";
 import FamilyHubToolCard from "@/components/family-hub/FamilyHubToolCard";
@@ -19,21 +20,9 @@ export default function FamilyHub() {
   });
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-100 via-purple-50 to-pink-100">
-      {/* Header */}
-      <header className="bg-white/95 shadow-sm border-b border-blue-100 sticky top-0 z-30">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
-          <div className="text-center">
-            <h1 className="text-4xl md:text-5xl font-bold text-blue-900 flex items-center justify-center gap-2 mb-1 tracking-tight drop-shadow-sm">
-              <span className="rounded-full bg-gradient-to-tr from-blue-400 via-fuchsia-400 to-violet-300 p-2 px-4 md:px-6 shadow-inner mr-2">Suite Famille</span>
-              <span className="text-3xl mt-2 lg:mt-1">🏠</span>
-            </h1>
-            <p className="text-lg text-gray-700 max-w-2xl mx-auto font-medium mb-1">Tous les outils essentiels pour la vie de famille, gratuits, modernes, sans pub.</p>
-            <p className="text-sm text-muted-foreground mb-0">Planifiez, organisez et profitez de chaque moment en famille.</p>
-          </div>
-        </div>
-      </header>
-
+    <div className="min-h-screen bg-white">
+      {/* Hero toujours fixe et bien espacé */}
+      <Hero />
       <main className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8 py-6">
         {/* Search and Filters */}
         <FamilyHubSearchFilters
@@ -96,4 +85,3 @@ export default function FamilyHub() {
     </div>
   );
 }
-
