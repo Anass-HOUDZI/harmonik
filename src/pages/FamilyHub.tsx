@@ -1,10 +1,10 @@
-
 import React, { useState } from 'react';
 import Hero from "@/components/Hero";
 import FamilyHubSearchFilters from "@/components/family-hub/FamilyHubSearchFilters";
 import FamilyHubStats from "@/components/family-hub/FamilyHubStats";
 import FamilyHubToolCard from "@/components/family-hub/FamilyHubToolCard";
 import { tools } from "@/data/toolsData";
+import AppBreadcrumb from "@/components/AppBreadcrumb";
 
 const categories = ['Tous', 'Organisation', 'Finances', 'Éducation', 'Santé', 'Équilibre', 'Développement', 'Loisirs', 'Pratique'];
 
@@ -21,6 +21,14 @@ export default function FamilyHub() {
 
   return (
     <div className="min-h-screen bg-white">
+      {/* Breadcrumb en haut */}
+      <AppBreadcrumb
+        items={[
+          { label: "Accueil", isCurrent: true, icon: <></> }
+        ]}
+        homeTo="/"
+        showHomeCTA={false}
+      />
       {/* Hero toujours fixe et bien espacé */}
       <Hero />
       <main className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8 py-6">
