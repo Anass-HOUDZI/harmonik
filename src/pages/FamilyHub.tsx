@@ -96,7 +96,7 @@ const tools: Tool[] = [
     icon: Gamepad2,
     route: '/tools/activities',
     priority: 1,
-    status: 'coming-soon'
+    status: 'available'
   }
 ];
 
