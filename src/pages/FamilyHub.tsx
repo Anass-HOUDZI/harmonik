@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import FamilyHubSearchFilters from "@/components/family-hub/FamilyHubSearchFilters";
 import FamilyHubStats from "@/components/family-hub/FamilyHubStats";
@@ -21,20 +22,14 @@ export default function FamilyHub() {
     <div className="min-h-screen bg-gradient-to-br from-blue-100 via-purple-50 to-pink-100">
       {/* Header */}
       <header className="bg-white/95 shadow-sm border-b border-blue-100 sticky top-0 z-30">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 flex flex-col items-center justify-center">
-          <div className="flex flex-col items-center justify-center w-full animate-fade-in">
-            <h1 className="text-5xl md:text-7xl font-black text-blue-900 flex items-center justify-center gap-5 mb-5 tracking-tight drop-shadow-sm text-center">
-              <span className="rounded-full bg-gradient-to-tr from-blue-400 via-fuchsia-400 to-violet-300 p-3 px-8 md:px-12 shadow-inner mr-0 text-2xl md:text-5xl xl:text-6xl inline-block">
-                Suite Famille
-              </span>
-              <span className="text-4xl md:text-7xl lg:text-6xl drop-shadow-2xl mt-2 lg:mt-0">🏠</span>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
+          <div className="text-center">
+            <h1 className="text-4xl md:text-5xl font-bold text-blue-900 flex items-center justify-center gap-2 mb-1 tracking-tight drop-shadow-sm">
+              <span className="rounded-full bg-gradient-to-tr from-blue-400 via-fuchsia-400 to-violet-300 p-2 px-4 md:px-6 shadow-inner mr-2">Suite Famille</span>
+              <span className="text-3xl mt-2 lg:mt-1">🏠</span>
             </h1>
-            <p className="text-2xl md:text-3xl text-gray-700 max-w-3xl mx-auto font-semibold mb-2 leading-snug text-center">
-              Tous les outils essentiels pour la vie de famille,<br />gratuits, modernes et sans pub.
-            </p>
-            <p className="text-lg text-muted-foreground mb-0 max-w-2xl mx-auto text-center mt-2">
-              Planifiez, organisez et profitez de chaque moment&nbsp;en&nbsp;famille.
-            </p>
+            <p className="text-lg text-gray-700 max-w-2xl mx-auto font-medium mb-1">Tous les outils essentiels pour la vie de famille, gratuits, modernes, sans pub.</p>
+            <p className="text-sm text-muted-foreground mb-0">Planifiez, organisez et profitez de chaque moment en famille.</p>
           </div>
         </div>
       </header>
@@ -101,3 +96,4 @@ export default function FamilyHub() {
     </div>
   );
 }
+
