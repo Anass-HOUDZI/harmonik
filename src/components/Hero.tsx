@@ -9,11 +9,10 @@ export default function Hero() {
         {/* LOGO/ Hero Logo typographique */}
         <div className="flex items-center gap-3 justify-center mb-3">
           <span
-            className="text-[44px] md:text-[60px] font-extrabold font-playfair tracking-tight bg-gradient-to-br from-blue-700 via-pink-600 to-purple-700 bg-clip-text text-transparent shadow drop-shadow-lg select-none"
+            className="text-[44px] md:text-[60px] font-extrabold font-playfair tracking-tight text-blue-800 select-none"
             style={{
               letterSpacing: "-3px",
               lineHeight: 1,
-              textShadow: "0 3px 18px #c7b8eb26"
             }}
           >
             Suite&nbsp;Famille
