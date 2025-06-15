@@ -374,11 +374,12 @@ export default function ChoresManager() {
                         toast({ title: "Complète tous les champs importants." });
                         return;
                       }
-                      const newChore = {
+                      // CORRECTION ICI : on cast frequency et status pour garantir le respect du type Chore
+                      const newChore: Chore = {
                         ...customChore,
                         id: Date.now().toString(),
-                        frequency: "hebdomadaire",
-                        status: "pending",
+                        frequency: "hebdomadaire" as Chore['frequency'],
+                        status: "pending" as Chore['status'],
                         dueDate: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(),
                       };
                       setChores([...chores, newChore]);
