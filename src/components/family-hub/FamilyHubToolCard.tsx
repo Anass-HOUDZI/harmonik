@@ -27,17 +27,11 @@ export default function FamilyHubToolCard({ tool }: { tool: Tool }) {
   const navigate = useNavigate();
   const IconComponent = tool.icon;
 
-  // Utilise le gradient défini, sinon le fallback pastel harmony
-  const gradientClasses = tool.gradient
-    ? `bg-gradient-to-br ${tool.gradient}`
-    : "bg-gradient-to-br from-white via-blue-50/60 to-pink-50";
-
   return (
     <Card
       className={`
         group relative cursor-pointer
-        rounded-2xl shadow-md border-0
-        ${gradientClasses}
+        rounded-2xl shadow-md border-0 bg-gradient-to-br from-white via-blue-50/60 to-pink-50
         hover:shadow-xl
         transition-all duration-200 ease-out
         hover:scale-[1.045]

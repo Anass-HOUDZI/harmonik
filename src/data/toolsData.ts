@@ -9,18 +9,7 @@ export interface Tool {
   route: string;
   priority: number;
   status: 'available' | 'coming-soon' | 'beta';
-  gradient?: string; // nouvelle propriété optionnelle
 }
-
-// Palette dégradés (tu peux changer les couleurs comme tu veux bien sûr)
-const gradients = [
-  "from-[#e0eafe] via-[#f8f6fb] to-[#e7feff]",
-  "from-[#ffdbe9] via-[#ffe9d1] to-[#e9ffd8]",
-  "from-[#e3ffe2] via-[#e1f8ff] to-[#dbc5fa]",
-  "from-[#ffecd2] via-[#fcb69f] to-[#fffae3]",
-  "from-[#f0c3fc] via-[#dbfaff] to-[#ffe2ec]",
-  "from-[#d9e7ff] via-[#effcff] to-[#fbe6ff]",
-];
 
 export const tools: Tool[] = [
   // Organisation
@@ -32,8 +21,7 @@ export const tools: Tool[] = [
     icon: Calendar,
     route: '/tools/calendar',
     priority: 1,
-    status: 'available',
-    gradient: gradients[0]
+    status: 'available'
   },
   {
     id: 'meal-planner',
@@ -43,8 +31,7 @@ export const tools: Tool[] = [
     icon: Utensils,
     route: '/tools/meals',
     priority: 1,
-    status: 'available',
-    gradient: gradients[1]
+    status: 'available'
   },
   {
     id: 'chores-manager',
@@ -54,8 +41,7 @@ export const tools: Tool[] = [
     icon: Users,
     route: '/tools/chores',
     priority: 1,
-    status: 'available',
-    gradient: gradients[2]
+    status: 'available'
   },
   {
     id: 'shopping-list',
@@ -65,8 +51,7 @@ export const tools: Tool[] = [
     icon: ShoppingCart,
     route: '/tools/shopping',
     priority: 2,
-    status: 'available',
-    gradient: gradients[3]
+    status: 'available'
   },
   {
     id: 'childcare-planner',
@@ -76,8 +61,7 @@ export const tools: Tool[] = [
     icon: Baby,
     route: '/tools/childcare',
     priority: 2,
-    status: 'available',
-    gradient: gradients[4]
+    status: 'available'
   },
   {
     id: 'medical-appointments',
@@ -87,8 +71,7 @@ export const tools: Tool[] = [
     icon: Stethoscope,
     route: '/tools/medical-appointments',
     priority: 2,
-    status: 'available',
-    gradient: gradients[5]
+    status: 'available'
   },
 
   // Finances
