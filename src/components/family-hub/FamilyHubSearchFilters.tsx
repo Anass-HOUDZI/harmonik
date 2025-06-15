@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -33,9 +32,11 @@ export default function FamilyHubSearchFilters({ searchTerm, setSearchTerm, sele
             onClick={() => setSelectedCategory(category)}
             className={`
               text-xs md:text-sm min-w-[80px] rounded-xl shadow-sm
-              ${selectedCategory === category 
-                  ? 'bg-gradient-to-r from-blue-600 via-fuchsia-500 to-violet-500 text-white font-semibold'
-                  : 'border-blue-200 text-blue-700 hover:bg-blue-50 bg-white'}
+              ${
+                selectedCategory === category
+                  ? 'bg-blue-600 text-white font-semibold'
+                  : 'border-blue-200 text-blue-700 hover:bg-blue-50 bg-white'
+              }
               transition-all
             `}
           >
@@ -46,4 +47,3 @@ export default function FamilyHubSearchFilters({ searchTerm, setSearchTerm, sele
     </div>
   );
 }
-
