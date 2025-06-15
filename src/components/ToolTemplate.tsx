@@ -31,7 +31,8 @@ export default function ToolTemplate({
   const navigate = useNavigate();
 
   return (
-    <div className={`min-h-screen bg-gradient-to-br ${bgColor} px-2 py-8 md:py-10`}>
+    // Suppression de min-h-screen pour éviter le "blanc"
+    <div className={`bg-gradient-to-br ${bgColor} px-2 py-8 md:py-10`}>
       <div className="max-w-4xl mx-auto">
         <Card className="mb-7 rounded-2xl shadow-lg border-0 bg-white/95">
           <CardHeader className="flex flex-row items-center gap-4 py-6 px-4 md:px-8">
@@ -104,3 +105,4 @@ export default function ToolTemplate({
     </div>
   );
 }
+
