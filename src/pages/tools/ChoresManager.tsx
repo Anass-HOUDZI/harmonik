@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -8,6 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
 import { Users, Plus, Star, CheckCircle, Clock, Trophy, RotateCcw } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import ChoreCard from "@/components/ChoreCard";
 
 interface Chore {
   id: string;
@@ -64,6 +64,17 @@ export default function ChoresManager() {
   const [newMemberName, setNewMemberName] = useState('');
   const [newMemberAge, setNewMemberAge] = useState('');
   const [selectedTemplate, setSelectedTemplate] = useState<ChoreTemplate | null>(null);
+  const [showCustomChoreForm, setShowCustomChoreForm] = useState(false);
+
+  // État pour la corvée personnalisée
+  const [customChore, setCustomChore] = useState({
+    name: "",
+    description: "",
+    points: 10,
+    difficulty: 'facile' as 'facile' | 'moyen' | 'difficile',
+    category: "",
+    assignedTo: "",
+  });
 
   // Charger les données depuis localStorage
   useEffect(() => {
@@ -177,6 +188,11 @@ export default function ChoresManager() {
     }
   };
 
+  const deleteChore = (id: string) => {
+    setChores(chores.filter(c => c.id !== id));
+    toast({ title: "Corvée supprimée", description: "La corvée a été retirée." });
+  };
+
   const rotateChores = () => {
     const pendingChores = chores.filter(c => c.status === 'pending');
     const members = familyMembers.filter(m => m.age >= 6); // Enfants de 6 ans et plus
@@ -280,52 +296,15 @@ export default function ChoresManager() {
           {chores.map((chore) => {
             const assignedMember = familyMembers.find(m => m.id === chore.assignedTo);
             return (
-              <Card key={chore.id} className="hover:shadow-md transition-shadow">
-                <CardHeader className="pb-3">
-                  <div className="flex justify-between items-start">
-                    <CardTitle className="text-lg">{chore.name}</CardTitle>
-                    <Badge className={getDifficultyColor(chore.difficulty)}>
-                      {chore.difficulty}
-                    </Badge>
-                  </div>
-                  <p className="text-sm text-gray-600">{chore.description}</p>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-3">
-                    <div className="flex justify-between items-center">
-                      <span className="text-sm text-gray-600">Assignée à:</span>
-                      <div className="flex items-center gap-1">
-                        <span>{assignedMember?.avatar}</span>
-                        <span className="font-medium">{assignedMember?.name}</span>
-                      </div>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span className="text-sm text-gray-600">Points:</span>
-                      <div className="flex items-center gap-1">
-                        <Star className="h-4 w-4 text-yellow-500" />
-                        <span className="font-bold">{chore.points}</span>
-                      </div>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span className="text-sm text-gray-600">Statut:</span>
-                      <Badge className={getStatusColor(chore.status)}>
-                        {chore.status === 'completed' ? 'Terminée' : 
-                         chore.status === 'pending' ? 'En attente' : 'En retard'}
-                      </Badge>
-                    </div>
-                    {chore.status === 'pending' && (
-                      <Button 
-                        onClick={() => completeChore(chore.id)}
-                        className="w-full bg-green-600 hover:bg-green-700"
-                        size="sm"
-                      >
-                        <CheckCircle className="h-4 w-4 mr-2" />
-                        Marquer comme terminée
-                      </Button>
-                    )}
-                  </div>
-                </CardContent>
-              </Card>
+              <ChoreCard
+                key={chore.id}
+                chore={chore}
+                member={assignedMember}
+                onComplete={completeChore}
+                onDelete={deleteChore}
+                getDifficultyColor={getDifficultyColor}
+                getStatusColor={getStatusColor}
+              />
             );
           })}
         </div>
@@ -338,33 +317,169 @@ export default function ChoresManager() {
                 <CardTitle>Ajouter une corvée</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
-                <div>
-                  <Label>Choisir un modèle de corvée</Label>
-                  <div className="grid gap-2 mt-2">
-                    {choreTemplates.map((template, index) => (
-                      <Button
-                        key={index}
-                        variant={selectedTemplate === template ? "default" : "outline"}
-                        onClick={() => setSelectedTemplate(template)}
-                        className="justify-start text-left h-auto p-3"
-                      >
-                        <div>
-                          <div className="font-medium">{template.name}</div>
-                          <div className="text-xs text-gray-600">{template.description}</div>
-                          <div className="flex gap-2 mt-1">
-                            <Badge className={getDifficultyColor(template.difficulty)} variant="secondary">
-                              {template.difficulty}
-                            </Badge>
-                            <Badge variant="outline">{template.points} pts</Badge>
-                            <Badge variant="outline">Âge min: {template.minAge}</Badge>
-                          </div>
-                        </div>
-                      </Button>
-                    ))}
-                  </div>
+                <div className="flex gap-2 mb-2">
+                  <Button 
+                    className={showCustomChoreForm ? "flex-1 font-bold bg-blue-100 text-blue-900" : "flex-1"}
+                    variant="outline" 
+                    onClick={() => setShowCustomChoreForm(!showCustomChoreForm)}>
+                    Corvée personnalisée
+                  </Button>
+                  <Button 
+                    className={!showCustomChoreForm ? "flex-1 font-bold bg-blue-100 text-blue-900" : "flex-1"}
+                    variant="outline"
+                    onClick={() => setShowCustomChoreForm(false)}>
+                    Choisir un modèle
+                  </Button>
                 </div>
                 
-                {selectedTemplate && (
+                {!showCustomChoreForm && (
+                  <div>
+                    <Label>Choisir un modèle de corvée</Label>
+                    <div className="grid gap-2 mt-2">
+                      {choreTemplates.map((template, index) => (
+                        <Button
+                          key={index}
+                          variant={selectedTemplate === template ? "default" : "outline"}
+                          onClick={() => setSelectedTemplate(template)}
+                          className="justify-start text-left h-auto p-3"
+                        >
+                          <div>
+                            <div className="font-medium">{template.name}</div>
+                            <div className="text-xs text-gray-600">{template.description}</div>
+                            <div className="flex gap-2 mt-1">
+                              <Badge className={getDifficultyColor(template.difficulty)} variant="secondary">
+                                {template.difficulty}
+                              </Badge>
+                              <Badge variant="outline">{template.points} pts</Badge>
+                              <Badge variant="outline">Âge min: {template.minAge}</Badge>
+                            </div>
+                          </div>
+                        </Button>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Formulaire corvée personnalisée */}
+                {showCustomChoreForm && (
+                  <form
+                    className="space-y-3"
+                    onSubmit={e => {
+                      e.preventDefault();
+                      if (
+                        !customChore.name ||
+                        !customChore.assignedTo ||
+                        !customChore.points
+                      ) {
+                        toast({ title: "Complète tous les champs importants." });
+                        return;
+                      }
+                      const newChore = {
+                        ...customChore,
+                        id: Date.now().toString(),
+                        frequency: "hebdomadaire",
+                        status: "pending",
+                        dueDate: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(),
+                      };
+                      setChores([...chores, newChore]);
+                      setShowAddChore(false);
+                      setCustomChore({
+                        name: "",
+                        description: "",
+                        points: 10,
+                        difficulty: 'facile',
+                        category: "",
+                        assignedTo: "",
+                      });
+                      toast({
+                        title: "Corvée personnalisée ajoutée !",
+                        description: `${newChore.name} assignée à ${familyMembers.find(m => m.id === newChore.assignedTo)?.name}`,
+                      });
+                    }}
+                  >
+                    <div>
+                      <Label htmlFor="customName">Nom *</Label>
+                      <Input
+                        id="customName"
+                        value={customChore.name}
+                        onChange={e => setCustomChore({ ...customChore, name: e.target.value })}
+                        placeholder="Ex : Laver la voiture"
+                        required
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="customDesc">Description</Label>
+                      <Input
+                        id="customDesc"
+                        value={customChore.description}
+                        onChange={e => setCustomChore({ ...customChore, description: e.target.value })}
+                        placeholder="Détaille la tâche"
+                      />
+                    </div>
+                    <div className="flex gap-2">
+                      <div className="flex-1">
+                        <Label htmlFor="customPoints">Points *</Label>
+                        <Input
+                          id="customPoints"
+                          type="number"
+                          value={customChore.points}
+                          min={1}
+                          max={50}
+                          onChange={e => setCustomChore({ ...customChore, points: Number(e.target.value) })}
+                          required
+                        />
+                      </div>
+                      <div className="flex-1">
+                        <Label htmlFor="customCat">Catégorie</Label>
+                        <Input
+                          id="customCat"
+                          value={customChore.category}
+                          onChange={e => setCustomChore({ ...customChore, category: e.target.value })}
+                          placeholder="Ex : Jardinage"
+                        />
+                      </div>
+                    </div>
+                    <div>
+                      <Label htmlFor="customDiff">Difficulté</Label>
+                      <select
+                        id="customDiff"
+                        className="border rounded px-2 py-1 w-full"
+                        value={customChore.difficulty}
+                        onChange={e =>
+                          setCustomChore({
+                            ...customChore,
+                            difficulty: e.target.value as 'facile' | 'moyen' | 'difficile',
+                          })
+                        }
+                      >
+                        <option value="facile">Facile</option>
+                        <option value="moyen">Moyen</option>
+                        <option value="difficile">Difficile</option>
+                      </select>
+                    </div>
+                    <div>
+                      <Label htmlFor="customAssignee">Assigner à *</Label>
+                      <select
+                        id="customAssignee"
+                        className="border rounded px-2 py-1 w-full"
+                        value={customChore.assignedTo}
+                        required
+                        onChange={e => setCustomChore({ ...customChore, assignedTo: e.target.value })}
+                      >
+                        <option value="">Sélectionne un membre</option>
+                        {familyMembers.map((member) => (
+                          <option key={member.id} value={member.id}>
+                            {member.avatar} {member.name}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                    <Button type="submit" className="w-full bg-green-600 hover:bg-green-700">Ajouter</Button>
+                  </form>
+                )}
+
+                {/* Sélection du membre après template */}
+                {!showCustomChoreForm && selectedTemplate && (
                   <div>
                     <Label>Assigner à</Label>
                     <div className="grid gap-2 mt-2">
@@ -385,7 +500,7 @@ export default function ChoresManager() {
                   </div>
                 )}
                 
-                <div className="flex gap-2">
+                <div className="flex gap-2 mt-2">
                   <Button onClick={() => setShowAddChore(false)} variant="outline" className="flex-1">
                     Annuler
                   </Button>
