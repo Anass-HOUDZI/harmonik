@@ -1,4 +1,10 @@
-import { Calendar, Utensils, Users, ShoppingCart, Baby, Stethoscope, Calculator, PiggyBank, TrendingUp, DollarSign, AlertTriangle, Plane, Wallet, GraduationCap, BookOpen, Brain, Library, HelpCircle, Heart, Clock, Dumbbell, Scale, Droplets, ChefHat, UserCheck, Briefcase, Target, Smile, Trophy, Coffee, MessageCircle, FolderOpen, Gamepad2, Sun, CloudRain, PartyPopper, Puzzle, MapPin, Ruler, Tag, UtensilsCrossed, Timer, Activity, Home, Apple } from "lucide-react";
+import {
+  Calendar, Utensils, Users, ShoppingCart, Baby, Stethoscope, Calculator,
+  PiggyBank, TrendingUp, DollarSign, AlertTriangle, Plane, Wallet, GraduationCap, BookOpen, Brain, Library, HelpCircle,
+  Heart, Clock, Dumbbell, Scale, Droplets, ChefHat, UserCheck, Briefcase, Target, Smile, Trophy,
+  Coffee, MessageCircle, FolderOpen, Gamepad2, Sun, CloudRain, PartyPopper, Puzzle, MapPin, Ruler, Tag,
+  UtensilsCrossed, Timer, Activity, Home, Apple
+} from "lucide-react";
 
 export interface Tool {
   id: string;
