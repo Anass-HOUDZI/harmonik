@@ -86,7 +86,7 @@ const tools: Tool[] = [
     icon: Users,
     route: '/tools/chores',
     priority: 1,
-    status: 'coming-soon'
+    status: 'available'
   },
   {
     id: 'activity-organizer',
