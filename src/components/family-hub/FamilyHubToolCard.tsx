@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Card, CardHeader, CardTitle, CardContent, CardDescription } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -65,8 +64,7 @@ export default function FamilyHubToolCard({ tool }: { tool: Tool }) {
             <Button
               size="sm"
               className={`
-                bg-gradient-to-r from-blue-600 via-fuchsia-500 to-violet-500
-                hover:from-blue-700 hover:to-pink-500 
+                bg-blue-600 hover:bg-blue-700 
                 shadow-sm font-semibold
                 px-4 py-1.5
                 rounded-lg
@@ -87,4 +85,3 @@ export default function FamilyHubToolCard({ tool }: { tool: Tool }) {
     </Card>
   );
 }
-
