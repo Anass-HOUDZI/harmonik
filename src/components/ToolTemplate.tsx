@@ -31,80 +31,73 @@ export default function ToolTemplate({
   const navigate = useNavigate();
 
   return (
-    <div className={`min-h-screen bg-gradient-to-br ${bgColor} px-4 py-10`}>
+    <div className={`min-h-screen bg-gradient-to-br ${bgColor} px-2 py-8 md:py-10`}>
       <div className="max-w-4xl mx-auto">
-        <Card className="mb-6">
-          <CardHeader className="flex flex-row items-center gap-3">
-            <span className={`p-2 ${iconBgColor} rounded-lg`}>
-              <div className={`h-7 w-7 ${iconTextColor}`}>
+        <Card className="mb-7 rounded-2xl shadow-lg border-0 bg-white/95">
+          <CardHeader className="flex flex-row items-center gap-4 py-6 px-4 md:px-8">
+            <span className={`rounded-2xl shadow bg-gradient-to-br from-white ${iconBgColor} ${iconTextColor} flex items-center justify-center`} style={{ minWidth: 84, minHeight: 84 }}>
+              <div className={`h-12 w-12 md:h-14 md:w-14 flex items-center justify-center`}>
                 {icon}
               </div>
             </span>
             <div className="flex-1">
-              <CardTitle className="text-2xl">{title}</CardTitle>
-              <CardDescription>
-                {description}
-              </CardDescription>
+              <CardTitle className="text-2xl md:text-3xl font-bold text-blue-900">{title}</CardTitle>
+              <CardDescription className="text-base md:text-lg font-medium text-gray-700 mt-2">{description}</CardDescription>
             </div>
-            <Button variant="outline" onClick={() => navigate("/")}>
+            <Button variant="outline" onClick={() => navigate("/")} className="rounded-lg">
               <ArrowLeft className="w-4 h-4 mr-2" />
-              Retour
+              Accueil
             </Button>
           </CardHeader>
         </Card>
 
         {children && (
-          <div className="mb-6">
-            {children}
-          </div>
+          <div className="mb-6">{children}</div>
         )}
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
           {/* Fonctionnalités actuelles */}
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-lg">✅ Fonctionnalités disponibles</CardTitle>
+          <Card className="rounded-2xl bg-green-50/90 border-0 shadow p-0">
+            <CardHeader className="px-5 py-4">
+              <CardTitle className="text-lg text-green-800">✅ Fonctionnalités disponibles</CardTitle>
             </CardHeader>
-            <CardContent>
-              <div className="space-y-3">
-                {features.map((feature, index) => (
-                  <div key={index} className="flex items-start gap-3 p-3 bg-green-50 rounded-lg">
-                    <span className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></span>
-                    <span className="text-green-800">{feature}</span>
-                  </div>
-                ))}
-              </div>
+            <CardContent className="space-y-3 pb-5 px-5">
+              {features.map((feature, index) => (
+                <div
+                  key={index}
+                  className="flex items-start gap-3 p-3 bg-white rounded-xl border border-green-100 shadow-sm transition transform hover:scale-[1.025] hover:bg-green-100/40"
+                >
+                  <span className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></span>
+                  <span className="text-green-900 text-sm">{feature}</span>
+                </div>
+              ))}
             </CardContent>
           </Card>
 
           {/* Fonctionnalités à venir */}
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-lg">🚀 Fonctionnalités à venir</CardTitle>
+          <Card className="rounded-2xl bg-blue-50/70 border-0 shadow p-0">
+            <CardHeader className="px-5 py-4">
+              <CardTitle className="text-lg text-blue-800">🚀 Fonctionnalités à venir</CardTitle>
             </CardHeader>
-            <CardContent>
-              <div className="space-y-3">
-                {comingSoonFeatures.map((feature, index) => (
-                  <div key={index} className="flex items-start gap-3 p-3 bg-blue-50 rounded-lg">
-                    <span className="w-2 h-2 bg-blue-400 rounded-full mt-2 flex-shrink-0"></span>
-                    <span className="text-blue-800">{feature}</span>
-                  </div>
-                ))}
-              </div>
+            <CardContent className="space-y-3 pb-5 px-5">
+              {comingSoonFeatures.map((feature, index) => (
+                <div
+                  key={index}
+                  className="flex items-start gap-3 p-3 bg-white rounded-xl border border-blue-100 shadow-sm transition hover:scale-[1.025] hover:bg-blue-100/40"
+                >
+                  <span className="w-2 h-2 bg-blue-400 rounded-full mt-2 flex-shrink-0"></span>
+                  <span className="text-blue-950 text-sm">{feature}</span>
+                </div>
+              ))}
             </CardContent>
           </Card>
         </div>
 
         {/* Message d'encouragement */}
-        <Card className="mt-6 bg-purple-50 border-purple-200">
+        <Card className="mt-7 bg-gradient-to-r from-purple-50/50 via-pink-50/60 to-blue-50/60 border-0 rounded-2xl shadow p-0">
           <CardContent className="p-6 text-center">
-            <h3 className="text-lg font-semibold text-purple-900 mb-2">
-              🎯 Outil en développement actif
-            </h3>
-            <p className="text-purple-700">
-              Cet outil fait partie de la Suite Famille 100% gratuite. 
-              Nous ajoutons régulièrement de nouvelles fonctionnalités basées sur vos retours !
-            </p>
+            <h3 className="text-lg font-semibold text-purple-900 mb-2">🎯 Outil en évolution</h3>
+            <p className="text-purple-700">Suite Famille : chaque outil évolue selon vos retours. Restez connectés, de nouvelles fonctions arrivent !</p>
           </CardContent>
         </Card>
       </div>
