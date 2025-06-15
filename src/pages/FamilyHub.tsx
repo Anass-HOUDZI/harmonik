@@ -1,8 +1,10 @@
+
 import React, { useState } from 'react';
 import Hero from "@/components/Hero";
 import FamilyHubSearchFilters from "@/components/family-hub/FamilyHubSearchFilters";
 import FamilyHubStats from "@/components/family-hub/FamilyHubStats";
 import FamilyHubToolCard from "@/components/family-hub/FamilyHubToolCard";
+import PWAStatus from "@/components/PWAStatus";
 import { tools } from "@/data/toolsData";
 
 // Liste des catégories (français, peut personnaliser ici pour + lisible)
@@ -24,7 +26,7 @@ export default function FamilyHub() {
       {/* Nouveau Hero amélioré */}
       <Hero />
 
-      <main className="max-w-7xl mx-auto w-full px-2 xs:px-4 sm:px-6 lg:px-8 py-6 flex flex-col items-center">
+      <main className="max-w-7xl mx-auto w-full px-2 xs:px-4 sm:px-6 lg:px-8 py-6 flex flex-col items-center flex-grow">
         {/* Filtres de catégorie centrés et valorisés */}
         <FamilyHubSearchFilters
           // plus de searchTerm ni setSearchTerm
@@ -36,7 +38,7 @@ export default function FamilyHub() {
         <div className="w-full md:w-[85%] mx-auto">
           <FamilyHubStats />
 
-          {/* Grille d’outils mieux espacée, bien centrée */}
+          {/* Grille d'outils mieux espacée, bien centrée */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 md:gap-8 mt-3">
             {filteredTools.map((tool) => (
               <FamilyHubToolCard tool={tool} key={tool.id} />
@@ -85,6 +87,9 @@ export default function FamilyHub() {
           </section>
         </div>
       </main>
+
+      {/* PWA Status en bas de page */}
+      <PWAStatus />
     </div>
   );
 }

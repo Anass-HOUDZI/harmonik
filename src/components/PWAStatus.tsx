@@ -73,29 +73,31 @@ export default function PWAStatus() {
   }, []);
 
   return (
-    <div className="fixed z-50 top-3 left-1/2 transform -translate-x-1/2 px-4 py-2 bg-blue-50 border border-blue-200 rounded-xl shadow flex items-center gap-3 select-none">
-      {!online && (
-        <span role="img" aria-label="offline" className="text-red-400 text-xl">🔌</span>
-      )}
-      {online && (
-        <span role="img" aria-label="online" className="text-green-500 text-xl">🌐</span>
-      )}
-      <span className="text-gray-700 font-medium">
-        {online ? "Connecté" : "Mode hors-ligne activé"}
-      </span>
-      {updateAvailable && (
-        <button className="ml-3 px-2 py-1 bg-blue-600 text-white rounded" onClick={() => window.location.reload()}>
-          Nouvelle version disponible – Cliquez pour mettre à jour
-        </button>
-      )}
-      {queued.length > 0 && (
-        <span className="text-yellow-600 text-sm ml-3">
-          {queued.length} actions en attente de synchronisation…
+    <div className="w-full bg-white border-t border-gray-200 py-2 px-4">
+      <div className="max-w-4xl mx-auto flex items-center justify-center gap-2 text-xs">
+        {!online && (
+          <span role="img" aria-label="offline" className="text-red-400 text-sm">🔌</span>
+        )}
+        {online && (
+          <span role="img" aria-label="online" className="text-green-500 text-sm">🌐</span>
+        )}
+        <span className="text-gray-600 font-medium">
+          {online ? "Connecté" : "Mode hors-ligne"}
         </span>
-      )}
-      {cached && (
-        <span className="text-green-500 text-xs ml-3">🟢 Cache local prêt</span>
-      )}
+        {updateAvailable && (
+          <button className="ml-2 px-2 py-1 bg-blue-600 text-white rounded text-xs" onClick={() => window.location.reload()}>
+            Mise à jour disponible
+          </button>
+        )}
+        {queued.length > 0 && (
+          <span className="text-yellow-600 ml-2">
+            {queued.length} en attente
+          </span>
+        )}
+        {cached && (
+          <span className="text-green-500 ml-2">🟢 Cache prêt</span>
+        )}
+      </div>
     </div>
   );
 }
