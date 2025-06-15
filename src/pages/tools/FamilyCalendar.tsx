@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -9,6 +8,7 @@ import { Badge } from '@/components/ui/badge';
 import { Calendar, Plus, Edit, Trash2, Users, Clock, MapPin, ArrowLeft } from 'lucide-react';
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { useNavigate } from 'react-router-dom';
+import PWAStatus from "@/components/PWAStatus";
 
 interface FamilyMember {
   id: string;
@@ -171,275 +171,287 @@ export default function FamilyCalendar() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-4">
-      <div className="max-w-7xl mx-auto">
-        {/* Header */}
-        <div className="flex items-center justify-between mb-6">
-          <div className="flex items-center space-x-4">
-            <Button
-              variant="outline"
-              onClick={() => navigate('/')}
-              className="flex items-center space-x-2"
-            >
-              <ArrowLeft className="h-4 w-4" />
-              <span>Retour</span>
-            </Button>
-            <div>
-              <h1 className="text-3xl font-bold text-gray-900 flex items-center space-x-2">
-                <Calendar className="h-8 w-8 text-blue-600" />
-                <span>Calendrier Familial</span>
-              </h1>
-              <p className="text-gray-600">Organisez tous vos événements familiaux</p>
-            </div>
-          </div>
-          
-          <Dialog open={isAddingEvent} onOpenChange={setIsAddingEvent}>
-            <DialogTrigger asChild>
-              <Button className="bg-blue-600 hover:bg-blue-700">
-                <Plus className="h-4 w-4 mr-2" />
-                Nouvel Événement
+    <div className="min-h-screen flex flex-col">
+      <div className="bg-gradient-to-br from-blue-50 to-indigo-100 px-2 xs:px-4 py-4 md:py-6 flex-grow">
+        <div className="max-w-7xl mx-auto">
+          {/* Header responsive */}
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-4 md:mb-6 gap-4">
+            <div className="flex items-center space-x-2 md:space-x-4">
+              <Button
+                variant="outline"
+                onClick={() => navigate('/')}
+                className="flex items-center space-x-1 md:space-x-2 px-2 md:px-4"
+              >
+                <ArrowLeft className="h-4 w-4" />
+                <span className="hidden xs:inline">Retour</span>
               </Button>
-            </DialogTrigger>
-            <DialogContent className="sm:max-w-md">
-              <DialogHeader>
-                <DialogTitle>Créer un nouvel événement</DialogTitle>
-                <DialogDescription>
-                  Ajoutez un événement au calendrier familial
-                </DialogDescription>
-              </DialogHeader>
-              <div className="space-y-4">
-                <div>
-                  <Label htmlFor="title">Titre *</Label>
-                  <Input
-                    id="title"
-                    value={newEvent.title || ''}
-                    onChange={(e) => setNewEvent({ ...newEvent, title: e.target.value })}
-                    placeholder="Nom de l'événement"
-                  />
-                </div>
-                <div>
-                  <Label htmlFor="description">Description</Label>
-                  <Input
-                    id="description"
-                    value={newEvent.description || ''}
-                    onChange={(e) => setNewEvent({ ...newEvent, description: e.target.value })}
-                    placeholder="Détails de l'événement"
-                  />
-                </div>
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <Label htmlFor="date">Date *</Label>
-                    <Input
-                      id="date"
-                      type="date"
-                      value={newEvent.date || ''}
-                      onChange={(e) => setNewEvent({ ...newEvent, date: e.target.value })}
-                    />
-                  </div>
-                  <div>
-                    <Label htmlFor="time">Heure</Label>
-                    <Input
-                      id="time"
-                      type="time"
-                      value={newEvent.time || ''}
-                      onChange={(e) => setNewEvent({ ...newEvent, time: e.target.value })}
-                    />
-                  </div>
-                </div>
-                <div>
-                  <Label htmlFor="type">Type</Label>
-                  <Select value={newEvent.type} onValueChange={(value) => setNewEvent({ ...newEvent, type: value as Event['type'] })}>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Choisir un type" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {eventTypes.map((type) => (
-                        <SelectItem key={type.value} value={type.value}>
-                          {type.label}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </div>
-                <div>
-                  <Label htmlFor="location">Lieu</Label>
-                  <Input
-                    id="location"
-                    value={newEvent.location || ''}
-                    onChange={(e) => setNewEvent({ ...newEvent, location: e.target.value })}
-                    placeholder="Où se déroule l'événement"
-                  />
-                </div>
+              <div>
+                <h1 className="text-xl md:text-3xl font-bold text-gray-900 flex items-center space-x-1 md:space-x-2">
+                  <Calendar className="h-5 w-5 md:h-8 md:w-8 text-blue-600" />
+                  <span>Calendrier Familial</span>
+                </h1>
+                <p className="text-sm md:text-base text-gray-600 hidden sm:block">Organisez tous vos événements familiaux</p>
               </div>
-              <DialogFooter>
-                <Button variant="outline" onClick={() => setIsAddingEvent(false)}>
-                  Annuler
+            </div>
+            
+            <Dialog open={isAddingEvent} onOpenChange={setIsAddingEvent}>
+              <DialogTrigger asChild>
+                <Button className="bg-blue-600 hover:bg-blue-700 w-full sm:w-auto">
+                  <Plus className="h-4 w-4 mr-1 md:mr-2" />
+                  <span className="text-sm md:text-base">Nouvel Événement</span>
                 </Button>
-                <Button onClick={handleAddEvent} disabled={!newEvent.title}>
-                  Créer
-                </Button>
-              </DialogFooter>
-            </DialogContent>
-          </Dialog>
-        </div>
-
-        {/* Calendar Navigation */}
-        <Card className="mb-6">
-          <CardHeader>
-            <div className="flex items-center justify-between">
-              <Button
-                variant="outline"
-                onClick={() => setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() - 1))}
-              >
-                ←
-              </Button>
-              <h2 className="text-xl font-semibold">
-                {monthNames[currentDate.getMonth()]} {currentDate.getFullYear()}
-              </h2>
-              <Button
-                variant="outline"
-                onClick={() => setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() + 1))}
-              >
-                →
-              </Button>
-            </div>
-          </CardHeader>
-        </Card>
-
-        {/* Family Members Legend */}
-        <Card className="mb-6">
-          <CardHeader>
-            <CardTitle className="text-sm flex items-center space-x-2">
-              <Users className="h-4 w-4" />
-              <span>Membres de la famille</span>
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="flex flex-wrap gap-2">
-              {members.map((member) => (
-                <Badge key={member.id} className={`${member.color} text-white`}>
-                  {member.name}
-                </Badge>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* Calendar Grid */}
-        <Card>
-          <CardContent className="p-4">
-            {/* Days of week header */}
-            <div className="grid grid-cols-7 gap-1 mb-2">
-              {['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'].map((day) => (
-                <div key={day} className="p-2 text-center font-medium text-gray-600 text-sm">
-                  {day}
-                </div>
-              ))}
-            </div>
-
-            {/* Calendar days */}
-            <div className="grid grid-cols-7 gap-1">
-              {days.map((day, index) => {
-                const dayEvents = getEventsForDate(day.date);
-                const isToday = day.date.toDateString() === new Date().toDateString();
-                
-                return (
-                  <div
-                    key={index}
-                    className={`min-h-24 p-1 border rounded-lg ${
-                      day.isCurrentMonth 
-                        ? 'bg-white border-gray-200' 
-                        : 'bg-gray-50 border-gray-100'
-                    } ${isToday ? 'ring-2 ring-blue-500' : ''}`}
-                  >
-                    <div className={`text-sm font-medium mb-1 ${
-                      day.isCurrentMonth ? 'text-gray-900' : 'text-gray-400'
-                    } ${isToday ? 'text-blue-600' : ''}`}>
-                      {day.date.getDate()}
+              </DialogTrigger>
+              <DialogContent className="sm:max-w-md mx-2 rounded-lg">
+                <DialogHeader>
+                  <DialogTitle className="text-lg md:text-xl">Créer un nouvel événement</DialogTitle>
+                  <DialogDescription className="text-sm">
+                    Ajoutez un événement au calendrier familial
+                  </DialogDescription>
+                </DialogHeader>
+                <div className="space-y-3 md:space-y-4">
+                  <div>
+                    <Label htmlFor="title" className="text-sm font-medium">Titre *</Label>
+                    <Input
+                      id="title"
+                      value={newEvent.title || ''}
+                      onChange={(e) => setNewEvent({ ...newEvent, title: e.target.value })}
+                      placeholder="Nom de l'événement"
+                      className="mt-1"
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="description" className="text-sm font-medium">Description</Label>
+                    <Input
+                      id="description"
+                      value={newEvent.description || ''}
+                      onChange={(e) => setNewEvent({ ...newEvent, description: e.target.value })}
+                      placeholder="Détails de l'événement"
+                      className="mt-1"
+                    />
+                  </div>
+                  <div className="grid grid-cols-1 xs:grid-cols-2 gap-3 md:gap-4">
+                    <div>
+                      <Label htmlFor="date" className="text-sm font-medium">Date *</Label>
+                      <Input
+                        id="date"
+                        type="date"
+                        value={newEvent.date || ''}
+                        onChange={(e) => setNewEvent({ ...newEvent, date: e.target.value })}
+                        className="mt-1"
+                      />
                     </div>
-                    
-                    <div className="space-y-1">
-                      {dayEvents.slice(0, 2).map((event) => {
-                        const eventType = eventTypes.find(t => t.value === event.type);
-                        return (
-                          <div
-                            key={event.id}
-                            className={`p-1 rounded text-xs text-white cursor-pointer hover:opacity-80 ${eventType?.color || 'bg-gray-500'}`}
-                            title={`${event.title} - ${formatTime(event.time, event.duration)}`}
-                            onClick={() => deleteEvent(event.id)}
-                          >
-                            <div className="flex items-center justify-between">
-                              <span className="truncate flex-1">{event.title}</span>
-                              <Trash2 className="h-3 w-3 opacity-0 hover:opacity-100" />
-                            </div>
-                            <div className="text-xs opacity-80">
-                              {event.time}
-                            </div>
-                          </div>
-                        );
-                      })}
-                      
-                      {dayEvents.length > 2 && (
-                        <div className="text-xs text-gray-500 text-center">
-                          +{dayEvents.length - 2} autres
-                        </div>
-                      )}
+                    <div>
+                      <Label htmlFor="time" className="text-sm font-medium">Heure</Label>
+                      <Input
+                        id="time"
+                        type="time"
+                        value={newEvent.time || ''}
+                        onChange={(e) => setNewEvent({ ...newEvent, time: e.target.value })}
+                        className="mt-1"
+                      />
                     </div>
                   </div>
-                );
-              })}
-            </div>
-          </CardContent>
-        </Card>
+                  <div>
+                    <Label htmlFor="type" className="text-sm font-medium">Type</Label>
+                    <Select value={newEvent.type} onValueChange={(value) => setNewEvent({ ...newEvent, type: value as Event['type'] })}>
+                      <SelectTrigger className="mt-1">
+                        <SelectValue placeholder="Choisir un type" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {eventTypes.map((type) => (
+                          <SelectItem key={type.value} value={type.value} className="text-sm">
+                            {type.label}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <div>
+                    <Label htmlFor="location" className="text-sm font-medium">Lieu</Label>
+                    <Input
+                      id="location"
+                      value={newEvent.location || ''}
+                      onChange={(e) => setNewEvent({ ...newEvent, location: e.target.value })}
+                      placeholder="Où se déroule l'événement"
+                      className="mt-1"
+                    />
+                  </div>
+                </div>
+                <DialogFooter className="flex flex-col xs:flex-row gap-2 xs:gap-0">
+                  <Button variant="outline" onClick={() => setIsAddingEvent(false)} className="w-full xs:w-auto order-2 xs:order-1">
+                    Annuler
+                  </Button>
+                  <Button onClick={handleAddEvent} disabled={!newEvent.title} className="w-full xs:w-auto order-1 xs:order-2">
+                    Créer
+                  </Button>
+                </DialogFooter>
+              </DialogContent>
+            </Dialog>
+          </div>
 
-        {/* Today's Events */}
-        <Card className="mt-6">
-          <CardHeader>
-            <CardTitle className="flex items-center space-x-2">
-              <Clock className="h-5 w-5" />
-              <span>Événements d'aujourd'hui</span>
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            {getEventsForDate(new Date()).length > 0 ? (
-              <div className="space-y-3">
-                {getEventsForDate(new Date()).map((event) => {
-                  const eventType = eventTypes.find(t => t.value === event.type);
+          {/* Calendar Navigation responsive */}
+          <Card className="mb-4 md:mb-6 rounded-xl">
+            <CardHeader className="py-3 md:py-6">
+              <div className="flex items-center justify-between">
+                <Button
+                  variant="outline"
+                  onClick={() => setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() - 1))}
+                  className="px-3 py-2"
+                >
+                  ←
+                </Button>
+                <h2 className="text-lg md:text-xl font-semibold">
+                  {monthNames[currentDate.getMonth()]} {currentDate.getFullYear()}
+                </h2>
+                <Button
+                  variant="outline"
+                  onClick={() => setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() + 1))}
+                  className="px-3 py-2"
+                >
+                  →
+                </Button>
+              </div>
+            </CardHeader>
+          </Card>
+
+          {/* Family Members Legend responsive */}
+          <Card className="mb-4 md:mb-6 rounded-xl">
+            <CardHeader className="py-3 md:py-4">
+              <CardTitle className="text-sm md:text-base flex items-center space-x-2">
+                <Users className="h-4 w-4" />
+                <span>Membres de la famille</span>
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="pt-0 pb-3 md:pb-4">
+              <div className="flex flex-wrap gap-2">
+                {members.map((member) => (
+                  <Badge key={member.id} className={`${member.color} text-white text-xs md:text-sm px-2 py-1`}>
+                    {member.name}
+                  </Badge>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Calendar Grid responsive */}
+          <Card className="rounded-xl">
+            <CardContent className="p-2 md:p-4">
+              {/* Days of week header */}
+              <div className="grid grid-cols-7 gap-1 mb-2">
+                {['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'].map((day) => (
+                  <div key={day} className="p-1 md:p-2 text-center font-medium text-gray-600 text-xs md:text-sm">
+                    {day}
+                  </div>
+                ))}
+              </div>
+
+              {/* Calendar days responsive */}
+              <div className="grid grid-cols-7 gap-1">
+                {days.map((day, index) => {
+                  const dayEvents = getEventsForDate(day.date);
+                  const isToday = day.date.toDateString() === new Date().toDateString();
+                  
                   return (
-                    <div key={event.id} className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg">
-                      <div className={`w-3 h-3 rounded-full ${eventType?.color || 'bg-gray-500'}`} />
-                      <div className="flex-1">
-                        <div className="font-medium">{event.title}</div>
-                        <div className="text-sm text-gray-600">
-                          {formatTime(event.time, event.duration)}
-                          {event.location && (
-                            <span className="ml-2 flex items-center">
-                              <MapPin className="h-3 w-3 mr-1" />
-                              {event.location}
-                            </span>
-                          )}
-                        </div>
+                    <div
+                      key={index}
+                      className={`min-h-16 md:min-h-24 p-1 border rounded-lg ${
+                        day.isCurrentMonth 
+                          ? 'bg-white border-gray-200' 
+                          : 'bg-gray-50 border-gray-100'
+                      } ${isToday ? 'ring-2 ring-blue-500' : ''}`}
+                    >
+                      <div className={`text-xs md:text-sm font-medium mb-1 ${
+                        day.isCurrentMonth ? 'text-gray-900' : 'text-gray-400'
+                      } ${isToday ? 'text-blue-600' : ''}`}>
+                        {day.date.getDate()}
                       </div>
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        onClick={() => deleteEvent(event.id)}
-                        className="text-red-600 hover:text-red-700"
-                      >
-                        <Trash2 className="h-4 w-4" />
-                      </Button>
+                      
+                      <div className="space-y-1">
+                        {dayEvents.slice(0, window.innerWidth < 768 ? 1 : 2).map((event) => {
+                          const eventType = eventTypes.find(t => t.value === event.type);
+                          return (
+                            <div
+                              key={event.id}
+                              className={`p-1 rounded text-xs text-white cursor-pointer hover:opacity-80 ${eventType?.color || 'bg-gray-500'} transition-transform active:scale-95`}
+                              title={`${event.title} - ${formatTime(event.time, event.duration)}`}
+                              onClick={() => deleteEvent(event.id)}
+                            >
+                              <div className="flex items-center justify-between">
+                                <span className="truncate flex-1 text-xs">{event.title}</span>
+                                <Trash2 className="h-2 w-2 md:h-3 md:w-3 opacity-0 hover:opacity-100" />
+                              </div>
+                              <div className="text-xs opacity-80 hidden md:block">
+                                {event.time}
+                              </div>
+                            </div>
+                          );
+                        })}
+                        
+                        {dayEvents.length > (window.innerWidth < 768 ? 1 : 2) && (
+                          <div className="text-xs text-gray-500 text-center">
+                            +{dayEvents.length - (window.innerWidth < 768 ? 1 : 2)} autres
+                          </div>
+                        )}
+                      </div>
                     </div>
                   );
                 })}
               </div>
-            ) : (
-              <p className="text-gray-500 text-center py-4">
-                Aucun événement prévu pour aujourd'hui
-              </p>
-            )}
-          </CardContent>
-        </Card>
+            </CardContent>
+          </Card>
+
+          {/* Today's Events responsive */}
+          <Card className="mt-4 md:mt-6 rounded-xl">
+            <CardHeader className="py-3 md:py-4">
+              <CardTitle className="flex items-center space-x-2 text-base md:text-lg">
+                <Clock className="h-4 w-4 md:h-5 md:w-5" />
+                <span>Événements d'aujourd'hui</span>
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="pt-0">
+              {getEventsForDate(new Date()).length > 0 ? (
+                <div className="space-y-2 md:space-y-3">
+                  {getEventsForDate(new Date()).map((event) => {
+                    const eventType = eventTypes.find(t => t.value === event.type);
+                    return (
+                      <div key={event.id} className="flex items-center space-x-2 md:space-x-3 p-2 md:p-3 bg-gray-50 rounded-lg">
+                        <div className={`w-2 h-2 md:w-3 md:h-3 rounded-full ${eventType?.color || 'bg-gray-500'}`} />
+                        <div className="flex-1 min-w-0">
+                          <div className="font-medium text-sm md:text-base truncate">{event.title}</div>
+                          <div className="text-xs md:text-sm text-gray-600 flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2">
+                            <span>{formatTime(event.time, event.duration)}</span>
+                            {event.location && (
+                              <span className="flex items-center truncate">
+                                <MapPin className="h-3 w-3 mr-1 flex-shrink-0" />
+                                <span className="truncate">{event.location}</span>
+                              </span>
+                            )}
+                          </div>
+                        </div>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => deleteEvent(event.id)}
+                          className="text-red-600 hover:text-red-700 p-1 md:p-2"
+                        >
+                          <Trash2 className="h-3 w-3 md:h-4 md:w-4" />
+                        </Button>
+                      </div>
+                    );
+                  })}
+                </div>
+              ) : (
+                <p className="text-gray-500 text-center py-4 text-sm md:text-base">
+                  Aucun événement prévu pour aujourd'hui
+                </p>
+              )}
+            </CardContent>
+          </Card>
+        </div>
       </div>
+
+      {/* PWA Status en bas de page */}
+      <PWAStatus />
     </div>
   );
 }
