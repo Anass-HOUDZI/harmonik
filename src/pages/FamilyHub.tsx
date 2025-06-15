@@ -57,7 +57,7 @@ const tools: Tool[] = [
     icon: Heart,
     route: '/tools/health',
     priority: 1,
-    status: 'available'
+    status: 'coming-soon'
   },
   {
     id: 'time-manager',
@@ -67,7 +67,7 @@ const tools: Tool[] = [
     icon: Clock,
     route: '/tools/time',
     priority: 1,
-    status: 'available'
+    status: 'coming-soon'
   },
   {
     id: 'homework-planner',
@@ -77,7 +77,7 @@ const tools: Tool[] = [
     icon: BookOpen,
     route: '/tools/homework',
     priority: 1,
-    status: 'beta'
+    status: 'coming-soon'
   },
   {
     id: 'chores-manager',
@@ -87,7 +87,7 @@ const tools: Tool[] = [
     icon: Users,
     route: '/tools/chores',
     priority: 1,
-    status: 'beta'
+    status: 'coming-soon'
   },
   {
     id: 'activity-organizer',

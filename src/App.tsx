@@ -9,6 +9,7 @@ import NotFound from "./pages/NotFound";
 import FamilyHub from "./pages/FamilyHub";
 import FamilyCalendar from "./pages/tools/FamilyCalendar";
 import BudgetCalculator from "./pages/tools/BudgetCalculator";
+import MealPlanner from "./pages/tools/MealPlanner";
 
 const queryClient = new QueryClient();
 
@@ -22,6 +23,7 @@ const App = () => (
           <Route path="/" element={<FamilyHub />} />
           <Route path="/tools/calendar" element={<FamilyCalendar />} />
           <Route path="/tools/budget" element={<BudgetCalculator />} />
+          <Route path="/tools/meals" element={<MealPlanner />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
