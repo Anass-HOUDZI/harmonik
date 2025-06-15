@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -94,16 +93,8 @@ export default function ToolTemplate({
           </Card>
         </div>
 
-        {/* Message d'encouragement */}
-        <Card className="mt-7 mb-0 bg-gradient-to-r from-purple-50/50 via-pink-50/60 to-blue-50/60 border-0 rounded-2xl shadow p-0">
-          <CardContent className="p-6 text-center">
-            <h3 className="text-lg font-semibold text-purple-900 mb-2">🎯 Outil en évolution</h3>
-            <p className="text-purple-700">Suite Famille : chaque outil évolue selon vos retours. Restez connectés, de nouvelles fonctions arrivent !</p>
-          </CardContent>
-        </Card>
         {/* Plus aucune marge ou padding après la dernière card */}
       </div>
     </div>
   );
 }
-
