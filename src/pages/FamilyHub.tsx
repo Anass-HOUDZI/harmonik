@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -58,7 +57,7 @@ const tools: Tool[] = [
     icon: ShoppingCart,
     route: '/tools/shopping',
     priority: 2,
-    status: 'coming-soon'
+    status: 'available'
   },
   {
     id: 'childcare-planner',
@@ -68,7 +67,7 @@ const tools: Tool[] = [
     icon: Baby,
     route: '/tools/childcare',
     priority: 2,
-    status: 'coming-soon'
+    status: 'available'
   },
   {
     id: 'medical-appointments',
@@ -78,7 +77,7 @@ const tools: Tool[] = [
     icon: Stethoscope,
     route: '/tools/medical-appointments',
     priority: 2,
-    status: 'coming-soon'
+    status: 'available'
   },
 
   // Finances
@@ -100,7 +99,7 @@ const tools: Tool[] = [
     icon: PiggyBank,
     route: '/tools/kids-expenses',
     priority: 2,
-    status: 'coming-soon'
+    status: 'available'
   },
   {
     id: 'savings-simulator',
@@ -110,7 +109,7 @@ const tools: Tool[] = [
     icon: TrendingUp,
     route: '/tools/savings',
     priority: 2,
-    status: 'coming-soon'
+    status: 'available'
   },
   {
     id: 'price-comparator',
@@ -120,7 +119,7 @@ const tools: Tool[] = [
     icon: DollarSign,
     route: '/tools/price-compare',
     priority: 2,
-    status: 'coming-soon'
+    status: 'available'
   },
   {
     id: 'childcare-costs',
@@ -130,7 +129,7 @@ const tools: Tool[] = [
     icon: AlertTriangle,
     route: '/tools/childcare-costs',
     priority: 2,
-    status: 'coming-soon'
+    status: 'available'
   },
   {
     id: 'vacation-savings',
@@ -140,7 +139,7 @@ const tools: Tool[] = [
     icon: Plane,
     route: '/tools/vacation-savings',
     priority: 2,
-    status: 'coming-soon'
+    status: 'available'
   },
   {
     id: 'pocket-money',
@@ -150,7 +149,7 @@ const tools: Tool[] = [
     icon: Wallet,
     route: '/tools/pocket-money',
     priority: 2,
-    status: 'coming-soon'
+    status: 'available'
   },
   {
     id: 'school-costs',
@@ -160,7 +159,7 @@ const tools: Tool[] = [
     icon: GraduationCap,
     route: '/tools/school-costs',
     priority: 2,
-    status: 'coming-soon'
+    status: 'available'
   },
 
   // Éducation
@@ -182,7 +181,7 @@ const tools: Tool[] = [
     icon: Brain,
     route: '/tools/educational-activities',
     priority: 2,
-    status: 'coming-soon'
+    status: 'available'
   },
   {
     id: 'school-progress',
@@ -192,7 +191,7 @@ const tools: Tool[] = [
     icon: TrendingUp,
     route: '/tools/school-progress',
     priority: 2,
-    status: 'coming-soon'
+    status: 'available'
   },
   {
     id: 'educational-resources',
@@ -202,7 +201,7 @@ const tools: Tool[] = [
     icon: Library,
     route: '/tools/educational-resources',
     priority: 2,
-    status: 'coming-soon'
+    status: 'available'
   },
   {
     id: 'family-quiz',
@@ -212,7 +211,7 @@ const tools: Tool[] = [
     icon: HelpCircle,
     route: '/tools/family-quiz',
     priority: 2,
-    status: 'coming-soon'
+    status: 'available'
   },
   {
     id: 'reading-tracker',
@@ -222,7 +221,7 @@ const tools: Tool[] = [
     icon: BookOpen,
     route: '/tools/reading-tracker',
     priority: 2,
-    status: 'coming-soon'
+    status: 'available'
   },
   {
     id: 'cultural-calendar',
@@ -232,7 +231,7 @@ const tools: Tool[] = [
     icon: Calendar,
     route: '/tools/cultural-calendar',
     priority: 2,
-    status: 'coming-soon'
+    status: 'available'
   },
   {
     id: 'homework-assistant',
@@ -242,7 +241,7 @@ const tools: Tool[] = [
     icon: HelpCircle,
     route: '/tools/homework-assistant',
     priority: 2,
-    status: 'coming-soon'
+    status: 'available'
   },
 
   // Santé
@@ -264,7 +263,7 @@ const tools: Tool[] = [
     icon: Clock,
     route: '/tools/sleep-tracker',
     priority: 2,
-    status: 'coming-soon'
+    status: 'available'
   },
   {
     id: 'fitness-planner',
@@ -274,7 +273,7 @@ const tools: Tool[] = [
     icon: Dumbbell,
     route: '/tools/fitness-planner',
     priority: 2,
-    status: 'coming-soon'
+    status: 'available'
   },
   {
     id: 'allergy-manager',
@@ -284,7 +283,7 @@ const tools: Tool[] = [
     icon: AlertTriangle,
     route: '/tools/allergy-manager',
     priority: 2,
-    status: 'coming-soon'
+    status: 'available'
   },
   {
     id: 'bmi-calculator',
@@ -294,7 +293,7 @@ const tools: Tool[] = [
     icon: Scale,
     route: '/tools/bmi-calculator',
     priority: 2,
-    status: 'coming-soon'
+    status: 'available'
   },
   {
     id: 'hydration-tracker',
@@ -304,7 +303,7 @@ const tools: Tool[] = [
     icon: Droplets,
     route: '/tools/hydration-tracker',
     priority: 2,
-    status: 'coming-soon'
+    status: 'available'
   },
   {
     id: 'nutrition-generator',
@@ -314,7 +313,7 @@ const tools: Tool[] = [
     icon: ChefHat,
     route: '/tools/nutrition-generator',
     priority: 2,
-    status: 'coming-soon'
+    status: 'available'
   },
   {
     id: 'medical-scheduler',
@@ -324,7 +323,7 @@ const tools: Tool[] = [
     icon: UserCheck,
     route: '/tools/medical-scheduler',
     priority: 2,
-    status: 'coming-soon'
+    status: 'available'
   },
 
   // Équilibre
@@ -346,7 +345,7 @@ const tools: Tool[] = [
     icon: Briefcase,
     route: '/tools/flexible-schedule',
     priority: 2,
-    status: 'coming-soon'
+    status: 'available'
   },
   {
     id: 'productivity-tracker',
@@ -356,7 +355,7 @@ const tools: Tool[] = [
     icon: TrendingUp,
     route: '/tools/productivity-tracker',
     priority: 2,
-    status: 'coming-soon'
+    status: 'available'
   },
   {
     id: 'family-meetings',
@@ -366,7 +365,7 @@ const tools: Tool[] = [
     icon: Users,
     route: '/tools/family-meetings',
     priority: 2,
-    status: 'coming-soon'
+    status: 'available'
   },
   {
     id: 'transport-calculator',
@@ -376,7 +375,7 @@ const tools: Tool[] = [
     icon: MapPin,
     route: '/tools/transport-calculator',
     priority: 2,
-    status: 'coming-soon'
+    status: 'available'
   },
   {
     id: 'strategic-leave',
@@ -386,7 +385,7 @@ const tools: Tool[] = [
     icon: Calendar,
     route: '/tools/strategic-leave',
     priority: 2,
-    status: 'coming-soon'
+    status: 'available'
   },
   {
     id: 'energy-tracker',
@@ -396,7 +395,7 @@ const tools: Tool[] = [
     icon: Activity,
     route: '/tools/energy-tracker',
     priority: 2,
-    status: 'coming-soon'
+    status: 'available'
   },
   {
     id: 'telework-manager',
@@ -406,7 +405,7 @@ const tools: Tool[] = [
     icon: Home,
     route: '/tools/telework-manager',
     priority: 2,
-    status: 'coming-soon'
+    status: 'available'
   },
 
   // Développement
@@ -418,7 +417,7 @@ const tools: Tool[] = [
     icon: Target,
     route: '/tools/family-goals',
     priority: 2,
-    status: 'coming-soon'
+    status: 'available'
   },
   {
     id: 'gratitude-journal',
@@ -428,7 +427,7 @@ const tools: Tool[] = [
     icon: Smile,
     route: '/tools/gratitude-journal',
     priority: 2,
-    status: 'coming-soon'
+    status: 'available'
   },
   {
     id: 'family-challenges',
@@ -438,7 +437,7 @@ const tools: Tool[] = [
     icon: Trophy,
     route: '/tools/family-challenges',
     priority: 2,
-    status: 'coming-soon'
+    status: 'available'
   },
   {
     id: 'couple-time',
@@ -448,7 +447,7 @@ const tools: Tool[] = [
     icon: Heart,
     route: '/tools/couple-time',
     priority: 2,
-    status: 'coming-soon'
+    status: 'available'
   },
   {
     id: 'habits-tracker',
@@ -458,7 +457,7 @@ const tools: Tool[] = [
     icon: Target,
     route: '/tools/habits-tracker',
     priority: 2,
-    status: 'coming-soon'
+    status: 'available'
   },
   {
     id: 'relaxation-generator',
@@ -468,7 +467,7 @@ const tools: Tool[] = [
     icon: Coffee,
     route: '/tools/relaxation-generator',
     priority: 2,
-    status: 'coming-soon'
+    status: 'available'
   },
   {
     id: 'communication-assistant',
@@ -478,7 +477,7 @@ const tools: Tool[] = [
     icon: MessageCircle,
     route: '/tools/communication-assistant',
     priority: 2,
-    status: 'coming-soon'
+    status: 'available'
   },
   {
     id: 'family-projects',
@@ -488,7 +487,7 @@ const tools: Tool[] = [
     icon: FolderOpen,
     route: '/tools/family-projects',
     priority: 2,
-    status: 'coming-soon'
+    status: 'available'
   },
 
   // Loisirs
@@ -510,7 +509,7 @@ const tools: Tool[] = [
     icon: Sun,
     route: '/tools/weather-activities',
     priority: 2,
-    status: 'coming-soon'
+    status: 'available'
   },
   {
     id: 'indoor-activities',
@@ -520,7 +519,7 @@ const tools: Tool[] = [
     icon: CloudRain,
     route: '/tools/indoor-activities',
     priority: 2,
-    status: 'coming-soon'
+    status: 'available'
   },
   {
     id: 'birthday-organizer',
@@ -530,7 +529,7 @@ const tools: Tool[] = [
     icon: PartyPopper,
     route: '/tools/birthday-organizer',
     priority: 2,
-    status: 'coming-soon'
+    status: 'available'
   },
   {
     id: 'family-games',
@@ -540,7 +539,7 @@ const tools: Tool[] = [
     icon: Puzzle,
     route: '/tools/family-games',
     priority: 2,
-    status: 'coming-soon'
+    status: 'available'
   },
   {
     id: 'budget-vacations',
@@ -550,7 +549,7 @@ const tools: Tool[] = [
     icon: Plane,
     route: '/tools/budget-vacations',
     priority: 2,
-    status: 'coming-soon'
+    status: 'available'
   },
   {
     id: 'creative-tracker',
@@ -560,7 +559,7 @@ const tools: Tool[] = [
     icon: Trophy,
     route: '/tools/creative-tracker',
     priority: 2,
-    status: 'coming-soon'
+    status: 'available'
   },
   {
     id: 'treasure-hunt',
@@ -570,7 +569,7 @@ const tools: Tool[] = [
     icon: MapPin,
     route: '/tools/treasure-hunt',
     priority: 2,
-    status: 'coming-soon'
+    status: 'available'
   },
   {
     id: 'picnic-organizer',
@@ -580,7 +579,7 @@ const tools: Tool[] = [
     icon: Apple,
     route: '/tools/picnic-organizer',
     priority: 2,
-    status: 'coming-soon'
+    status: 'available'
   },
 
   // Outils Pratiques
@@ -592,7 +591,7 @@ const tools: Tool[] = [
     icon: Ruler,
     route: '/tools/unit-converter',
     priority: 2,
-    status: 'coming-soon'
+    status: 'available'
   },
   {
     id: 'label-generator',
@@ -602,7 +601,7 @@ const tools: Tool[] = [
     icon: Tag,
     route: '/tools/label-generator',
     priority: 2,
-    status: 'coming-soon'
+    status: 'available'
   },
   {
     id: 'portion-calculator',
@@ -612,7 +611,7 @@ const tools: Tool[] = [
     icon: UtensilsCrossed,
     route: '/tools/portion-calculator',
     priority: 2,
-    status: 'coming-soon'
+    status: 'available'
   },
   {
     id: 'screen-timer',
@@ -622,7 +621,7 @@ const tools: Tool[] = [
     icon: Timer,
     route: '/tools/screen-timer',
     priority: 2,
-    status: 'coming-soon'
+    status: 'available'
   }
 ];
 
