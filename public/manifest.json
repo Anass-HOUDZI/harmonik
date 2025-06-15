@@ -1,0 +1,61 @@
+
+{
+  "name": "Suite Famille - 50 Outils Gratuits",
+  "short_name": "Suite Famille",
+  "description": "50 outils gratuits pour simplifier la vie de famille",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2563eb",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "/icon-192.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["family", "productivity", "utilities"],
+  "screenshots": [
+    {
+      "src": "/screenshot-wide.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide"
+    },
+    {
+      "src": "/screenshot-narrow.png",
+      "sizes": "720x1280",
+      "type": "image/png",
+      "form_factor": "narrow"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Calendrier Familial",
+      "short_name": "Calendrier",
+      "description": "Accès rapide au calendrier familial",
+      "url": "/tools/calendar",
+      "icons": [{ "src": "/favicon.ico", "sizes": "96x96" }]
+    },
+    {
+      "name": "Budget Familial",
+      "short_name": "Budget",
+      "description": "Accès rapide au calculateur budget",
+      "url": "/tools/budget",
+      "icons": [{ "src": "/favicon.ico", "sizes": "96x96" }]
+    }
+  ]
+}
