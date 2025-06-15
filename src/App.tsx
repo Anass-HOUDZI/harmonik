@@ -10,6 +10,7 @@ import FamilyCalendar from "./pages/tools/FamilyCalendar";
 import BudgetCalculator from "./pages/tools/BudgetCalculator";
 import MealPlanner from "./pages/tools/MealPlanner";
 import HealthTracker from "./pages/tools/HealthTracker";
+import TimeManager from "./pages/tools/TimeManager";
 
 const queryClient = new QueryClient();
 
@@ -25,6 +26,7 @@ const App = () => (
           <Route path="/tools/budget" element={<BudgetCalculator />} />
           <Route path="/tools/meals" element={<MealPlanner />} />
           <Route path="/tools/health" element={<HealthTracker />} />
+          <Route path="/tools/time" element={<TimeManager />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

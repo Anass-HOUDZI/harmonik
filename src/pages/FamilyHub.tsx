@@ -66,7 +66,7 @@ const tools: Tool[] = [
     icon: Clock,
     route: '/tools/time',
     priority: 1,
-    status: 'coming-soon'
+    status: 'available'
   },
   {
     id: 'homework-planner',
