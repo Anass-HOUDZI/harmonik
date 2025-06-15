@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -30,8 +31,8 @@ export default function ToolTemplate({
   const navigate = useNavigate();
 
   return (
-    // Suppression de min-h-screen pour éviter le "blanc"
-    <div className={`bg-gradient-to-br ${bgColor} px-2 py-8 md:py-10`}>
+    // Toujours sans min-h-screen
+    <div className={`bg-gradient-to-br ${bgColor} px-2 pt-8 md:pt-10 pb-0`}>
       <div className="max-w-4xl mx-auto">
         <Card className="mb-7 rounded-2xl shadow-lg border-0 bg-white/95">
           <CardHeader className="flex flex-row items-center gap-4 py-6 px-4 md:px-8">
@@ -94,13 +95,15 @@ export default function ToolTemplate({
         </div>
 
         {/* Message d'encouragement */}
-        <Card className="bg-gradient-to-r from-purple-50/50 via-pink-50/60 to-blue-50/60 border-0 rounded-2xl shadow p-0">
+        <Card className="mt-7 mb-0 bg-gradient-to-r from-purple-50/50 via-pink-50/60 to-blue-50/60 border-0 rounded-2xl shadow p-0">
           <CardContent className="p-6 text-center">
             <h3 className="text-lg font-semibold text-purple-900 mb-2">🎯 Outil en évolution</h3>
             <p className="text-purple-700">Suite Famille : chaque outil évolue selon vos retours. Restez connectés, de nouvelles fonctions arrivent !</p>
           </CardContent>
         </Card>
+        {/* Plus aucune marge ou padding après la dernière card */}
       </div>
     </div>
   );
 }
+
