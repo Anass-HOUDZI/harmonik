@@ -3,7 +3,7 @@ import React from "react";
 
 export default function Footer() {
   return (
-    <footer className="w-full flex justify-center items-center py-5 bg-gradient-to-br from-white/90 to-blue-50 border-t border-gray-100 text-center text-gray-500 text-sm">
+    <footer className="w-full flex justify-center items-center my-4 py-5 bg-gradient-to-br from-white/90 to-blue-50 border-t border-gray-100 text-center text-gray-500 text-sm">
       <span>
         Copyright © 2025&nbsp;
         <a
