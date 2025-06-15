@@ -1,105 +1,128 @@
 
-const CACHE_NAME = 'suite-famille-v1';
-const urlsToCache = [
-  '/',
-  '/manifest.json',
-  '/favicon.ico',
-  // Les fichiers seront ajoutés automatiquement par Vite
+const CACHE_VERSION = "v2-suitefamille";
+const STATIC_CACHE = `static-${CACHE_VERSION}`;
+const DATA_CACHE = `data-${CACHE_VERSION}`;
+const OFFLINE_URL = "/";
+const TOOLS_OFFLINE = [
+  "/tools/keyword-density",
+  "/tools/meta-generator",
+  "/tools/readability-checker",
+  "/tools/structured-data-gen",
+  "/tools/html-structure-analyzer"
 ];
 
-// Installation du Service Worker
+// Fichiers à pré-cacher
+const ASSETS = [
+  "/",
+  "/index.html",
+  "/manifest.json",
+  "/favicon.ico",
+  "/icon-192.png",
+  "/icon-512.png",
+  ...TOOLS_OFFLINE,
+];
+
+// Install : cache les assets de base
 self.addEventListener('install', event => {
   event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then(cache => {
-        return cache.addAll(urlsToCache);
-      })
-  );
-});
-
-// Activation du Service Worker
-self.addEventListener('activate', event => {
-  event.waitUntil(
-    caches.keys().then(cacheNames => {
-      return Promise.all(
-        cacheNames.map(cacheName => {
-          if (cacheName !== CACHE_NAME) {
-            return caches.delete(cacheName);
-          }
-        })
-      );
-    })
-  );
-});
-
-// Stratégie Cache First pour les ressources statiques
-self.addEventListener('fetch', event => {
-  event.respondWith(
-    caches.match(event.request)
-      .then(response => {
-        // Cache hit - return response
-        if (response) {
-          return response;
-        }
-
-        return fetch(event.request).then(response => {
-          // Check if we received a valid response
-          if (!response || response.status !== 200 || response.type !== 'basic') {
-            return response;
-          }
-
-          // Clone the response
-          const responseToCache = response.clone();
-
-          caches.open(CACHE_NAME)
-            .then(cache => {
-              cache.put(event.request, responseToCache);
-            });
-
-          return response;
-        });
-      }
+    caches.open(STATIC_CACHE).then(cache =>
+      cache.addAll(ASSETS)
     )
   );
+  self.skipWaiting();
 });
 
-// Notification support
-self.addEventListener('push', event => {
-  const options = {
-    body: event.data ? event.data.text() : 'Nouvelle notification de Suite Famille',
-    icon: '/favicon.ico',
-    badge: '/favicon.ico',
-    vibrate: [100, 50, 100],
-    data: {
-      dateOfArrival: Date.now(),
-      primaryKey: 1
-    },
-    actions: [
-      {
-        action: 'explore',
-        title: 'Ouvrir l\'app',
-        icon: '/favicon.ico'
-      },
-      {
-        action: 'close',
-        title: 'Fermer',
-        icon: '/favicon.ico'
-      }
-    ]
-  };
-
+// Activate : clean anciens caches
+self.addEventListener("activate", event => {
   event.waitUntil(
-    self.registration.showNotification('Suite Famille', options)
+    caches.keys().then(keys =>
+      Promise.all(
+        keys.filter(key => key !== STATIC_CACHE && key !== DATA_CACHE)
+          .map(key => caches.delete(key))
+      )
+    )
+  );
+  self.clients.claim();
+});
+
+// Fetch strategy (cache-first offline tools, network-first for APIs)
+self.addEventListener("fetch", (event) => {
+  const url = new URL(event.request.url);
+
+  // API externe : toujours network-first
+  if (/api\.openweathermap\.org|openstreetmap|nominatim|googleapis/.test(url.href)) {
+    event.respondWith(
+      fetch(event.request)
+        .then(resp => {
+          // backup cache pour certains flux
+          const respClone = resp.clone();
+          caches.open(DATA_CACHE).then(cache => {
+            cache.put(event.request, respClone);
+          });
+          return resp;
+        })
+        .catch(() => caches.match(event.request))
+    );
+    return;
+  }
+
+  // Données analytiques/offline tools : cache-first
+  if (TOOLS_OFFLINE.some(t => url.pathname.startsWith(t))) {
+    event.respondWith(
+      caches.match(event.request)
+        .then(response =>
+          response ||
+          fetch(event.request).then(resp => {
+            // update le cache outils
+            caches.open(DATA_CACHE).then(cache => {
+              cache.put(event.request, resp.clone());
+            });
+            return resp;
+          })
+        )
+        .catch(() => caches.match(OFFLINE_URL))
+    );
+    return;
+  }
+
+  // Assets du site (html/css/js/icon…) : cache-first
+  if (ASSETS.some(asset => url.pathname === asset)) {
+    event.respondWith(
+      caches.match(event.request)
+        .then(response => response || fetch(event.request))
+    );
+    return;
+  }
+
+  // Par défaut network-first avec fallback offline
+  event.respondWith(
+    fetch(event.request).catch(() => caches.match(event.request))
   );
 });
 
-// Handle notification clicks
-self.addEventListener('notificationclick', event => {
-  event.notification.close();
-
-  if (event.action === 'explore') {
-    event.waitUntil(
-      clients.openWindow('/')
-    );
+// Update automatique et notification nouvelle version
+self.addEventListener('message', (event) => {
+  if (event.data === 'SKIP_WAITING') {
+    self.skipWaiting();
   }
+});
+
+self.addEventListener("push", event => {
+  const options = {
+    body: event.data ? event.data.text() : "Nouvelle version ou donnée prête hors-ligne !",
+    icon: "/icon-192.png",
+    badge: "/favicon.ico"
+  };
+  event.waitUntil(
+    self.registration.showNotification("Suite Famille", options)
+  );
+});
+
+// Broadcast quand nouvel SW activé
+self.addEventListener("activate", event => {
+  event.waitUntil(
+    self.clients.matchAll().then(clients =>
+      clients.forEach(client => client.postMessage("sw-updated"))
+    )
+  );
 });

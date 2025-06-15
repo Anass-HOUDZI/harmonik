@@ -2,18 +2,20 @@
 {
   "name": "Suite Famille - 50 Outils Gratuits",
   "short_name": "Suite Famille",
-  "description": "50 outils gratuits pour simplifier la vie de famille",
+  "description": "Suite complète de 50 outils 100% gratuits pour familles modernes. Organisation, éducation, santé, offline et mobile.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#ffffff",
+  "background_color": "#FFFFFF",
   "theme_color": "#2563eb",
   "orientation": "portrait-primary",
+  "categories": [
+    "productivity",
+    "utilities",
+    "family",
+    "education",
+    "health"
+  ],
   "icons": [
-    {
-      "src": "/favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
-    },
     {
       "src": "/icon-192.png",
       "type": "image/png",
@@ -21,13 +23,29 @@
       "purpose": "any maskable"
     },
     {
+      "src": "/icon-256.png",
+      "type": "image/png",
+      "sizes": "256x256",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-384.png",
+      "type": "image/png",
+      "sizes": "384x384",
+      "purpose": "any maskable"
+    },
+    {
       "src": "/icon-512.png",
       "type": "image/png",
       "sizes": "512x512",
       "purpose": "any maskable"
+    },
+    {
+      "src": "/favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
     }
   ],
-  "categories": ["family", "productivity", "utilities"],
   "screenshots": [
     {
       "src": "/screenshot-wide.png",
