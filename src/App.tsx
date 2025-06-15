@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -66,6 +65,7 @@ import UnitConverter from "./pages/tools/UnitConverter";
 import LabelGenerator from "./pages/tools/LabelGenerator";
 import PortionCalculator from "./pages/tools/PortionCalculator";
 import ScreenTimer from "./pages/tools/ScreenTimer";
+import Footer from "@/components/Footer";
 
 const queryClient = new QueryClient();
 
@@ -154,7 +154,7 @@ const App = () => (
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
-        {/* Toasters require being inside React context and BrowserRouter */}
+        <Footer />
         <Toaster />
         <Sonner />
       </BrowserRouter>
