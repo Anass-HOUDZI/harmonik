@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -32,7 +31,7 @@ export default function ToolTemplate({
 
   return (
     // Toujours sans min-h-screen
-    <div className={`bg-gradient-to-br ${bgColor} px-2 pt-8 md:pt-10 pb-0`}>
+    <div className={`bg-gradient-to-br ${bgColor} px-2 xs:px-4 pt-8 md:pt-10 pb-0`}>
       <div className="max-w-4xl mx-auto">
         <Card className="mb-7 rounded-2xl shadow-lg border-0 bg-white/95">
           <CardHeader className="flex flex-col md:flex-row items-center gap-4 py-6 px-4 md:px-8 relative">
@@ -66,7 +65,7 @@ export default function ToolTemplate({
               {features.map((feature, index) => (
                 <div
                   key={index}
-                  className="flex items-start gap-3 p-3 bg-white rounded-xl border border-green-100 shadow-sm transition transform hover:scale-[1.025] hover:bg-green-100/40"
+                  className="flex items-start gap-3 p-3 bg-white rounded-xl border border-green-100 shadow-sm transition transform hover:scale-[1.025] active:scale-95 hover:bg-green-100/40"
                 >
                   <span className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></span>
                   <span className="text-green-900 text-sm">{feature}</span>
@@ -84,7 +83,7 @@ export default function ToolTemplate({
               {comingSoonFeatures.map((feature, index) => (
                 <div
                   key={index}
-                  className="flex items-start gap-3 p-3 bg-white rounded-xl border border-blue-100 shadow-sm transition hover:scale-[1.025] hover:bg-blue-100/40"
+                  className="flex items-start gap-3 p-3 bg-white rounded-xl border border-blue-100 shadow-sm transition transform hover:scale-[1.025] active:scale-95 hover:bg-blue-100/40"
                 >
                   <span className="w-2 h-2 bg-blue-400 rounded-full mt-2 flex-shrink-0"></span>
                   <span className="text-blue-950 text-sm">{feature}</span>

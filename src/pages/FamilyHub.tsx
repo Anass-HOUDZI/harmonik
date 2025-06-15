@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import Hero from "@/components/Hero";
 import FamilyHubSearchFilters from "@/components/family-hub/FamilyHubSearchFilters";
@@ -25,7 +24,7 @@ export default function FamilyHub() {
       {/* Nouveau Hero amélioré */}
       <Hero />
 
-      <main className="max-w-7xl mx-auto w-full px-2 sm:px-4 lg:px-8 py-6 flex flex-col items-center">
+      <main className="max-w-7xl mx-auto w-full px-2 xs:px-4 sm:px-6 lg:px-8 py-6 flex flex-col items-center">
         {/* Filtres de catégorie centrés et valorisés */}
         <FamilyHubSearchFilters
           // plus de searchTerm ni setSearchTerm
@@ -74,7 +73,7 @@ export default function FamilyHub() {
                   desc: "Interface ludique, intuitive, adaptée à tous les âges et accessible sur tous appareils."
                 },
               ].map(f => (
-                <div className="text-center animate-fade-in" key={f.title}>
+                <div className="text-center animate-fade-in transition-transform duration-200 hover:scale-105 active:scale-95" key={f.title}>
                   <div className="rounded-full bg-gradient-to-tr from-blue-200 via-pink-100 to-purple-100 shadow p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center text-3xl">
                     <span>{f.icon}</span>
                   </div>
