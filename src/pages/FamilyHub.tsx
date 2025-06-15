@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -57,7 +56,7 @@ const tools: Tool[] = [
     icon: Heart,
     route: '/tools/health',
     priority: 1,
-    status: 'coming-soon'
+    status: 'available'
   },
   {
     id: 'time-manager',
