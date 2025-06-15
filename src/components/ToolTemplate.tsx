@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -34,20 +35,20 @@ export default function ToolTemplate({
     <div className={`bg-gradient-to-br ${bgColor} px-2 pt-8 md:pt-10 pb-0`}>
       <div className="max-w-4xl mx-auto">
         <Card className="mb-7 rounded-2xl shadow-lg border-0 bg-white/95">
-          <CardHeader className="flex flex-row items-center gap-4 py-6 px-4 md:px-8">
-            <span className={`rounded-2xl shadow bg-gradient-to-br from-white ${iconBgColor} ${iconTextColor} flex items-center justify-center`} style={{ minWidth: 84, minHeight: 84 }}>
+          <CardHeader className="flex flex-col md:flex-row items-center gap-4 py-6 px-4 md:px-8 relative">
+            <Button variant="outline" onClick={() => navigate("/")} className="rounded-lg absolute top-4 right-4 md:static md:order-3 p-2 md:p-2 md:px-3">
+              <ArrowLeft className="w-4 h-4 md:mr-2" />
+              <span className="hidden md:inline">Accueil</span>
+            </Button>
+            <span className={`rounded-2xl shadow bg-gradient-to-br from-white ${iconBgColor} ${iconTextColor} flex items-center justify-center md:order-1`} style={{ minWidth: 84, minHeight: 84 }}>
               <div className={`h-12 w-12 md:h-14 md:w-14 flex items-center justify-center`}>
                 {icon}
               </div>
             </span>
-            <div className="flex-1">
-              <CardTitle className="text-2xl md:text-3xl font-bold text-blue-900">{title}</CardTitle>
+            <div className="flex-1 text-center md:text-left md:order-2">
+              <CardTitle className="text-2xl md:text-3xl font-bold text-blue-900 mt-2 md:mt-0">{title}</CardTitle>
               <CardDescription className="text-base md:text-lg font-medium text-gray-700 mt-2">{description}</CardDescription>
             </div>
-            <Button variant="outline" onClick={() => navigate("/")} className="rounded-lg">
-              <ArrowLeft className="w-4 h-4 mr-2" />
-              Accueil
-            </Button>
           </CardHeader>
         </Card>
 

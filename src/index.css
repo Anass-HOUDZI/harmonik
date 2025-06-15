@@ -95,6 +95,7 @@
 @layer base {
   * {
     @apply border-border;
+    -webkit-tap-highlight-color: transparent; /* Améliore l'expérience tactile */
   }
 
   body {
