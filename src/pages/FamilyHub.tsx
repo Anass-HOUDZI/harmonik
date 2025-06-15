@@ -76,7 +76,7 @@ const tools: Tool[] = [
     icon: BookOpen,
     route: '/tools/homework',
     priority: 1,
-    status: 'coming-soon'
+    status: 'available'
   },
   {
     id: 'chores-manager',
