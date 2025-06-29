@@ -1,73 +1,133 @@
-# Welcome to your Lovable project
+# Suite d'Outils Familiaux
 
-## Project info
+Une collection complète de 60 outils gratuits et open-source pour simplifier et enrichir la vie des familles modernes.
 
-**URL**: https://lovable.dev/projects/6fe659ee-e743-4c25-ab21-9ae8c9e27ca0
+## Introduction
 
-## How can I edit this code?
+Bienvenue dans la Suite d'Outils Familiaux, une collection unique d'applications web progressives (PWA) conçues pour répondre aux besoins des familles modernes. Développée avec amour par des parents pour des parents, cette suite offre des solutions gratuites, respectueuses de la vie privée et entièrement fonctionnelles hors ligne.
 
-There are several ways of editing your application.
+**Lien du Projet** : [Suite d'Outils Familiaux](https://family-web-pwa-suite.lovable.app/)
 
-**Use Lovable**
+## Fonctionnalités Principales
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/6fe659ee-e743-4c25-ab21-9ae8c9e27ca0) and start prompting.
+### 🏠 Organisation Familiale
+- **Planificateur de repas familial** : Génération de menus équilibrés et gestion des listes de courses
+- **Calendrier familial interactif** : Synchronisation des activités de tous les membres de la famille
+- **Gestionnaire de corvées** : Répartition équitable des tâches ménagères avec système de récompenses
 
-Changes made via Lovable will be committed automatically to this repo.
+### 💰 Budget & Finances
+- **Calculateur budget familial** : Répartition des dépenses et suivi des économies
+- **Tracker dépenses enfants** : Suivi des coûts liés aux enfants
+- **Simulateur économies famille** : Calcul de l'épargne possible
 
-**Use your preferred IDE**
+### 📚 Éducation & Développement
+- **Générateur activités éducatives** : Création d'exercices adaptés à l'âge
+- **Tracker progrès scolaires** : Visualisation de l'évolution des notes
+- **Bibliothèque ressources pédagogiques** : Classement par matière et niveau
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### 🍎 Santé & Bien-être
+- **Carnet de santé numérique** : Centralisation des informations médicales
+- **Tracker sommeil famille** : Analyse de la qualité du repos
+- **Planificateur activité physique** : Organisation du sport familial
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+### ⚖️ Équilibre Vie Pro/Perso
+- **Planificateur horaires flexibles** : Optimisation du télétravail
+- **Gestionnaire temps parental** : Équilibre entre vie professionnelle et familiale
+- **Tracker productivité parent** : Amélioration de l'efficacité
 
-Follow these steps:
+### 🎯 Développement Personnel
+- **Tracker objectifs familiaux** : Suivi de la réalisation des projets
+- **Journal de gratitude familial** : Cultive la positivité
+- **Générateur défis famille** : Propose des challenges amusants
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+### 🏃 Activités & Loisirs
+- **Générateur sortie météo** : Propose des activités selon les conditions
+- **Planificateur activités intérieur** : Occupe les jours de pluie
+- **Organisateur anniversaires enfants** : Planifie les fêtes
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+### 🛠️ Outils Pratiques
+- **Convertisseur unités de mesure** : Pour cuisine et bricolage
+- **Générateur étiquettes organisation** : Classe jouets, vêtements
+- **Calculateur portions alimentaires** : Adapte les quantités famille
 
-# Step 3: Install the necessary dependencies.
-npm i
+## Technologies Utilisées
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+### Frontend
+- **React.js** : Bibliothèque JavaScript pour construire l'interface utilisateur.
+- **Redux** : Gestion de l'état de l'application.
+- **Material-UI** : Bibliothèque de composants UI pour un design moderne et responsive.
+- **Chart.js** : Bibliothèque pour la création de graphiques et de visualisations de données.
 
-**Edit a file directly in GitHub**
+### Backend
+- **Node.js** : Environnement d'exécution JavaScript pour le serveur backend.
+- **Express.js** : Framework pour construire des API RESTful.
+- **Supabase** : Base de données et gestion de l'authentification.
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+### Autres Outils
+- **GitHub Actions** : Pour l'intégration continue et le déploiement continu (CI/CD).
+- **Docker** : Pour la conteneurisation de l'application.
+- **Jest et Cypress** : Pour les tests unitaires et d'intégration.
 
-**Use GitHub Codespaces**
+## Installation
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+Pour installer et exécuter OpenToolsAI Suite localement, suivez ces étapes :
 
-## What technologies are used for this project?
+1. **Cloner le Dépôt** :
+   - Clonez le dépôt du projet depuis GitHub en utilisant la commande `git clone`.
 
-This project is built with:
+2. **Accéder au Répertoire du Projet** :
+   - Accédez au répertoire du projet clonné en utilisant la commande `cd`.
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+3. **Installer les Dépendances Nécessaires** :
+   - Installez les dépendances nécessaires en utilisant `npm install` ou `yarn install`.
 
-## How can I deploy this project?
+4. **Configurer les Variables d'Environnement** :
+   - Configurez les variables d'environnement nécessaires pour le backend et le frontend.
 
-Simply open [Lovable](https://lovable.dev/projects/6fe659ee-e743-4c25-ab21-9ae8c9e27ca0) and click on Share -> Publish.
+5. **Lancer l'Application** :
+   - Lancez l'application en utilisant la commande `npm start` ou `yarn start`.
 
-## Can I connect a custom domain to my Lovable project?
+## Utilisation
 
-Yes, you can!
+1. **Connexion** :
+   - Connectez-vous à votre compte ou créez-en un nouveau en utilisant l'interface de connexion.
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+2. **Création Visuelle** :
+   - Utilisez les outils de création visuelle pour générer des avatars, des QR codes artistiques, et extraire des palettes de couleurs.
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+3. **Traitement de Texte** :
+   - Utilisez les outils de traitement de texte pour détecter des langues, résumer des textes, et plus encore.
+
+4. **Outils de Développement** :
+   - Utilisez les outils de développement pour formater et valider du JSON, encoder et décoder du Base64, et plus encore.
+
+5. **Audio & Image** :
+   - Utilisez les outils audio et image pour compresser des images, visualiser de l'audio, et plus encore.
+
+6. **Analyse & Utilitaires** :
+   - Utilisez les outils d'analyse et utilitaires pour vérifier la force des mots de passe, et plus encore.
+
+## Contribution
+
+Les contributions sont les bienvenues ! Pour contribuer à OpenToolsAI Suite, suivez ces étapes :
+
+1. **Fork le Projet** :
+   - Fork le projet sur GitHub pour créer votre propre copie du dépôt.
+
+2. **Créez une Branche pour Votre Fonctionnalité** :
+   - Créez une branche pour votre fonctionnalité ou correction de bug en utilisant la commande `git checkout -b feature/AmazingFeature`.
+
+3. **Commitez Vos Changements** :
+   - Commitez vos changements avec un message de commit clair et descriptif en utilisant la commande `git commit -m 'Add some AmazingFeature'`.
+
+4. **Poussez vers la Branche** :
+   - Poussez vos changements vers la branche sur votre fork en utilisant la commande `git push origin feature/AmazingFeature`.
+
+5. **Ouvrez une Pull Request** :
+   - Ouvrez une Pull Request pour que vos changements soient revus et fusionnés dans le projet principal.
+
+## Contact
+
+Pour plus d'informations ou pour poser des questions sur le projet, vous pouvez contacter :
+
+**Anass Houdzi** : anass.houdzi@gmail.com
