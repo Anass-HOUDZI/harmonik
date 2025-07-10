@@ -1,15 +1,16 @@
 
 import React, { useState } from 'react';
-import Hero from "@/components/Hero";
+import { ModernHeroSection } from "@/components/ui/modern/ModernHeroSection";
 import FamilyHubSearchFilters from "@/components/family-hub/FamilyHubSearchFilters";
 import FamilyHubStats from "@/components/family-hub/FamilyHubStats";
-import FamilyHubToolCard from "@/components/family-hub/FamilyHubToolCard";
+import ModernToolCard from "@/components/family-hub/ModernToolCard";
 import PWAStatus from "@/components/PWAStatus";
 import { PageContainer } from "@/components/ui/page-container";
 import { Section } from "@/components/ui/section";
 import { ResponsiveGrid } from "@/components/ui/responsive-grid";
 import { FeatureHighlight } from "@/components/common/FeatureHighlight";
 import { EmptyState } from "@/components/common/EmptyState";
+import { ModernCard } from "@/components/ui/modern/ModernCard";
 import { Search } from "lucide-react";
 import { tools } from "@/data/toolsData";
 
@@ -35,25 +36,33 @@ const features = [
 
 export default function FamilyHub() {
   const [selectedCategory, setSelectedCategory] = useState('Tous');
+  const [searchQuery, setSearchQuery] = useState('');
 
   const filteredTools = tools.filter(tool => {
     const matchesCategory = selectedCategory === 'Tous' || tool.category === selectedCategory;
-    return matchesCategory;
+    const matchesSearch = searchQuery === '' || 
+      tool.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      tool.description.toLowerCase().includes(searchQuery.toLowerCase());
+    return matchesCategory && matchesSearch;
   });
 
+  const handleSearch = (query: string) => {
+    setSearchQuery(query);
+  };
+
   return (
-    <div className="min-h-screen bg-white flex flex-col">
-      <Hero />
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 flex flex-col">
+      <ModernHeroSection onSearch={handleSearch} />
 
       <main className="flex-grow">
-        <PageContainer className="py-6 flex flex-col items-center">
+        <PageContainer className="py-8 flex flex-col items-center">
           <FamilyHubSearchFilters
             selectedCategory={selectedCategory}
             setSelectedCategory={setSelectedCategory}
             categories={categories}
           />
 
-          <div className="w-full md:w-[85%] mx-auto">
+          <div className="w-full md:w-[90%] mx-auto">
             <Section variant="transparent">
               <FamilyHubStats />
             </Section>
@@ -65,46 +74,55 @@ export default function FamilyHub() {
                   gap="lg"
                 >
                   {filteredTools.map((tool) => (
-                    <FamilyHubToolCard tool={tool} key={tool.id} />
+                    <ModernToolCard tool={tool} key={tool.id} />
                   ))}
                 </ResponsiveGrid>
               ) : (
-                <EmptyState
-                  title="Aucun outil trouvé"
-                  description="Essayez une autre catégorie !"
-                  icon={<Search className="h-12 w-12" />}
-                />
+                <ModernCard className="p-12 text-center">
+                  <EmptyState
+                    title="Aucun outil trouvé"
+                    description={searchQuery ? `Aucun résultat pour "${searchQuery}"` : "Essayez une autre catégorie !"}
+                    icon={<Search className="h-12 w-12" />}
+                  />
+                </ModernCard>
               )}
             </Section>
 
             <Section 
-              variant="card"
-              className="mt-12 md:mt-20 bg-white/90 border-blue-100"
+              variant="transparent"
+              className="mt-16 md:mt-24"
               spacing="lg"
             >
-              <div className="flex flex-col items-center">
-                <h2 className="text-2xl font-bold text-center text-blue-900 mb-7 font-playfair">
-                  Pourquoi choisir{' '}
-                  <span className="inline-block px-2 py-0.5 rounded-xl bg-gradient-to-tr from-blue-100 via-pink-100 to-purple-100 ml-1">
-                    Suite Famille
-                  </span>{' '}
-                  ?
-                </h2>
-                <ResponsiveGrid 
-                  cols={{ default: 1, md: 3 }}
-                  gap="lg"
-                  className="max-w-4xl"
-                >
-                  {features.map((feature) => (
-                    <FeatureHighlight
-                      key={feature.title}
-                      icon={feature.icon}
-                      title={feature.title}
-                      description={feature.description}
-                    />
-                  ))}
-                </ResponsiveGrid>
-              </div>
+              <ModernCard variant="glass" className="p-8 md:p-12">
+                <div className="flex flex-col items-center">
+                  <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-8 font-space">
+                    Pourquoi choisir{' '}
+                    <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+                      Suite Famille
+                    </span>{' '}
+                    ?
+                  </h2>
+                  <ResponsiveGrid 
+                    cols={{ default: 1, md: 3 }}
+                    gap="lg"
+                    className="max-w-5xl"
+                  >
+                    {features.map((feature, index) => (
+                      <div 
+                        key={feature.title}
+                        className="animate-fade-in"
+                        style={{ animationDelay: `${index * 0.2}s` }}
+                      >
+                        <FeatureHighlight
+                          icon={feature.icon}
+                          title={feature.title}
+                          description={feature.description}
+                        />
+                      </div>
+                    ))}
+                  </ResponsiveGrid>
+                </div>
+              </ModernCard>
             </Section>
           </div>
         </PageContainer>

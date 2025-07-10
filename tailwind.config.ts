@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -20,6 +21,11 @@ export default {
 		extend: {
 			screens: {
 				xs: "480px",
+			},
+			fontFamily: {
+				'space': ['Space Grotesk', 'sans-serif'],
+				'inter': ['Inter', 'sans-serif'],
+				'sans': ['Inter', 'system-ui', 'sans-serif'],
 			},
 			colors: {
 				border: 'hsl(var(--border))',
@@ -64,7 +70,35 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				// Système de couleurs premium
+				premium: {
+					50: 'hsl(220 43% 97%)',
+					100: 'hsl(220 38% 94%)',
+					200: 'hsl(220 35% 88%)',
+					300: 'hsl(220 31% 80%)',
+					400: 'hsl(220 27% 65%)',
+					500: 'hsl(220 23% 50%)',
+					600: 'hsl(220 30% 40%)',
+					700: 'hsl(220 35% 30%)',
+					800: 'hsl(220 40% 20%)',
+					900: 'hsl(220 45% 12%)',
+				},
+				glass: {
+					white: 'hsla(0 0% 100% / 0.1)',
+					blue: 'hsla(220 100% 50% / 0.1)',
+					purple: 'hsla(270 100% 50% / 0.1)',
+					pink: 'hsla(330 100% 50% / 0.1)',
 				}
+			},
+			backgroundImage: {
+				'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+				'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+				'glass-gradient': 'linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%)',
+				'shine-gradient': 'linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.2) 50%, transparent 70%)',
+			},
+			backdropBlur: {
+				xs: '2px',
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -87,11 +121,75 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'fade-in': {
+					'0%': {
+						opacity: '0',
+						transform: 'translateY(20px)'
+					},
+					'100%': {
+						opacity: '1',
+						transform: 'translateY(0)'
+					}
+				},
+				'scale-in': {
+					'0%': {
+						opacity: '0',
+						transform: 'scale(0.9)'
+					},
+					'100%': {
+						opacity: '1',
+						transform: 'scale(1)'
+					}
+				},
+				'pulse-glow': {
+					'0%, 100%': {
+						boxShadow: '0 0 20px hsla(220 100% 50% / 0.3)'
+					},
+					'50%': {
+						boxShadow: '0 0 40px hsla(220 100% 50% / 0.6)'
+					}
+				},
+				'shine': {
+					'0%': {
+						transform: 'translateX(-100%)'
+					},
+					'100%': {
+						transform: 'translateX(100%)'
+					}
+				},
+				'float': {
+					'0%, 100%': {
+						transform: 'translateY(0px)'
+					},
+					'50%': {
+						transform: 'translateY(-10px)'
+					}
+				},
+				'counter': {
+					'0%': {
+						transform: 'scale(0.8)',
+						opacity: '0'
+					},
+					'50%': {
+						transform: 'scale(1.1)',
+						opacity: '0.8'
+					},
+					'100%': {
+						transform: 'scale(1)',
+						opacity: '1'
+					}
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'fade-in': 'fade-in 0.6s ease-out',
+				'scale-in': 'scale-in 0.4s ease-out',
+				'pulse-glow': 'pulse-glow 2s ease-in-out infinite',
+				'shine': 'shine 2s ease-in-out infinite',
+				'float': 'float 3s ease-in-out infinite',
+				'counter': 'counter 0.8s ease-out',
 			}
 		}
 	},

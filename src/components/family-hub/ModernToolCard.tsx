@@ -1,0 +1,127 @@
+
+import React from 'react';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { useNavigate } from 'react-router-dom';
+import { ModernCard } from '@/components/ui/modern/ModernCard';
+import { Tool } from '@/data/toolsData';
+import { cn } from '@/lib/utils';
+
+function getStatusColor(status: string) {
+  switch (status) {
+    case 'available': return 'bg-green-100 text-green-700 border-green-200';
+    case 'beta': return 'bg-yellow-100 text-yellow-700 border-yellow-200';
+    case 'coming-soon': return 'bg-gray-100 text-gray-700 border-gray-200';
+    default: return 'bg-gray-100 text-gray-700 border-gray-200';
+  }
+}
+
+function getStatusText(status: string) {
+  switch (status) {
+    case 'available': return 'Disponible';
+    case 'beta': return 'Beta';
+    case 'coming-soon': return 'Bientôt';
+    default: return 'Inconnu';
+  }
+}
+
+function getCategoryGradient(category: string) {
+  const gradients = {
+    'Organisation': 'from-blue-500/10 to-cyan-500/10',
+    'Finances': 'from-green-500/10 to-emerald-500/10',
+    'Éducation': 'from-purple-500/10 to-violet-500/10',
+    'Santé': 'from-red-500/10 to-pink-500/10',
+    'Équilibre': 'from-orange-500/10 to-yellow-500/10',
+    'Développement': 'from-indigo-500/10 to-blue-500/10',
+    'Loisirs': 'from-pink-500/10 to-rose-500/10',
+    'Pratique': 'from-gray-500/10 to-slate-500/10',
+  };
+  return gradients[category as keyof typeof gradients] || 'from-gray-500/10 to-slate-500/10';
+}
+
+export default function ModernToolCard({ tool }: { tool: Tool }) {
+  const navigate = useNavigate();
+  const IconComponent = tool.icon;
+  const isAvailable = tool.status === 'available';
+
+  return (
+    <ModernCard
+      variant="glass"
+      hover={isAvailable}
+      shine={isAvailable}
+      onClick={() => isAvailable && navigate(tool.route)}
+      className={cn(
+        "group relative p-6 h-full cursor-pointer transition-all duration-300",
+        `bg-gradient-to-br ${getCategoryGradient(tool.category)}`,
+        isAvailable && "hover:shadow-xl hover:shadow-blue-500/10",
+        !isAvailable && "opacity-75 cursor-not-allowed"
+      )}
+    >
+      {/* Effet de brillance */}
+      {isAvailable && (
+        <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+      )}
+
+      {/* Header avec icône et statut */}
+      <div className="flex items-start justify-between mb-4">
+        <div 
+          className={cn(
+            "rounded-2xl p-4 shadow-lg transition-all duration-300 group-hover:scale-110",
+            "bg-gradient-to-br from-white to-gray-50 border border-white/50"
+          )}
+        >
+          <IconComponent className="w-8 h-8 text-blue-600" />
+        </div>
+        
+        <Badge 
+          className={cn(
+            "font-medium transition-all duration-300 group-hover:scale-105",
+            getStatusColor(tool.status)
+          )}
+        >
+          {getStatusText(tool.status)}
+        </Badge>
+      </div>
+
+      {/* Contenu */}
+      <div className="space-y-3 flex-1">
+        <h3 className="text-lg font-bold text-gray-900 group-hover:text-blue-900 transition-colors duration-300">
+          {tool.name}
+        </h3>
+        
+        <p className="text-gray-600 text-sm leading-relaxed line-clamp-3">
+          {tool.description}
+        </p>
+        
+        <div className="flex items-center justify-between pt-4">
+          <Badge 
+            variant="outline" 
+            className="text-xs border-blue-200 text-blue-700 bg-blue-50/50"
+          >
+            {tool.category}
+          </Badge>
+          
+          {isAvailable && (
+            <Button
+              size="sm"
+              className={cn(
+                "bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700",
+                "shadow-lg hover:shadow-xl transition-all duration-300",
+                "text-white font-semibold px-6 group-hover:scale-105"
+              )}
+              tabIndex={-1}
+            >
+              Ouvrir
+            </Button>
+          )}
+        </div>
+      </div>
+
+      {/* Indicateur de disponibilité */}
+      <div className={cn(
+        "absolute top-0 left-0 w-full h-1 rounded-t-2xl transition-all duration-300",
+        isAvailable ? "bg-gradient-to-r from-green-400 to-emerald-400" : "bg-gray-300"
+      )} />
+    </ModernCard>
+  );
+}
