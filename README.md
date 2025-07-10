@@ -1,6 +1,6 @@
 # Suite d'Outils Familiaux
 
-Une collection complète de 60 outils gratuits et open-source pour simplifier et enrichir la vie des familles modernes.
+Une collection complète de 47 outils gratuits et open-source pour simplifier et enrichir la vie des familles modernes.
 
 ## Introduction
 
