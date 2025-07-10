@@ -99,7 +99,7 @@ export default memo(function ToolTemplate({
     <ErrorBoundary>
       <div className="min-h-screen flex flex-col bg-pattern">
         <div className={cn("bg-gradient-to-br flex-grow", bgColor)}>
-          <PageContainer maxWidth="5xl">
+          <PageContainer maxWidth="4xl">
             <div className="pt-8 md:pt-12 pb-12">
               <Section variant="transparent" className="mb-8">
                 <ModernCard variant="glass" className="p-6 md:p-8 shadow-2xl">
