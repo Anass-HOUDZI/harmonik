@@ -1,15 +1,27 @@
-import React, { Suspense, lazy } from "react";
+
+import React, { Suspense, lazy, useEffect } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import Footer from "@/components/Footer";
-import PWAStatus from "@/components/PWAStatus";
+
+// Hook pour scroll automatique en haut
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
 
 // Lazy-load pages non critiques
 const FamilyHub = lazy(() => import("./pages/FamilyHub"));
 const NotFound = lazy(() => import("./pages/NotFound"));
+
 // Les outils "offline" doivent être lazy loadés
 const KeywordDensity = lazy(() => import("./pages/tools/KeywordDensity"));
 const MetaGenerator = lazy(() => import("./pages/tools/MetaGenerator"));
@@ -83,9 +95,8 @@ const queryClient = new QueryClient();
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
-      {/* Indicateur PWA en haut */}
-      <PWAStatus />
       <BrowserRouter>
+        <ScrollToTop />
         <Suspense fallback={<div className="text-center mt-10 text-lg text-gray-400">Chargement…</div>}>
           <Routes>
             <Route path="/" element={<FamilyHub />} />

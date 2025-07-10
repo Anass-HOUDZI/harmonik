@@ -51,7 +51,8 @@ export default function FamilyHub() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 flex flex-col">
+    <div className="min-h-screen bg-white flex flex-col">
+      <PWAStatus />
       <ModernHeroSection onSearch={handleSearch} />
 
       <main className="flex-grow">
@@ -61,6 +62,19 @@ export default function FamilyHub() {
             setSelectedCategory={setSelectedCategory}
             categories={categories}
           />
+
+          {/* Plus de marge entre les filtres et les badges */}
+          <div className="mt-16 mb-8 flex flex-wrap items-center justify-center gap-4 animate-fade-in">
+            {['🔒 100% Privé', '💝 Totalement Gratuit', '📱 Multi-plateforme', '⚡ Hors Ligne'].map((feature, index) => (
+              <div 
+                key={feature}
+                className="glass-card px-6 py-3 text-sm font-medium text-gray-700 hover:scale-105 transition-transform duration-300 shadow-lg"
+                style={{ animationDelay: `${1.2 + index * 0.1}s` }}
+              >
+                {feature}
+              </div>
+            ))}
+          </div>
 
           <div className="w-full md:w-[90%] mx-auto">
             <Section variant="transparent">
@@ -127,8 +141,6 @@ export default function FamilyHub() {
           </div>
         </PageContainer>
       </main>
-
-      <PWAStatus />
     </div>
   );
 }
