@@ -5,6 +5,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 // Hook pour scroll automatique en haut
@@ -97,6 +98,7 @@ const App = () => (
     <TooltipProvider>
       <BrowserRouter>
         <ScrollToTop />
+        <Header />
         <Suspense fallback={<div className="text-center mt-10 text-lg text-gray-400">Chargement…</div>}>
           <Routes>
             <Route path="/" element={<FamilyHub />} />
