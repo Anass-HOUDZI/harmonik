@@ -29,6 +29,9 @@ export default {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
         },
+        // Nouveau système de couleurs gradient orange-rouge
+        'gradient-start': 'hsl(var(--gradient-primary-start))',
+        'gradient-end': 'hsl(var(--gradient-primary-end))',
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
           foreground: "hsl(var(--secondary-foreground))",

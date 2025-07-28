@@ -121,7 +121,7 @@ export default memo(function ToolTemplate({
                 
                 <div className="flex-1 text-center md:text-left space-y-3">
                   <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 font-space leading-tight">
-                    <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+                    <span className="bg-gradient-to-r from-gradient-start to-gradient-end bg-clip-text text-transparent">
                       {title}
                     </span>
                   </h1>
@@ -134,7 +134,7 @@ export default memo(function ToolTemplate({
                   onClick={handleBackClick}
                   className={cn(
                     "px-6 py-2 rounded-xl font-semibold transition-all duration-300",
-                    "bg-gradient-to-r from-blue-600 to-purple-600 text-white",
+                    "bg-gradient-to-r from-gradient-start to-gradient-end text-white",
                     "hover:from-blue-700 hover:to-purple-700 hover:scale-105 hover:shadow-lg"
                   )}
                   aria-label="Retour à l'accueil"

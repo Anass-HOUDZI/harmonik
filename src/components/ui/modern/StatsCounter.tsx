@@ -80,7 +80,7 @@ export function StatsCounter({
         className
       )}
     >
-      <div className="text-3xl md:text-4xl font-bold font-space bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+      <div className="text-3xl md:text-4xl font-bold font-space bg-gradient-to-r from-gradient-start to-gradient-end bg-clip-text text-transparent">
         {prefix}{count.toLocaleString()}{suffix}
       </div>
       <div className="text-sm md:text-base text-muted-foreground mt-1 font-medium">

@@ -51,6 +51,11 @@
     --glass-border: hsla(0, 0%, 100%, 0.2);
     --pattern-opacity: 0.03;
     --shine-color: hsla(0, 0%, 100%, 0.4);
+    
+    /* Nouveau gradient orange-rouge */
+    --gradient-primary: linear-gradient(135deg, #fe8c00 0%, #f83600 100%);
+    --gradient-primary-start: 29 100% 50%; /* #fe8c00 en HSL */
+    --gradient-primary-end: 15 95% 49%; /* #f83600 en HSL */
   }
 
   .dark {

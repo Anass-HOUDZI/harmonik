@@ -113,7 +113,7 @@ export default function ModernToolCard({ tool }: { tool: Tool }) {
             <Button
               size="sm"
               className={cn(
-                "bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700",
+                "bg-gradient-to-r from-gradient-start to-gradient-end hover:from-gradient-start/90 hover:to-gradient-end/90",
                 "shadow-lg hover:shadow-xl transition-all duration-300",
                 "text-white font-semibold px-4 py-1 text-xs group-hover:scale-105"
               )}
