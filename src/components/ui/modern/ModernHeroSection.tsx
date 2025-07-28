@@ -2,15 +2,13 @@
 import React from 'react';
 import { Heart, Baby, Calendar, ActivitySquare, ShieldCheck } from 'lucide-react';
 import { StatsCounter } from './StatsCounter';
-import { SearchBar } from './SearchBar';
 import { cn } from '@/lib/utils';
 
 interface ModernHeroSectionProps {
-  onSearch?: (value: string) => void;
   className?: string;
 }
 
-export function ModernHeroSection({ onSearch, className }: ModernHeroSectionProps) {
+export function ModernHeroSection({ className }: ModernHeroSectionProps) {
   const stats = [
     { value: 50, label: "Outils Gratuits", suffix: "+" },
     { value: 10000, label: "Familles Aidées", suffix: "+" },
@@ -55,16 +53,6 @@ export function ModernHeroSection({ onSearch, className }: ModernHeroSectionProp
           </p>
         </div>
 
-        {/* Barre de recherche glassmorphism mise en valeur */}
-        <div className="max-w-2xl mx-auto animate-scale-in" style={{ animationDelay: '0.3s' }}>
-          <div className="p-2 bg-gradient-to-r from-blue-100 to-purple-100 rounded-2xl shadow-xl">
-            <SearchBar 
-              placeholder="Rechercher un outil familial..."
-              onSearch={onSearch}
-              className="w-full shadow-lg"
-            />
-          </div>
-        </div>
 
         {/* Statistiques dynamiques */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12 animate-fade-in" style={{ animationDelay: '0.6s' }}>

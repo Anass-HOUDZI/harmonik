@@ -36,24 +36,15 @@ const features = [
 
 export default function FamilyHub() {
   const [selectedCategory, setSelectedCategory] = useState('Tous');
-  const [searchQuery, setSearchQuery] = useState('');
-
   const filteredTools = tools.filter(tool => {
     const matchesCategory = selectedCategory === 'Tous' || tool.category === selectedCategory;
-    const matchesSearch = searchQuery === '' || 
-      tool.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      tool.description.toLowerCase().includes(searchQuery.toLowerCase());
-    return matchesCategory && matchesSearch;
+    return matchesCategory;
   });
-
-  const handleSearch = (query: string) => {
-    setSearchQuery(query);
-  };
 
   return (
     <div className="min-h-screen bg-white flex flex-col">
       <PWAStatus />
-      <ModernHeroSection onSearch={handleSearch} />
+      <ModernHeroSection />
 
       <main className="flex-grow">
         <PageContainer className="py-8 flex flex-col items-center">
@@ -95,7 +86,7 @@ export default function FamilyHub() {
                 <ModernCard className="p-12 text-center">
                   <EmptyState
                     title="Aucun outil trouvé"
-                    description={searchQuery ? `Aucun résultat pour "${searchQuery}"` : "Essayez une autre catégorie !"}
+                    description="Essayez une autre catégorie !"
                     icon={<Search className="h-12 w-12" />}
                   />
                 </ModernCard>
