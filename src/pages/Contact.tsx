@@ -7,6 +7,8 @@ import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { Mail, MessageCircle, Phone, MapPin, Send, CheckCircle } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { contactFormSchema, sanitizeInput } from '@/schemas/validation';
+import { z } from 'zod';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -16,22 +18,48 @@ export default function Contact() {
     message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errors, setErrors] = useState<Record<string, string>>({});
   const { toast } = useToast();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setErrors({});
 
-    // Simulation d'envoi
-    setTimeout(() => {
-      toast({
-        title: "Message envoyé !",
-        description: "Nous vous répondrons dans les plus brefs délais.",
-        duration: 5000,
-      });
-      setFormData({ name: '', email: '', subject: '', message: '' });
+    try {
+      // Sanitize inputs
+      const sanitizedData = {
+        name: sanitizeInput(formData.name),
+        email: sanitizeInput(formData.email),
+        subject: sanitizeInput(formData.subject),
+        message: sanitizeInput(formData.message)
+      };
+
+      // Validate form data
+      const validatedData = contactFormSchema.parse(sanitizedData);
+
+      // Simulation d'envoi
+      setTimeout(() => {
+        toast({
+          title: "Message envoyé !",
+          description: "Nous vous répondrons dans les plus brefs délais.",
+          duration: 5000,
+        });
+        setFormData({ name: '', email: '', subject: '', message: '' });
+        setIsSubmitting(false);
+      }, 1000);
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        const fieldErrors: Record<string, string> = {};
+        error.errors.forEach((err) => {
+          if (err.path[0]) {
+            fieldErrors[err.path[0] as string] = err.message;
+          }
+        });
+        setErrors(fieldErrors);
+      }
       setIsSubmitting(false);
-    }, 1000);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -76,7 +104,9 @@ export default function Contact() {
                         onChange={handleChange}
                         placeholder="Votre nom"
                         required
+                        className={errors.name ? 'border-red-500' : ''}
                       />
+                      {errors.name && <p className="text-sm text-red-500 mt-1">{errors.name}</p>}
                     </div>
                     <div className="space-y-2">
                       <Label htmlFor="email">Email *</Label>
@@ -88,7 +118,9 @@ export default function Contact() {
                         onChange={handleChange}
                         placeholder="votre@email.com"
                         required
+                        className={errors.email ? 'border-red-500' : ''}
                       />
+                      {errors.email && <p className="text-sm text-red-500 mt-1">{errors.email}</p>}
                     </div>
                   </div>
 
@@ -101,7 +133,9 @@ export default function Contact() {
                       onChange={handleChange}
                       placeholder="Sujet de votre message"
                       required
+                      className={errors.subject ? 'border-red-500' : ''}
                     />
+                    {errors.subject && <p className="text-sm text-red-500 mt-1">{errors.subject}</p>}
                   </div>
 
                   <div className="space-y-2">
@@ -114,7 +148,9 @@ export default function Contact() {
                       placeholder="Décrivez votre demande, suggestion ou question..."
                       rows={6}
                       required
+                      className={errors.message ? 'border-red-500' : ''}
                     />
+                    {errors.message && <p className="text-sm text-red-500 mt-1">{errors.message}</p>}
                   </div>
 
                   <Button

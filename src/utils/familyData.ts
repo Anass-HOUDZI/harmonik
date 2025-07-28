@@ -1,4 +1,7 @@
 
+import { familyProfileSchema, familyMemberSchema, validateLocalStorageData } from '@/schemas/validation';
+import { z } from 'zod';
+
 // Types et utilitaires pour la gestion des données familiales
 export interface FamilyMember {
   id: string;
@@ -41,16 +44,34 @@ export class FamilyManager {
   static async getCurrentFamily(): Promise<FamilyProfile | null> {
     if (this.currentFamily) return this.currentFamily;
 
-    const savedFamily = localStorage.getItem('current-family');
-    if (savedFamily) {
-      this.currentFamily = JSON.parse(savedFamily);
-      return this.currentFamily;
+    try {
+      const savedFamily = localStorage.getItem('current-family');
+      if (savedFamily) {
+        const parsed = JSON.parse(savedFamily);
+        const validated = validateLocalStorageData(parsed, familyProfileSchema);
+        if (validated) {
+          this.currentFamily = validated as FamilyProfile;
+          return this.currentFamily;
+        } else {
+          // Clear corrupted data
+          localStorage.removeItem('current-family');
+          console.warn('Corrupted family data found and removed');
+        }
+      }
+    } catch (error) {
+      console.error('Error loading family data:', error);
+      localStorage.removeItem('current-family');
     }
 
     return null;
   }
 
   static async createFamily(familyData: Partial<FamilyProfile>): Promise<FamilyProfile> {
+    // Validate input data
+    if (familyData.name && (familyData.name.length < 1 || familyData.name.length > 100)) {
+      throw new Error('Invalid family name length');
+    }
+
     const family: FamilyProfile = {
       id: Date.now().toString(),
       name: familyData.name || 'Ma Famille',
@@ -67,24 +88,41 @@ export class FamilyManager {
       updatedAt: new Date().toISOString()
     };
 
-    this.currentFamily = family;
-    localStorage.setItem('current-family', JSON.stringify(family));
-    return family;
+    // Validate complete family data
+    const validated = validateLocalStorageData(family, familyProfileSchema);
+    if (!validated) {
+      throw new Error('Invalid family data');
+    }
+
+    this.currentFamily = validated as FamilyProfile;
+    localStorage.setItem('current-family', JSON.stringify(validated));
+    return validated as FamilyProfile;
   }
 
   static async updateFamily(updates: Partial<FamilyProfile>): Promise<FamilyProfile> {
     const current = await this.getCurrentFamily();
     if (!current) throw new Error('No current family found');
 
-    const updated = {
+    const updated: FamilyProfile = {
       ...current,
       ...updates,
+      id: current.id, // Ensure required fields are present
+      name: updates.name || current.name,
+      members: updates.members || current.members,
+      settings: { ...current.settings, ...updates.settings },
+      createdAt: current.createdAt,
       updatedAt: new Date().toISOString()
     };
 
-    this.currentFamily = updated;
-    localStorage.setItem('current-family', JSON.stringify(updated));
-    return updated;
+    // Validate updated family data
+    const validated = validateLocalStorageData(updated, familyProfileSchema);
+    if (!validated) {
+      throw new Error('Invalid updated family data');
+    }
+
+    this.currentFamily = validated as FamilyProfile;
+    localStorage.setItem('current-family', JSON.stringify(validated));
+    return validated as FamilyProfile;
   }
 
   static async addMember(member: Omit<FamilyMember, 'id'>): Promise<FamilyMember> {
@@ -96,9 +134,15 @@ export class FamilyManager {
       id: Date.now().toString()
     };
 
-    family.members.push(newMember);
+    // Validate member data
+    const validated = validateLocalStorageData(newMember, familyMemberSchema);
+    if (!validated) {
+      throw new Error('Invalid member data');
+    }
+
+    family.members.push(validated as FamilyMember);
     await this.updateFamily(family);
-    return newMember;
+    return validated as FamilyMember;
   }
 
   static async removeMember(memberId: string): Promise<void> {
@@ -116,9 +160,21 @@ export class FamilyManager {
     const memberIndex = family.members.findIndex(m => m.id === memberId);
     if (memberIndex === -1) throw new Error('Member not found');
 
-    family.members[memberIndex] = { ...family.members[memberIndex], ...updates };
+    const updatedMember: FamilyMember = { 
+      ...family.members[memberIndex], 
+      ...updates,
+      id: family.members[memberIndex].id // Ensure ID is preserved
+    };
+
+    // Validate updated member data
+    const validated = validateLocalStorageData(updatedMember, familyMemberSchema);
+    if (!validated) {
+      throw new Error('Invalid updated member data');
+    }
+
+    family.members[memberIndex] = validated as FamilyMember;
     await this.updateFamily(family);
-    return family.members[memberIndex];
+    return validated as FamilyMember;
   }
 
   static getAgeFromBirthDate(birthDate: string): number {
