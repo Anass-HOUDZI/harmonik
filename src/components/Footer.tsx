@@ -101,18 +101,11 @@ export default function Footer() {
               </p>
               <div className="space-y-2">
                 <a 
-                  href="mailto:support@outilsfamille.fr"
+                  href="mailto:ahoudzipro@gmail.com"
                   className="flex items-center text-gray-600 hover:text-primary text-sm transition-colors duration-200"
                 >
                   <Mail className="w-4 h-4 mr-2" />
-                  support@outilsfamille.fr
-                </a>
-                <a 
-                  href="tel:+33123456789"
-                  className="flex items-center text-gray-600 hover:text-primary text-sm transition-colors duration-200"
-                >
-                  <Phone className="w-4 h-4 mr-2" />
-                  +33 1 23 45 67 89
+                  ahoudzipro@gmail.com
                 </a>
               </div>
             </div>
