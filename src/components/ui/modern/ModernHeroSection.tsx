@@ -9,7 +9,7 @@ export function ModernHeroSection({
   className
 }: ModernHeroSectionProps) {
   const stats = [{
-    value: 50,
+    value: 45,
     label: "Outils Gratuits",
     suffix: "+"
   }, {
