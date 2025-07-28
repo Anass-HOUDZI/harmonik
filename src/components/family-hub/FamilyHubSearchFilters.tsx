@@ -25,8 +25,8 @@ export default function FamilyHubSearchFilters({
               !rounded-full !shadow-none !transition-all font-bold min-w-[90px] px-5 py-2
               ${
                 selectedCategory === category
-                  ? 'bg-blue-600 text-white'
-                  : 'bg-white text-blue-700 hover:bg-blue-600 hover:text-white'
+                  ? 'bg-gradient-to-r from-gradient-start to-gradient-end text-white'
+                  : 'bg-white text-gradient-start hover:bg-gradient-to-r hover:from-gradient-start hover:to-gradient-end hover:text-white'
               }
               ${selectedCategory === category ? '' : 'hover:scale-[1.06]'}
             `}
