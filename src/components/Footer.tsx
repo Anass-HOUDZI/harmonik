@@ -48,28 +48,6 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Catégories */}
-          <div id="categories" className="space-y-4">
-            <h3 className="text-lg font-semibold text-gray-900 flex items-center">
-              <Users className="w-5 h-5 mr-2 text-primary" />
-              Catégories
-            </h3>
-            <ul className="space-y-2">
-              {categories.map((category) => (
-                <li key={category.name}>
-                  <Link 
-                    to="/categories"
-                    className="text-gray-600 hover:text-primary text-sm transition-colors duration-200 flex items-center justify-between"
-                  >
-                    <span>{category.name}</span>
-                    <span className="text-xs bg-gray-200 text-gray-600 px-1.5 py-0.5 rounded-full">
-                      {category.count}
-                    </span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
 
           {/* Outils populaires */}
           <div className="space-y-4">

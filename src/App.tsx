@@ -94,7 +94,7 @@ import ScreenTimer from "./pages/tools/ScreenTimer";
 // Import des nouvelles pages
 import About from "./pages/About";
 import Contact from "./pages/Contact";
-import Categories from "./pages/Categories";
+
 
 const queryClient = new QueryClient();
 
@@ -109,7 +109,7 @@ const App = () => (
             <Route path="/" element={<FamilyHub />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
-            <Route path="/categories" element={<Categories />} />
+            
             {/* Outils OFFLINE */}
             <Route path="/tools/keyword-density" element={<KeywordDensity />} />
             <Route path="/tools/meta-generator" element={<MetaGenerator />} />
