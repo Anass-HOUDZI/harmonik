@@ -35,18 +35,12 @@ export default function Header() {
 
           {/* Navigation desktop */}
           <nav className="hidden md:flex items-center space-x-6">
-            <Link to="/" className="text-sm font-medium hover:text-primary transition-colors">
-              Accueil
-            </Link>
-            <a href="#categories" className="text-sm font-medium hover:text-primary transition-colors">
-              Catégories
-            </a>
-            <a href="#about" className="text-sm font-medium hover:text-primary transition-colors">
+            <Link to="/about" className="text-sm font-medium hover:text-primary transition-colors">
               À propos
-            </a>
-            <a href="#contact" className="text-sm font-medium hover:text-primary transition-colors">
+            </Link>
+            <Link to="/contact" className="text-sm font-medium hover:text-primary transition-colors">
               Contact
-            </a>
+            </Link>
           </nav>
 
           {/* Menu mobile */}
@@ -66,33 +60,19 @@ export default function Header() {
           <div className="md:hidden border-t bg-background">
             <div className="px-2 py-4 space-y-2">
               <Link 
-                to="/" 
-                className="block px-3 py-2 text-sm font-medium hover:bg-accent rounded-md"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Accueil
-              </Link>
-              <a 
-                href="#categories" 
-                className="block px-3 py-2 text-sm font-medium hover:bg-accent rounded-md"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Catégories
-              </a>
-              <a 
-                href="#about" 
+                to="/about" 
                 className="block px-3 py-2 text-sm font-medium hover:bg-accent rounded-md"
                 onClick={() => setIsMenuOpen(false)}
               >
                 À propos
-              </a>
-              <a 
-                href="#contact" 
+              </Link>
+              <Link 
+                to="/contact" 
                 className="block px-3 py-2 text-sm font-medium hover:bg-accent rounded-md"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Contact
-              </a>
+              </Link>
             </div>
           </div>
         )}
