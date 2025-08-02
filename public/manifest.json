@@ -1,8 +1,8 @@
 
 {
-  "name": "Suite Famille - 50 Outils Gratuits",
-  "short_name": "Suite Famille",
-  "description": "Suite complète de 50 outils 100% gratuits pour familles modernes. Organisation, éducation, santé, offline et mobile.",
+  "name": "Harmonik - 45 Outils Gratuits",
+  "short_name": "Harmonik",
+  "description": "Suite complète de 45 outils 100% gratuits pour familles modernes. Organisation, éducation, santé, offline et mobile.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#FFFFFF",

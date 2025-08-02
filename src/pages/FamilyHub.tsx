@@ -103,7 +103,7 @@ export default function FamilyHub() {
                   <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-8 font-space">
                     Pourquoi choisir{' '}
                     <span className="bg-gradient-to-r from-gradient-start to-gradient-end bg-clip-text text-transparent">
-                      Suite Famille
+                      Harmonik
                     </span>{' '}
                     ?
                   </h2>

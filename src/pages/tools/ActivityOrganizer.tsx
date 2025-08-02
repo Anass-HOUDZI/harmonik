@@ -110,7 +110,7 @@ export default function ActivityOrganizer() {
         </CardContent>
         <CardFooter className="justify-center">
           <Button variant="secondary" onClick={() => window.history.back()}>
-            ← Retour à la Suite Famille
+            ← Retour à Harmonik
           </Button>
         </CardFooter>
       </Card>

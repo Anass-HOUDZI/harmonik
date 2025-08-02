@@ -31,7 +31,7 @@ export default function ComingSoonPage({ toolName }: ComingSoonPageProps) {
             <h3 className="font-semibold text-yellow-800 mb-2">🚧 En construction</h3>
             <p className="text-yellow-700">
               Nous travaillons activement sur cet outil pour vous offrir la meilleure expérience possible. 
-              Il sera bientôt disponible dans la Suite Famille !
+              Il sera bientôt disponible dans Harmonik !
             </p>
           </div>
           
@@ -60,7 +60,7 @@ export default function ComingSoonPage({ toolName }: ComingSoonPageProps) {
           <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
             <p className="text-blue-800 text-sm">
               💡 <strong>Conseil :</strong> En attendant, découvrez les autres outils déjà disponibles 
-              dans la Suite Famille ! Chacun d'eux est conçu pour simplifier votre quotidien familial.
+              dans Harmonik ! Chacun d'eux est conçu pour simplifier votre quotidien familial.
             </p>
           </div>
 
@@ -70,7 +70,7 @@ export default function ComingSoonPage({ toolName }: ComingSoonPageProps) {
               className="bg-blue-600 hover:bg-blue-700"
             >
               <ArrowLeft className="w-4 h-4 mr-2" />
-              Retour à la Suite Famille
+              Retour à la Harmonik
             </Button>
             <Button 
               variant="outline"

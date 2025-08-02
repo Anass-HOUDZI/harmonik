@@ -32,7 +32,7 @@ export function ModernHeroSection({
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-4">
             <h1 className="text-4xl xs:text-5xl md:text-7xl font-bold font-space tracking-tight">
               <span className="bg-gradient-to-r from-gradient-start to-gradient-end bg-clip-text text-transparent animate-pulse-glow">
-                Suite Famille
+                Harmonik
               </span>
             </h1>
             <div className="flex gap-1 items-center">

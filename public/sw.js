@@ -114,7 +114,7 @@ self.addEventListener("push", event => {
     badge: "/favicon.ico"
   };
   event.waitUntil(
-    self.registration.showNotification("Suite Famille", options)
+    self.registration.showNotification("Harmonik", options)
   );
 });
 
