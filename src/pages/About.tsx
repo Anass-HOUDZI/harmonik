@@ -29,7 +29,7 @@ export default function About() {
             <CardContent>
               <p className="text-lg text-gray-700 leading-relaxed">
                 Nous croyons que chaque famille mérite d'avoir accès à des outils de qualité pour s'organiser, 
-                grandir et s'épanouir ensemble. Notre suite de 47 outils gratuits est conçue pour répondre aux 
+                grandir et s'épanouir ensemble. Notre suite de 45 outils gratuits est conçue pour répondre aux 
                 défis quotidiens des familles modernes, de la gestion du budget à l'éducation des enfants, 
                 en passant par l'organisation du quotidien et le bien-être familial.
               </p>

@@ -38,7 +38,7 @@ export default function Footer() {
               </Link>
             </h3>
             <p className="text-gray-600 text-sm leading-relaxed">
-              Suite complète de 47 outils gratuits pour simplifier et enrichir la vie des familles modernes. 
+              Suite complète de 45 outils gratuits pour simplifier et enrichir la vie des familles modernes. 
               100% gratuit, sécurisé et utilisable hors ligne.
             </p>
             <div className="flex flex-wrap gap-2">
