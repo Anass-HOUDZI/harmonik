@@ -1,6 +1,6 @@
 # Harmonik
 
-Une collection complète de 45+ outils gratuits et open-source pour simplifier et enrichir la vie des familles modernes.
+Une collection complète de 45 outils gratuits et open-source pour simplifier et enrichir la vie des familles modernes.
 
 ## Introduction
 
