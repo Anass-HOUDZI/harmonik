@@ -11,7 +11,7 @@ export default function About() {
           {/* Header */}
           <div className="text-center space-y-4">
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900">
-              À propos de notre suite d'outils famille
+              À propos de notre suite d'Harmonik
             </h1>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Découvrez notre mission : simplifier et enrichir la vie des familles modernes avec des outils gratuits, sécurisés et accessibles.
