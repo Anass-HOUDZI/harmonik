@@ -31,7 +31,7 @@ export function ModernHeroSection({
         <div className="space-y-4 animate-fade-in">
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-4">
             <img 
-              src="/harmonik-logo.svg" 
+              src="/lovable-uploads/7b2797c2-3ab0-44d4-ba5e-0e57fe0e6f05.png" 
               alt="Harmonik"
               className="h-16 md:h-24 w-auto object-contain"
             />
