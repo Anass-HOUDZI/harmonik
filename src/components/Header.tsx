@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Home, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 
@@ -25,12 +25,13 @@ export default function Header() {
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto px-4">
         <div className="flex h-16 items-center justify-between">
-          {/* Logo et titre */}
-          <Link to="/" className="flex items-center space-x-2">
-            <div className="flex items-center justify-center w-8 h-8 bg-primary rounded-lg">
-              <Home className="w-4 h-4 text-primary-foreground" />
-            </div>
-            <span className="font-bold text-lg">Harmonik</span>
+          {/* Logo */}
+          <Link to="/" className="flex items-center">
+            <img 
+              src="/harmonik-logo.svg" 
+              alt="Harmonik" 
+              className="h-8 w-auto object-contain"
+            />
           </Link>
 
           {/* Navigation desktop */}

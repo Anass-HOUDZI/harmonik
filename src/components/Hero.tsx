@@ -8,15 +8,11 @@ export default function Hero() {
       <div className="max-w-3xl mx-auto w-full text-center animate-fade-in flex flex-col gap-2 items-center">
         {/* LOGO/ Hero Logo typographique */}
         <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-3 justify-center mb-3">
-          <span
-            className="text-[38px] xs:text-[44px] md:text-[60px] font-extrabold font-playfair tracking-tight text-blue-800 select-none"
-            style={{
-              letterSpacing: "-3px",
-              lineHeight: 1,
-            }}
-          >
-            Suite&nbsp;Famille
-          </span>
+          <img 
+            src="/harmonik-logo.svg" 
+            alt="Harmonik" 
+            className="h-12 xs:h-14 md:h-20 w-auto object-contain"
+          />
           <span className="flex gap-1 items-center sm:ml-1">
             <Heart className="text-pink-400 h-7 w-7 xs:h-8 xs:w-8 md:h-10 md:w-10 drop-shadow" fill="#fb80b8" />
             <Baby className="text-yellow-400 h-7 w-7 xs:h-8 xs:w-8 md:h-10 md:w-10 drop-shadow" fill="#FFD700" />

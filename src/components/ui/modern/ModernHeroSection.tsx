@@ -30,11 +30,11 @@ export function ModernHeroSection({
         {/* Logo et titre principal */}
         <div className="space-y-4 animate-fade-in">
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-4">
-            <h1 className="text-4xl xs:text-5xl md:text-7xl font-bold font-space tracking-tight">
-              <span className="bg-gradient-to-r from-gradient-start to-gradient-end bg-clip-text text-transparent animate-pulse-glow">
-                Harmonik
-              </span>
-            </h1>
+            <img 
+              src="/harmonik-logo.svg" 
+              alt="Harmonik" 
+              className="h-16 md:h-24 w-auto object-contain"
+            />
             <div className="flex gap-1 items-center">
               <Heart className="text-pink-500 h-8 w-8 md:h-12 md:w-12 animate-float" fill="currentColor" />
               <Baby className="text-yellow-500 h-8 w-8 md:h-12 md:w-12 animate-float" fill="currentColor" style={{
