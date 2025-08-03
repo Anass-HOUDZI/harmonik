@@ -6,7 +6,7 @@ Une collection complète de 45 outils gratuits et open-source pour simplifier et
 
 Bienvenue dans la Suite d'Outils Familiaux, une collection d'applications web progressives (PWA) conçues pour répondre aux besoins des familles modernes. Développée avec amour par des parents pour des parents, cette suite offre des solutions gratuites, respectueuses de la vie privée et entièrement fonctionnelles hors ligne.
 
-**Lien du Projet** : [Harmonik](https://family-web-pwa-suite.lovable.app/)
+**Lien du Projet** : [Harmonik](https://harmonik.netlify.app/)
 
 ## Fonctionnalités Principales
 
