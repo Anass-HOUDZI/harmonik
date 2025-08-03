@@ -28,7 +28,7 @@ export default function Header() {
           {/* Logo */}
           <Link to="/" className="flex items-center">
             <img 
-              src="/harmonik-logo.svg" 
+              src="/harmonik-logo.png" 
               alt="Harmonik" 
               className="h-8 w-auto object-contain"
             />
