@@ -9,7 +9,7 @@ export default function Hero() {
         {/* LOGO/ Hero Logo typographique */}
         <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-3 justify-center mb-3">
           <img 
-            src="/harmonik-logo.svg" 
+            src="/lovable-uploads/26ac0de4-6a14-447c-989a-98a4531649a9.png" 
             alt="Harmonik" 
             className="h-12 xs:h-14 md:h-20 w-auto object-contain"
           />

@@ -29,8 +29,15 @@ export default function Footer() {
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           
-          {/* À propos */}
+          {/* Logo et À propos */}
           <div id="about" className="space-y-4">
+            <div className="flex items-center mb-2">
+              <img 
+                src="/lovable-uploads/26ac0de4-6a14-447c-989a-98a4531649a9.png" 
+                alt="Harmonik" 
+                className="h-8 w-auto object-contain mr-3"
+              />
+            </div>
             <h3 className="text-lg font-semibold text-gray-900 flex items-center">
               <Home className="w-5 h-5 mr-2 text-primary" />
               <Link to="/about" className="hover:text-primary transition-colors">
