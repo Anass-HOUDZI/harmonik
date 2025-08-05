@@ -98,8 +98,23 @@ export class FamilyStorage {
     });
   }
 
-  // DEPRECATED: Removed insecure encryption methods
-  // Use SecureStorage class instead for proper encryption
+  // Chiffrement simple pour les données sensibles
+  encrypt(data: string, password: string): string {
+    // Implémentation simple de chiffrement (en production, utiliser crypto-js)
+    const encrypted = btoa(data + '::' + password);
+    return encrypted;
+  }
+
+  decrypt(encryptedData: string, password: string): string {
+    try {
+      const decoded = atob(encryptedData);
+      const [data, pass] = decoded.split('::');
+      if (pass !== password) throw new Error('Invalid password');
+      return data;
+    } catch (error) {
+      throw new Error('Decryption failed');
+    }
+  }
 
   // Export des données familiales
   async exportFamilyData(): Promise<string> {

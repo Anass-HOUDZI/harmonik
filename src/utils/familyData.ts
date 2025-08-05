@@ -1,7 +1,5 @@
 
 import { familyProfileSchema, familyMemberSchema, validateLocalStorageData } from '@/schemas/validation';
-import { SecureStorage } from '@/utils/secureStorage';
-import { SecurityUtils, SECURITY_EVENTS } from '@/utils/securityConfig';
 import { z } from 'zod';
 
 // Types et utilitaires pour la gestion des données familiales
@@ -47,44 +45,21 @@ export class FamilyManager {
     if (this.currentFamily) return this.currentFamily;
 
     try {
-      SecurityUtils.logSecurityEvent(SECURITY_EVENTS.DATA_ACCESS, { type: 'family_profile' });
-      
-      // Try secure storage first
-      try {
-        const secureData = await SecureStorage.getSecureItem('current-family');
-        if (secureData) {
-          const validated = validateLocalStorageData(secureData, familyProfileSchema);
-          if (validated) {
-            this.currentFamily = validated as FamilyProfile;
-            return this.currentFamily;
-          }
-        }
-      } catch (secureError) {
-        SecurityUtils.logSecurityEvent(SECURITY_EVENTS.ENCRYPTION_ERROR, { error: (secureError as Error).message });
-      }
-
-      // Fallback to regular localStorage (for migration)
       const savedFamily = localStorage.getItem('current-family');
       if (savedFamily) {
         const parsed = JSON.parse(savedFamily);
         const validated = validateLocalStorageData(parsed, familyProfileSchema);
         if (validated) {
-          // Migrate to secure storage
-          await SecureStorage.setSecureItem('current-family', validated);
-          localStorage.removeItem('current-family');
-          
           this.currentFamily = validated as FamilyProfile;
           return this.currentFamily;
         } else {
-          SecurityUtils.logSecurityEvent(SECURITY_EVENTS.INTEGRITY_VIOLATION, { type: 'corrupted_family_data' });
+          // Clear corrupted data
           localStorage.removeItem('current-family');
+          console.warn('Corrupted family data found and removed');
         }
       }
     } catch (error) {
-      SecurityUtils.logSecurityEvent(SECURITY_EVENTS.DATA_ACCESS, { 
-        error: (error as Error).message,
-        type: 'family_profile_error'
-      });
+      console.error('Error loading family data:', error);
       localStorage.removeItem('current-family');
     }
 
@@ -120,8 +95,7 @@ export class FamilyManager {
     }
 
     this.currentFamily = validated as FamilyProfile;
-    await SecureStorage.setSecureItem('current-family', validated);
-    SecurityUtils.logSecurityEvent(SECURITY_EVENTS.DATA_MODIFICATION, { type: 'family_created' });
+    localStorage.setItem('current-family', JSON.stringify(validated));
     return validated as FamilyProfile;
   }
 
@@ -147,8 +121,7 @@ export class FamilyManager {
     }
 
     this.currentFamily = validated as FamilyProfile;
-    await SecureStorage.setSecureItem('current-family', validated);
-    SecurityUtils.logSecurityEvent(SECURITY_EVENTS.DATA_MODIFICATION, { type: 'family_updated' });
+    localStorage.setItem('current-family', JSON.stringify(validated));
     return validated as FamilyProfile;
   }
 
