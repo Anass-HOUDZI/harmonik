@@ -33,7 +33,7 @@ export default function Footer() {
           <div id="about" className="space-y-4">
             <div className="flex items-center mb-2">
               <img 
-                src="/lovable-uploads/26ac0de4-6a14-447c-989a-98a4531649a9.png" 
+                src="/lovable-uploads/c68d3497-59b8-49bb-96e4-67b0721c905e.png" 
                 alt="Harmonik" 
                 className="h-8 w-auto object-contain mr-3"
               />
