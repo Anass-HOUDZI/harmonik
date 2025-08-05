@@ -5,6 +5,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { initProductionSecurity } from '@/utils/productionSecurity';
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import PWAStatus from "@/components/PWAStatus";
@@ -99,12 +100,18 @@ import Contact from "./pages/Contact";
 
 const queryClient = new QueryClient();
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <BrowserRouter>
-        <ScrollToTop />
-        <Header />
+const App = () => {
+  // Initialize security hardening
+  useEffect(() => {
+    initProductionSecurity();
+  }, []);
+
+  return (
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <BrowserRouter>
+          <ScrollToTop />
+          <Header />
         <Suspense fallback={<div className="text-center mt-10 text-lg text-gray-400">Chargement…</div>}>
           <Routes>
             <Route path="/" element={<FamilyHub />} />
@@ -205,6 +212,7 @@ const App = () => (
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
-);
+  );
+};
 
 export default App;
