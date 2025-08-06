@@ -35,7 +35,7 @@ export function ModernHeroSection({
               backgroundImage: 'linear-gradient(to right, #fe8c00, #f83600)'
             }}
           >
-            Fini le chaos familial 🏠
+            Fini le chaos familial ✅
           </h1>
         </div>
 
