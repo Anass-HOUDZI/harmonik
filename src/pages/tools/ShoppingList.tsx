@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { ShoppingCart, Plus, Check, Trash2, ArrowLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { PageContainer } from "@/components/ui/page-container";
 
 interface ShoppingItem {
   id: string;
@@ -62,8 +63,9 @@ export default function ShoppingList() {
   const pendingItems = items.filter(item => !item.completed);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 via-blue-50 to-purple-50 px-4 py-10">
-      <div className="max-w-4xl mx-auto">
+    <div className="min-h-screen bg-gradient-to-br from-green-50 via-blue-50 to-purple-50">
+      <PageContainer maxWidth="full" padding="md">
+        <div className="py-10">
         <Card className="mb-6">
           <CardHeader className="flex flex-row items-center gap-3">
             <span className="p-2 bg-green-100 rounded-lg">
@@ -77,9 +79,11 @@ export default function ShoppingList() {
                 <span className="text-green-600 font-semibold">🛒 Organisé par rayons, partage famille.</span>
               </CardDescription>
             </div>
-            <Button variant="outline" onClick={() => navigate("/")}>
-              <ArrowLeft className="w-4 h-4 mr-2" />
-              Retour
+            <Button 
+              onClick={() => navigate("/")}
+              className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-bold px-6 py-2 rounded-full transition-all duration-300 hover:scale-105"
+            >
+              ← Accueil
             </Button>
           </CardHeader>
         </Card>
@@ -259,7 +263,8 @@ export default function ShoppingList() {
             </div>
           </CardContent>
         </Card>
-      </div>
+        </div>
+      </PageContainer>
     </div>
   );
 }

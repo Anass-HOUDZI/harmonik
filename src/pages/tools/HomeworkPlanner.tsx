@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { CalendarDays, BookOpen, Trash2, PlusCircle } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { PageContainer } from "@/components/ui/page-container";
 
 type Homework = {
   id: string;
@@ -52,8 +53,9 @@ export default function HomeworkPlanner() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-orange-50 via-blue-50 to-purple-50 px-2 py-10">
-      <div className="max-w-3xl mx-auto">
+    <div className="min-h-screen bg-gradient-to-br from-orange-50 via-blue-50 to-purple-50">
+      <PageContainer maxWidth="full" padding="md">
+        <div className="py-10 max-w-6xl mx-auto">
         <Card>
           <CardHeader>
             <div className="flex items-center gap-3">
@@ -132,12 +134,16 @@ export default function HomeworkPlanner() {
             </div>
           </CardContent>
           <CardFooter>
-            <Button variant="secondary" onClick={() => navigate("/")}>
-              Retour à la Suite
+            <Button 
+              onClick={() => navigate("/")}
+              className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-bold px-6 py-2 rounded-full transition-all duration-300 hover:scale-105"
+            >
+              ← Accueil
             </Button>
           </CardFooter>
         </Card>
-      </div>
+        </div>
+      </PageContainer>
     </div>
   );
 }

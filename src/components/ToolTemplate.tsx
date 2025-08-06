@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useNavigate } from "react-router-dom";
 import { ModernCard } from "@/components/ui/modern/ModernCard";
 import { ErrorBoundary } from "@/components/common/ErrorBoundary";
+import { PageContainer } from "@/components/ui/page-container";
 import { cn } from "@/lib/utils";
 
 interface ToolTemplateProps {
@@ -96,66 +97,67 @@ export default memo(function ToolTemplate({
 
   return (
     <ErrorBoundary>
-      <div className="min-h-screen flex flex-col">
-        <div className={cn("flex-grow", bgColor)}>
-          {/* Header compact minimaliste */}
-          <div className="w-full bg-gradient-to-r from-blue-50 to-purple-50 border-b border-gray-200">
-            <div className="max-w-full mx-auto px-4 py-6">
-              <div className="flex flex-col md:flex-row items-center gap-6">
-                <div 
-                  className={cn(
-                    "rounded-3xl shadow-xl bg-gradient-to-br from-white to-gray-50",
-                    "flex items-center justify-center border border-white/50 backdrop-blur-sm",
-                    "transition-all duration-300 hover:scale-105 hover:shadow-2xl",
-                    iconBgColor,
-                    iconTextColor
-                  )} 
-                  style={{ minWidth: 80, minHeight: 80 }}
-                  role="img"
-                  aria-label={`Icône ${title}`}
-                >
-                  <div className="h-12 w-12 flex items-center justify-center">
-                    {icon}
-                  </div>
+      <div className="min-h-screen bg-gradient-to-br from-blue-50/50 via-white to-purple-50/50">
+        {/* Header avec bouton retour orange */}
+        <div className="w-full border-b border-gray-200/50 bg-white/80 backdrop-blur-sm">
+          <PageContainer maxWidth="full" padding="md">
+            <div className="flex flex-col md:flex-row items-center gap-6 py-6">
+              <div 
+                className={cn(
+                  "rounded-3xl shadow-xl bg-gradient-to-br from-white to-gray-50",
+                  "flex items-center justify-center border border-white/50 backdrop-blur-sm",
+                  "transition-all duration-300 hover:scale-105 hover:shadow-2xl",
+                  iconBgColor,
+                  iconTextColor
+                )} 
+                style={{ minWidth: 80, minHeight: 80 }}
+                role="img"
+                aria-label={`Icône ${title}`}
+              >
+                <div className="h-12 w-12 flex items-center justify-center">
+                  {icon}
                 </div>
-                
-                <div className="flex-1 text-center md:text-left space-y-3">
-                  <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 font-space leading-tight">
-                    <span className="bg-gradient-to-r from-gradient-start to-gradient-end bg-clip-text text-transparent">
-                      {title}
-                    </span>
-                  </h1>
-                  <p className="text-base md:text-lg text-gray-700 leading-relaxed font-medium">
-                    {description}
-                  </p>
-                </div>
-
-                <button 
-                  onClick={handleBackClick}
-                  className={cn(
-                    "px-6 py-2 rounded-xl font-semibold transition-all duration-300",
-                    "bg-gradient-to-r from-gradient-start to-gradient-end text-white",
-                    "hover:from-blue-700 hover:to-purple-700 hover:scale-105 hover:shadow-lg"
-                  )}
-                  aria-label="Retour à l'accueil"
-                >
-                  ← Accueil
-                </button>
               </div>
-            </div>
-          </div>
+              
+              <div className="flex-1 text-center md:text-left space-y-3">
+                <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 font-space leading-tight">
+                  <span className="bg-gradient-to-r from-gradient-start to-gradient-end bg-clip-text text-transparent">
+                    {title}
+                  </span>
+                </h1>
+                <p className="text-base md:text-lg text-gray-700 leading-relaxed font-medium">
+                  {description}
+                </p>
+              </div>
 
-          {/* Contenu principal pleine largeur */}
-          <div className="w-full px-4 py-8">
+              <button 
+                onClick={handleBackClick}
+                className={cn(
+                  "px-6 py-3 rounded-full font-bold text-white text-lg transition-all duration-300",
+                  "bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600",
+                  "hover:scale-105 hover:shadow-xl shadow-lg",
+                  "flex items-center gap-2 min-w-[140px] justify-center"
+                )}
+                aria-label="Retour à l'accueil"
+              >
+                ← Accueil
+              </button>
+            </div>
+          </PageContainer>
+        </div>
+
+        {/* Contenu principal pleine largeur */}
+        <PageContainer maxWidth="full" padding="md">
+          <div className="py-8">
             {children && (
               <div className="mb-8">
-                <ModernCard variant="glass" className="p-6 md:p-8 max-w-6xl mx-auto">
+                <ModernCard variant="glass" className="p-6 md:p-8">
                   {children}
                 </ModernCard>
               </div>
             )}
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-7xl mx-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               <FeatureCard
                 features={features}
                 title="✅ Fonctionnalités disponibles"
@@ -173,7 +175,7 @@ export default memo(function ToolTemplate({
               />
             </div>
           </div>
-        </div>
+        </PageContainer>
       </div>
     </ErrorBoundary>
   );
