@@ -27,42 +27,16 @@ export function ModernHeroSection({
   }];
   return <section className={cn("relative w-full min-h-[70vh] flex flex-col justify-center items-center overflow-hidden", "bg-white", className)}>
       <div className="relative z-10 max-w-6xl mx-auto px-4 text-center space-y-8">
-        {/* Logo et titre principal */}
+        {/* Titre principal uniquement */}
         <div className="space-y-4 animate-fade-in">
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-4">
-            <img 
-              src="/lovable-uploads/c68d3497-59b8-49bb-96e4-67b0721c905e.png" 
-              alt="Harmonik" 
-              className="h-16 md:h-24 w-auto object-contain"
-            />
-            <div className="flex gap-1 items-center">
-              <Heart className="text-pink-500 h-8 w-8 md:h-12 md:w-12 animate-float" fill="currentColor" />
-              <Baby className="text-yellow-500 h-8 w-8 md:h-12 md:w-12 animate-float" fill="currentColor" style={{
-              animationDelay: '0.5s'
-            }} />
-              <Calendar className="text-blue-500 h-8 w-8 md:h-12 md:w-12 animate-float" fill="currentColor" style={{
-              animationDelay: '1s'
-            }} />
-              <ActivitySquare className="text-green-500 h-8 w-8 md:h-12 md:w-12 animate-float" fill="currentColor" style={{
-              animationDelay: '1.5s'
-            }} />
-              <ShieldCheck className="text-purple-500 h-8 w-8 md:h-12 md:w-12 animate-float" fill="currentColor" style={{
-              animationDelay: '2s'
-            }} />
-            </div>
-          </div>
-
-          <p className="text-xl md:text-2xl lg:text-3xl font-semibold text-gray-700 max-w-4xl mx-auto leading-relaxed">
-            <span className="bg-gradient-to-r bg-gradient-to-br to-purple-700 bg-clip-text text-orange-600">
-              Outils gratuits, intuitifs & puissants
-            </span>
-            <br />
-            <span className="text-slate-900">pour les familles modernes</span>
-          </p>
-
-          <p className="text-lg md:text-xl max-w-2xl mx-auto font-medium text-gray-900">
-            Organisez, planifiez, éduquez et profitez ensemble avec notre suite complète d'outils familiaux.
-          </p>
+          <h1 
+            className="text-4xl md:text-6xl lg:text-7xl font-bold text-center mb-8 bg-gradient-to-r from-[#fe8c00] to-[#f83600] bg-clip-text text-transparent"
+            style={{
+              backgroundImage: 'linear-gradient(to right, #fe8c00, #f83600)'
+            }}
+          >
+            L'organisation sans prise de tête
+          </h1>
         </div>
 
 
