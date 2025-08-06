@@ -61,7 +61,6 @@ Bienvenue dans la suite d'outils familiaux, une collection d'applications web pr
 ### Backend
 - **Node.js** : Environnement d'exécution JavaScript pour le serveur backend.
 - **Express.js** : Framework pour construire des API RESTful.
-- **Supabase** : Base de données et gestion de l'authentification.
 
 ### Autres Outils
 - **GitHub Actions** : Pour l'intégration continue et le déploiement continu (CI/CD).
