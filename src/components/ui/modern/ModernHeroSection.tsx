@@ -43,8 +43,11 @@ export function ModernHeroSection({
           </h1>
           <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
             Vous savez ce moment où vous réalisez que vous passez plus de temps à chercher 
-            le planning des enfants qu'à profiter d'eux ? <br /> Nous aussi. C'est pourquoi on a créé 
+            le planning des enfants qu'à profiter d'eux ?
+            <br /> Nous aussi. C'est pourquoi on a créé 
             <strong> la première suite d'outils vraiment pensée pour les familles modernes</strong>.
+            <br /> Parce que votre énergie est précieuse et mérite d'être investie dans ce qui compte : 
+  les rires, les câlins et les souvenirs qui durent.
           </p>
         </div>
 
