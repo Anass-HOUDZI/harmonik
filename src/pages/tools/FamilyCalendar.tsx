@@ -9,6 +9,7 @@ import { Calendar, Plus, Edit, Trash2, Users, Clock, MapPin, ArrowLeft } from 'l
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { useNavigate } from 'react-router-dom';
 import PWAStatus from "@/components/PWAStatus";
+import { PageContainer } from "@/components/ui/page-container";
 
 interface FamilyMember {
   id: string;
@@ -172,19 +173,18 @@ export default function FamilyCalendar() {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <div className="bg-gradient-to-br from-blue-50 to-indigo-100 px-2 xs:px-4 py-4 md:py-6 flex-grow">
-        <div className="max-w-7xl mx-auto">
-          {/* Header responsive */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-4 md:mb-6 gap-4">
-            <div className="flex items-center space-x-2 md:space-x-4">
-              <Button
-                variant="outline"
-                onClick={() => navigate('/')}
-                className="flex items-center space-x-1 md:space-x-2 px-2 md:px-4"
-              >
-                <ArrowLeft className="h-4 w-4" />
-                <span className="hidden xs:inline">Retour</span>
-              </Button>
+      <div className="bg-gradient-to-br from-blue-50 to-indigo-100 flex-grow">
+        <PageContainer maxWidth="full" padding="md">
+          <div className="py-4 md:py-6">
+            {/* Header responsive */}
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-4 md:mb-6 gap-4">
+              <div className="flex items-center space-x-2 md:space-x-4">
+                <Button
+                  onClick={() => navigate('/')}
+                  className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-bold px-6 py-2 rounded-full transition-all duration-300 hover:scale-105 flex items-center space-x-1 md:space-x-2"
+                >
+                  ← <span className="hidden xs:inline">Accueil</span>
+                </Button>
               <div>
                 <h1 className="text-xl md:text-3xl font-bold text-gray-900 flex items-center space-x-1 md:space-x-2">
                   <Calendar className="h-5 w-5 md:h-8 md:w-8 text-blue-600" />
@@ -447,7 +447,8 @@ export default function FamilyCalendar() {
               )}
             </CardContent>
           </Card>
-        </div>
+          </div>
+        </PageContainer>
       </div>
 
       {/* PWA Status en bas de page */}

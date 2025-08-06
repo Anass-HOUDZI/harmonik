@@ -12,6 +12,7 @@ import { Calendar } from '@/components/ui/calendar';
 import { ArrowLeft, Plus, Trash2, ShoppingCart, Clock, Users, ChefHat, Star, Filter } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
+import { PageContainer } from '@/components/ui/page-container';
 
 interface Recipe {
   id: string;
@@ -299,76 +300,75 @@ export default function MealPlanner() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-orange-50 via-red-50 to-pink-50">
-      <header className="bg-white shadow-sm border-b border-orange-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-4">
-              <Button
-                variant="ghost"
-                onClick={() => navigate('/')}
-                className="flex items-center space-x-2"
-              >
-                <ArrowLeft className="h-4 w-4" />
-                <span>Retour</span>
-              </Button>
-              <div>
-                <h1 className="text-2xl font-bold text-gray-900 flex items-center space-x-2">
-                  <ChefHat className="h-6 w-6 text-orange-600" />
-                  <span>Planificateur de Repas</span>
-                </h1>
-                <p className="text-gray-600">Organisez vos repas familiaux en toute simplicité</p>
+      <PageContainer maxWidth="full" padding="md">
+        <header className="bg-white shadow-sm border-b border-orange-100">
+          <div className="py-4">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center space-x-4">
+                <Button
+                  onClick={() => navigate('/')}
+                  className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-bold px-6 py-2 rounded-full transition-all duration-300 hover:scale-105"
+                >
+                  ← Accueil
+                </Button>
+                <div>
+                  <h1 className="text-2xl font-bold text-gray-900 flex items-center space-x-2">
+                    <ChefHat className="h-6 w-6 text-orange-600" />
+                    <span>Planificateur de Repas</span>
+                  </h1>
+                  <p className="text-gray-600">Organisez vos repas familiaux en toute simplicité</p>
+                </div>
+              </div>
+              <div className="flex items-center space-x-2">
+                <Button onClick={generateAutomaticWeekPlan} className="bg-orange-600 hover:bg-orange-700">
+                  <Star className="h-4 w-4 mr-2" />
+                  Génération automatique
+                </Button>
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <Button variant="outline">
+                      <ShoppingCart className="h-4 w-4 mr-2" />
+                      Liste de courses
+                    </Button>
+                  </DialogTrigger>
+                  <DialogContent className="max-w-2xl">
+                    <DialogHeader>
+                      <DialogTitle>Liste de courses</DialogTitle>
+                      <DialogDescription>
+                        Basée sur votre planning de repas
+                      </DialogDescription>
+                    </DialogHeader>
+                    <div className="max-h-96 overflow-y-auto space-y-4">
+                      {Object.entries(
+                        generateShoppingList().reduce((acc, item) => {
+                          if (!acc[item.category]) acc[item.category] = [];
+                          acc[item.category].push(item);
+                          return acc;
+                        }, {} as Record<string, any[]>)
+                      ).map(([category, items]) => (
+                        <div key={category}>
+                          <h4 className="font-semibold text-lg mb-2">{category}</h4>
+                          <div className="space-y-1">
+                            {items.map((item, index) => (
+                              <div key={index} className="flex justify-between items-center p-2 bg-gray-50 rounded">
+                                <span>{item.name}</span>
+                                <span className="text-sm text-gray-600">
+                                  {Math.round(item.quantity * 10) / 10} {item.unit}
+                                </span>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </DialogContent>
+                </Dialog>
               </div>
             </div>
-            <div className="flex items-center space-x-2">
-              <Button onClick={generateAutomaticWeekPlan} className="bg-orange-600 hover:bg-orange-700">
-                <Star className="h-4 w-4 mr-2" />
-                Génération automatique
-              </Button>
-              <Dialog>
-                <DialogTrigger asChild>
-                  <Button variant="outline">
-                    <ShoppingCart className="h-4 w-4 mr-2" />
-                    Liste de courses
-                  </Button>
-                </DialogTrigger>
-                <DialogContent className="max-w-2xl">
-                  <DialogHeader>
-                    <DialogTitle>Liste de courses</DialogTitle>
-                    <DialogDescription>
-                      Basée sur votre planning de repas
-                    </DialogDescription>
-                  </DialogHeader>
-                  <div className="max-h-96 overflow-y-auto space-y-4">
-                    {Object.entries(
-                      generateShoppingList().reduce((acc, item) => {
-                        if (!acc[item.category]) acc[item.category] = [];
-                        acc[item.category].push(item);
-                        return acc;
-                      }, {} as Record<string, any[]>)
-                    ).map(([category, items]) => (
-                      <div key={category}>
-                        <h4 className="font-semibold text-lg mb-2">{category}</h4>
-                        <div className="space-y-1">
-                          {items.map((item, index) => (
-                            <div key={index} className="flex justify-between items-center p-2 bg-gray-50 rounded">
-                              <span>{item.name}</span>
-                              <span className="text-sm text-gray-600">
-                                {Math.round(item.quantity * 10) / 10} {item.unit}
-                              </span>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </DialogContent>
-              </Dialog>
-            </div>
           </div>
-        </div>
-      </header>
+        </header>
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <main className="py-8">
         <Tabs defaultValue="planning" className="space-y-6">
           <TabsList className="grid w-full grid-cols-3">
             <TabsTrigger value="planning">Planning</TabsTrigger>
@@ -659,51 +659,52 @@ export default function MealPlanner() {
             </Card>
           </TabsContent>
         </Tabs>
-      </main>
+        </main>
 
-      {isAddingMeal && (
-        <Dialog open={isAddingMeal} onOpenChange={setIsAddingMeal}>
-          <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
-            <DialogHeader>
-              <DialogTitle>
-                Ajouter un repas - {getMealTypeLabel(selectedMealType)}
-              </DialogTitle>
-              <DialogDescription>
-                {selectedDate.toLocaleDateString('fr-FR', { 
-                  weekday: 'long', 
-                  day: 'numeric', 
-                  month: 'long' 
-                })}
-              </DialogDescription>
-            </DialogHeader>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {filteredRecipes.map((recipe) => (
-                <Card 
-                  key={recipe.id} 
-                  className="cursor-pointer hover:shadow-lg transition-shadow"
-                  onClick={() => addMealToPlan(recipe, selectedDate, selectedMealType)}
-                >
-                  <CardHeader>
-                    <CardTitle className="text-base">{recipe.name}</CardTitle>
-                    <CardDescription className="text-sm">{recipe.description}</CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="flex items-center justify-between text-sm">
-                      <div className="flex items-center space-x-1">
-                        <Clock className="h-3 w-3" />
-                        <span>{recipe.preparationTime}min</span>
+        {isAddingMeal && (
+          <Dialog open={isAddingMeal} onOpenChange={setIsAddingMeal}>
+            <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
+              <DialogHeader>
+                <DialogTitle>
+                  Ajouter un repas - {getMealTypeLabel(selectedMealType)}
+                </DialogTitle>
+                <DialogDescription>
+                  {selectedDate.toLocaleDateString('fr-FR', { 
+                    weekday: 'long', 
+                    day: 'numeric', 
+                    month: 'long' 
+                  })}
+                </DialogDescription>
+              </DialogHeader>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {filteredRecipes.map((recipe) => (
+                  <Card 
+                    key={recipe.id} 
+                    className="cursor-pointer hover:shadow-lg transition-shadow"
+                    onClick={() => addMealToPlan(recipe, selectedDate, selectedMealType)}
+                  >
+                    <CardHeader>
+                      <CardTitle className="text-base">{recipe.name}</CardTitle>
+                      <CardDescription className="text-sm">{recipe.description}</CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="flex items-center justify-between text-sm">
+                        <div className="flex items-center space-x-1">
+                          <Clock className="h-3 w-3" />
+                          <span>{recipe.preparationTime}min</span>
+                        </div>
+                        <Badge className={getDifficultyColor(recipe.difficulty)}>
+                          {recipe.difficulty}
+                        </Badge>
                       </div>
-                      <Badge className={getDifficultyColor(recipe.difficulty)}>
-                        {recipe.difficulty}
-                      </Badge>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </DialogContent>
-        </Dialog>
-      )}
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </DialogContent>
+          </Dialog>
+        )}
+      </PageContainer>
     </div>
   );
 }

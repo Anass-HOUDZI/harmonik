@@ -8,6 +8,7 @@ import { useToast } from "@/hooks/use-toast";
 import { Users, Plus, Star, CheckCircle, Clock, Trophy, RotateCcw } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import ChoreCard from "@/components/ChoreCard";
+import { PageContainer } from "@/components/ui/page-container";
 
 interface Chore {
   id: string;
@@ -240,23 +241,27 @@ export default function ChoresManager() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 to-blue-100 p-4">
-      <div className="max-w-6xl mx-auto">
-        {/* Header */}
-        <div className="flex items-center justify-between mb-6">
-          <div className="flex items-center gap-3">
-            <div className="p-3 bg-green-200 rounded-lg">
-              <Users className="h-8 w-8 text-green-700" />
+    <div className="min-h-screen bg-gradient-to-br from-green-50 to-blue-100">
+      <PageContainer maxWidth="full" padding="md">
+        <div className="py-4">
+          {/* Header */}
+          <div className="flex items-center justify-between mb-6">
+            <div className="flex items-center gap-3">
+              <div className="p-3 bg-green-200 rounded-lg">
+                <Users className="h-8 w-8 text-green-700" />
+              </div>
+              <div>
+                <h1 className="text-3xl font-bold text-gray-900">Gestionnaire de Corvées</h1>
+                <p className="text-gray-600">Organisez les tâches familiales avec motivation</p>
+              </div>
             </div>
-            <div>
-              <h1 className="text-3xl font-bold text-gray-900">Gestionnaire de Corvées</h1>
-              <p className="text-gray-600">Organisez les tâches familiales avec motivation</p>
-            </div>
+            <Button 
+              onClick={() => navigate("/")}
+              className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-bold px-6 py-2 rounded-full transition-all duration-300 hover:scale-105"
+            >
+              ← Accueil
+            </Button>
           </div>
-          <Button variant="secondary" onClick={() => navigate("/")}>
-            ← Retour
-          </Button>
-        </div>
 
         {/* Stats familiales */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
@@ -582,7 +587,8 @@ export default function ChoresManager() {
             </div>
           </CardContent>
         </Card>
-      </div>
+        </div>
+      </PageContainer>
     </div>
   );
 }

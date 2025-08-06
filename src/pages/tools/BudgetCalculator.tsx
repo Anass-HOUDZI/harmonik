@@ -8,6 +8,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Progress } from '@/components/ui/progress';
 import { Calculator, PiggyBank, TrendingUp, TrendingDown, Plus, Trash2, ArrowLeft, AlertTriangle } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { PageContainer } from '@/components/ui/page-container';
 
 interface BudgetCategory {
   id: string;
@@ -150,19 +151,18 @@ export default function BudgetCalculator() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 to-blue-100 p-4">
-      <div className="max-w-7xl mx-auto">
-        {/* Header */}
-        <div className="flex items-center justify-between mb-6">
-          <div className="flex items-center space-x-4">
-            <Button
-              variant="outline"
-              onClick={() => navigate('/')}
-              className="flex items-center space-x-2"
-            >
-              <ArrowLeft className="h-4 w-4" />
-              <span>Retour</span>
-            </Button>
+    <div className="min-h-screen bg-gradient-to-br from-green-50 to-blue-100">
+      <PageContainer maxWidth="full" padding="md">
+        <div className="py-4">
+          {/* Header */}
+          <div className="flex items-center justify-between mb-6">
+            <div className="flex items-center space-x-4">
+              <Button
+                onClick={() => navigate('/')}
+                className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-bold px-6 py-2 rounded-full transition-all duration-300 hover:scale-105"
+              >
+                ← Accueil
+              </Button>
             <div>
               <h1 className="text-3xl font-bold text-gray-900 flex items-center space-x-2">
                 <Calculator className="h-8 w-8 text-green-600" />
@@ -407,7 +407,8 @@ export default function BudgetCalculator() {
             )}
           </CardContent>
         </Card>
-      </div>
+        </div>
+      </PageContainer>
     </div>
   );
 }
