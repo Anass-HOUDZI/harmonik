@@ -10,7 +10,7 @@ const Index = () => {
             backgroundImage: 'linear-gradient(to right, #fe8c00, #f83600)'
           }}
         >
-          L'organisation sans prise de tête
+          Fini le chaos familial 🏠
         </h1>
       </div>
     </div>
