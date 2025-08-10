@@ -1,5 +1,4 @@
-
-import React, { memo, useEffect } from "react";
+import React, { memo } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useNavigate } from "react-router-dom";
 import { ModernCard } from "@/components/ui/modern/ModernCard";
@@ -85,11 +84,6 @@ export default memo(function ToolTemplate({
   children
 }: ToolTemplateProps) {
   const navigate = useNavigate();
-
-  // Scroll automatique en haut de page
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
 
   const handleBackClick = () => {
     navigate("/");
