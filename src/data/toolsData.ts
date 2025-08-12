@@ -1,4 +1,4 @@
-import { Calendar, Utensils, Users, ShoppingCart, Baby, Stethoscope, Calculator, PiggyBank, TrendingUp, DollarSign, AlertTriangle, Plane, Wallet, GraduationCap, BookOpen, Brain, Library, HelpCircle, Heart, Clock, Dumbbell, Scale, Droplets, ChefHat, UserCheck, Briefcase, Target, Smile, Trophy, Coffee, MessageCircle, FolderOpen, Gamepad2, Sun, CloudRain, PartyPopper, Puzzle, MapPin, Ruler, Tag, UtensilsCrossed, Timer, Activity, Home, Apple } from "lucide-react";
+import { Calendar, Utensils, Users, ShoppingCart, Baby, Stethoscope, Calculator, PiggyBank, TrendingUp, DollarSign, AlertTriangle, Plane, Wallet, GraduationCap, BookOpen, Brain, Library, HelpCircle, Heart, Clock, Dumbbell, Scale, Droplets, ChefHat, UserCheck, Briefcase, Target, Smile, Trophy, Coffee, MessageCircle, FolderOpen, Gamepad2, Sun, CloudRain, PartyPopper, Puzzle, MapPin, Ruler, Tag, UtensilsCrossed, Timer, Activity, Home, Apple, Search, FileText, Braces, Code } from "lucide-react";
 
 export interface Tool {
   id: string;
@@ -614,6 +614,56 @@ export const tools: Tool[] = [
     category: 'Pratique',
     icon: Timer,
     route: '/tools/screen-timer',
+    priority: 2,
+    status: 'available'
+  },
+  {
+    id: 'meta-generator',
+    name: 'Générateur Meta Descriptions',
+    description: 'Créez ou optimisez vos meta descriptions hors-ligne.',
+    category: 'Pratique',
+    icon: FileText,
+    route: '/tools/meta-generator',
+    priority: 2,
+    status: 'available'
+  },
+  {
+    id: 'keyword-density',
+    name: 'Analyseur Densité Mots-clés',
+    description: 'Analysez la densité de mots-clés de vos textes en local.',
+    category: 'Pratique',
+    icon: Search,
+    route: '/tools/keyword-density',
+    priority: 2,
+    status: 'available'
+  },
+  {
+    id: 'readability-checker',
+    name: 'Vérificateur de Lisibilité',
+    description: 'Vérifiez la lisibilité de vos contenus hors-ligne.',
+    category: 'Pratique',
+    icon: BookOpen,
+    route: '/tools/readability-checker',
+    priority: 2,
+    status: 'available'
+  },
+  {
+    id: 'structured-data-gen',
+    name: 'Générateur Données Structurées',
+    description: 'Générez du JSON-LD pour vos pages web, 100% offline.',
+    category: 'Pratique',
+    icon: Code,
+    route: '/tools/structured-data-gen',
+    priority: 2,
+    status: 'available'
+  },
+  {
+    id: 'html-structure-analyzer',
+    name: 'Analyseur Structure HTML',
+    description: 'Analysez la structure HTML de vos documents en local.',
+    category: 'Pratique',
+    icon: Braces,
+    route: '/tools/html-structure-analyzer',
     priority: 2,
     status: 'available'
   }
