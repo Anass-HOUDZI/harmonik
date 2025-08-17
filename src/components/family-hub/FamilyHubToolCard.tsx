@@ -43,7 +43,7 @@ export default function FamilyHubToolCard({ tool }: { tool: Tool }) {
       tabIndex={0}
       aria-label={tool.name}
     >
-      <CardHeader className="pb-2 px-5 pt-5 flex flex-col gap-2">
+      <CardHeader className="pb-3 px-6 pt-6 flex flex-col gap-3">
         <div className="flex items-start justify-between">
           <div className="flex items-center space-x-4">
             <div className="rounded-xl bg-white shadow w-14 h-14 flex items-center justify-center border border-blue-100 transition-transform group-hover:scale-110">
@@ -51,14 +51,14 @@ export default function FamilyHubToolCard({ tool }: { tool: Tool }) {
             </div>
             <div>
               <CardTitle className="text-base md:text-lg text-blue-900 font-semibold">{tool.name}</CardTitle>
-              <Badge className={`mt-1 ${getStatusColor(tool.status)} text-xs px-2 py-0.5 select-none transition-colors`}>{getStatusText(tool.status)}</Badge>
+              <Badge className={`mt-2 ${getStatusColor(tool.status)} text-xs px-2 py-0.5 select-none transition-colors`}>{getStatusText(tool.status)}</Badge>
             </div>
           </div>
         </div>
       </CardHeader>
-      <CardContent className="pb-5 px-5 pt-2">
-        <CardDescription className="text-gray-600 leading-relaxed min-h-[44px] text-sm">{tool.description}</CardDescription>
-        <div className="mt-3 flex justify-between items-center">
+      <CardContent className="pb-6 px-6 pt-3">
+        <CardDescription className="text-gray-600 leading-relaxed min-h-[44px] text-sm mb-4">{tool.description}</CardDescription>
+        <div className="flex justify-between items-center">
           <Badge variant="outline" className="text-xs rounded-md border-blue-200 px-2 py-0.5">{tool.category}</Badge>
           {tool.status === 'available' && (
             <Button

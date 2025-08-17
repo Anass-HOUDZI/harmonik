@@ -16,9 +16,9 @@ interface ResponsiveGridProps {
 }
 
 const gapClasses = {
-  sm: 'gap-3',
+  sm: 'gap-4',
   md: 'gap-4 md:gap-6',
-  lg: 'gap-5 md:gap-8'
+  lg: 'gap-6 md:gap-8'
 };
 
 export function ResponsiveGrid({ 
