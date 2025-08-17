@@ -172,13 +172,64 @@
   }
 }
 
-/* Responsive touch improvements */
+/* Mobile-first responsive optimizations */
+@media (max-width: 768px) {
+  /* Optimisation tactile mobile */
+  .mobile-touch {
+    min-height: 44px;
+    min-width: 44px;
+    padding: 12px 16px;
+  }
+  
+  /* Amélioration zone de tap */
+  button, a, [role="button"] {
+    min-height: 44px;
+    padding: 8px 12px;
+  }
+  
+  /* Espacements optimisés mobile */
+  .mobile-spacing {
+    padding: 16px;
+    margin: 8px 0;
+  }
+}
+
+/* Tablet optimizations */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .tablet-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Touch device optimizations */
 @media (hover: none) and (pointer: coarse) {
-  .hover\:scale-105:hover {
+  /* Supprime les effets hover sur appareils tactiles */
+  .hover\:scale-105:hover,
+  .hover\:scale-\[1\.02\]:hover,
+  .hover\:scale-\[1\.045\]:hover {
     transform: none;
   }
   
   .hover\:shadow-xl:hover {
     box-shadow: none;
+  }
+  
+  /* Active states plus visibles sur tactile */
+  .touch-active:active {
+    transform: scale(0.98);
+    transition: transform 0.1s ease;
+  }
+  
+  /* Zones de touch plus grandes */
+  button, .btn, [role="button"] {
+    min-height: 48px;
+    padding: 12px 20px;
+  }
+}
+
+/* Large desktop optimizations */
+@media (min-width: 1536px) {
+  .container {
+    max-width: 1400px;
   }
 }

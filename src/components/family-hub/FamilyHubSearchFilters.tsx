@@ -1,10 +1,11 @@
 
 import React from "react";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
-interface Props {
+interface FamilyHubSearchFiltersProps {
   selectedCategory: string;
-  setSelectedCategory: (val: string) => void;
+  setSelectedCategory: (category: string) => void;
   categories: string[];
 }
 
@@ -12,28 +13,24 @@ export default function FamilyHubSearchFilters({
   selectedCategory,
   setSelectedCategory,
   categories
-}: Props) {
+}: FamilyHubSearchFiltersProps) {
   return (
-    <div className="mb-7 flex flex-col items-center w-full">
-      <div className="flex flex-wrap gap-2 md:gap-3 justify-center">
+    <div className="w-full max-w-5xl mx-auto mb-8 sm:mb-12">
+      {/* Filtres par catégorie - responsive */}
+      <div className="flex flex-wrap justify-center gap-2 sm:gap-3 px-2">
         {categories.map((category) => (
           <Button
             key={category}
-            variant="ghost"
+            variant={selectedCategory === category ? "default" : "outline"}
+            size="sm"
             onClick={() => setSelectedCategory(category)}
-            className={`
-              !rounded-full !shadow-none !transition-all font-bold min-w-[90px] px-5 py-2
-              ${
-                selectedCategory === category
-                  ? 'bg-gradient-to-r from-gradient-start to-gradient-end text-white'
-                  : 'bg-white text-gradient-start hover:bg-gradient-to-r hover:from-gradient-start hover:to-gradient-end hover:text-white'
-              }
-              ${selectedCategory === category ? '' : 'hover:scale-[1.06]'}
-            `}
-            style={{
-              border: 'none',
-              boxShadow: 'none'
-            }}
+            className={cn(
+              "transition-all duration-300 touch-active text-xs sm:text-sm",
+              "min-h-[36px] sm:min-h-[40px] px-3 sm:px-4 py-2 rounded-full",
+              selectedCategory === category
+                ? "bg-gradient-to-r from-gradient-start to-gradient-end text-white shadow-lg hover:shadow-xl border-0"
+                : "hover:bg-accent hover:scale-105 border border-gray-200 bg-white"
+            )}
           >
             {category}
           </Button>

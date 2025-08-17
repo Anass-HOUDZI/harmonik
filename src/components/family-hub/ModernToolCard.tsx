@@ -59,7 +59,7 @@ export default function ModernToolCard({ tool }: { tool: Tool }) {
       shine={isAvailable}
       onClick={handleClick}
       className={cn(
-        "group relative p-6 h-full cursor-pointer transition-all duration-300",
+        "group relative p-4 sm:p-5 md:p-6 h-full cursor-pointer transition-all duration-300 touch-active",
         `bg-gradient-to-br ${getCategoryGradient(tool.category)}`,
         isAvailable && "hover:shadow-xl hover:shadow-blue-500/10",
         !isAvailable && "opacity-75 cursor-not-allowed"
@@ -71,14 +71,14 @@ export default function ModernToolCard({ tool }: { tool: Tool }) {
       )}
 
       {/* Header avec icône et statut */}
-      <div className="flex items-start justify-between mb-4">
+      <div className="flex items-start justify-between mb-3 sm:mb-4">
         <div 
           className={cn(
-            "rounded-xl p-3 shadow-lg transition-all duration-300 group-hover:scale-110",
+            "rounded-xl p-2.5 sm:p-3 shadow-lg transition-all duration-300 group-hover:scale-110",
             "bg-gradient-to-br from-white to-gray-50 border border-white/50"
           )}
         >
-          <IconComponent className="w-6 h-6 text-blue-600" />
+          <IconComponent className="w-5 h-5 sm:w-6 sm:h-6 text-blue-600" />
         </div>
         
         <Badge 
@@ -92,19 +92,19 @@ export default function ModernToolCard({ tool }: { tool: Tool }) {
       </div>
 
       {/* Contenu compact */}
-      <div className="space-y-3 flex-1">
-        <h3 className="text-base font-bold text-gray-900 group-hover:text-blue-900 transition-colors duration-300 line-clamp-2">
+      <div className="space-y-2 sm:space-y-3 flex-1">
+        <h3 className="text-sm sm:text-base font-bold text-gray-900 group-hover:text-blue-900 transition-colors duration-300 line-clamp-2 leading-tight">
           {tool.name}
         </h3>
         
-        <p className="text-gray-600 text-xs leading-relaxed line-clamp-2 mb-4">
+        <p className="text-gray-600 text-xs sm:text-sm leading-relaxed line-clamp-2 mb-3 sm:mb-4">
           {tool.description}
         </p>
         
-        <div className="flex items-center justify-between pt-2">
+        <div className="flex items-center justify-between pt-1 sm:pt-2">
           <Badge 
             variant="outline" 
-            className="text-xs border-blue-200 text-blue-700 bg-blue-50/50"
+            className="text-xs border-blue-200 text-blue-700 bg-blue-50/50 px-2 py-1"
           >
             {tool.category}
           </Badge>
@@ -114,8 +114,8 @@ export default function ModernToolCard({ tool }: { tool: Tool }) {
               size="sm"
               className={cn(
                 "bg-gradient-to-r from-gradient-start to-gradient-end hover:from-gradient-start/90 hover:to-gradient-end/90",
-                "shadow-lg hover:shadow-xl transition-all duration-300",
-                "text-white font-semibold px-4 py-1 text-xs group-hover:scale-105"
+                "shadow-lg hover:shadow-xl transition-all duration-300 touch-active",
+                "text-white font-semibold px-3 sm:px-4 py-1 text-xs group-hover:scale-105 min-h-[32px]"
               )}
               tabIndex={-1}
             >

@@ -47,19 +47,19 @@ export default function FamilyHub() {
       <ModernHeroSection />
 
       <main className="flex-grow">
-        <PageContainer className="py-8 flex flex-col items-center">
+        <PageContainer className="py-4 sm:py-6 md:py-8 flex flex-col items-center">
           <FamilyHubSearchFilters
             selectedCategory={selectedCategory}
             setSelectedCategory={setSelectedCategory}
             categories={categories}
           />
 
-          {/* Plus de marge entre les filtres et les badges */}
-          <div className="mt-16 mb-8 flex flex-wrap items-center justify-center gap-4 animate-fade-in">
+          {/* Badges features - responsive */}
+          <div className="mt-8 sm:mt-12 md:mt-16 mb-6 sm:mb-8 flex flex-wrap items-center justify-center gap-2 sm:gap-3 md:gap-4 animate-fade-in px-2">
             {['🔒 100% Privé', '💝 Totalement Gratuit', '📱 Multi-plateforme', '⚡ Hors Ligne'].map((feature, index) => (
               <div 
                 key={feature}
-                className="glass-card px-6 py-3 text-sm font-medium text-gray-700 hover:scale-105 transition-transform duration-300 shadow-lg"
+                className="glass-card px-3 sm:px-4 md:px-6 py-2 sm:py-3 text-xs sm:text-sm font-medium text-gray-700 hover:scale-105 transition-transform duration-300 shadow-lg touch-active"
                 style={{ animationDelay: `${1.2 + index * 0.1}s` }}
               >
                 {feature}
@@ -67,7 +67,7 @@ export default function FamilyHub() {
             ))}
           </div>
 
-          <div className="w-full md:w-[90%] mx-auto">
+          <div className="w-full max-w-7xl mx-auto">
             <Section variant="transparent">
               <FamilyHubStats />
             </Section>
@@ -75,19 +75,28 @@ export default function FamilyHub() {
             <Section variant="transparent" spacing="sm">
               {filteredTools.length > 0 ? (
                 <ResponsiveGrid 
-                  cols={{ default: 1, sm: 2, lg: 3, xl: 4 }}
-                  gap="lg"
+                  cols={{ 
+                    default: 1, 
+                    xs: 1, 
+                    sm: 2, 
+                    md: 2, 
+                    lg: 3, 
+                    xl: 4,
+                    '2xl': 5
+                  }}
+                  gap="md"
+                  className="auto-rows-fr"
                 >
                   {filteredTools.map((tool) => (
                     <ModernToolCard tool={tool} key={tool.id} />
                   ))}
                 </ResponsiveGrid>
               ) : (
-                <ModernCard className="p-12 text-center">
+                <ModernCard className="p-8 sm:p-12 text-center">
                   <EmptyState
                     title="Aucun outil trouvé"
                     description="Essayez une autre catégorie !"
-                    icon={<Search className="h-12 w-12" />}
+                    icon={<Search className="h-8 w-8 sm:h-12 sm:w-12" />}
                   />
                 </ModernCard>
               )}
@@ -95,12 +104,12 @@ export default function FamilyHub() {
 
             <Section 
               variant="transparent"
-              className="mt-16 md:mt-24"
+              className="mt-12 sm:mt-16 md:mt-24"
               spacing="lg"
             >
-              <ModernCard variant="glass" className="p-8 md:p-12">
+              <ModernCard variant="glass" className="p-6 sm:p-8 md:p-12">
                 <div className="flex flex-col items-center">
-                  <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-8 font-space">
+                  <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center text-gray-900 mb-6 sm:mb-8 font-space">
                     Pourquoi choisir{' '}
                     <span className="bg-gradient-to-r from-gradient-start to-gradient-end bg-clip-text text-transparent">
                       Harmonik
@@ -108,8 +117,8 @@ export default function FamilyHub() {
                     ?
                   </h2>
                   <ResponsiveGrid 
-                    cols={{ default: 1, md: 3 }}
-                    gap="lg"
+                    cols={{ default: 1, sm: 1, md: 3 }}
+                    gap="md"
                     className="max-w-5xl"
                   >
                     {features.map((feature, index) => (
