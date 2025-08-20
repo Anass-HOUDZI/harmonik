@@ -303,7 +303,79 @@ export default function MealPlanner() {
       <PageContainer maxWidth="full" padding="md">
         <header className="bg-white shadow-sm border-b border-orange-100">
           <div className="py-4">
-            <div className="flex items-center justify-between">
+            {/* Mobile Layout */}
+            <div className="flex flex-col space-y-4 sm:hidden">
+              {/* Top row: Back button and title */}
+              <div className="flex items-center space-x-3">
+                <Button
+                  onClick={() => navigate('/')}
+                  size="sm"
+                  className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-bold px-4 py-2 rounded-full transition-all duration-300 hover:scale-105 flex-shrink-0"
+                >
+                  ← Accueil
+                </Button>
+                <div className="min-w-0 flex-1">
+                  <h1 className="text-lg font-bold text-gray-900 flex items-center space-x-2 truncate">
+                    <ChefHat className="h-5 w-5 text-orange-600 flex-shrink-0" />
+                    <span className="truncate">Planificateur de Repas</span>
+                  </h1>
+                  <p className="text-sm text-gray-600 truncate">Organisez vos repas familiaux</p>
+                </div>
+              </div>
+              
+              {/* Action buttons row */}
+              <div className="flex flex-col space-y-2 w-full">
+                <Button 
+                  onClick={generateAutomaticWeekPlan} 
+                  className="bg-orange-600 hover:bg-orange-700 w-full touch-none min-h-12"
+                >
+                  <Star className="h-4 w-4 mr-2" />
+                  Génération automatique
+                </Button>
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <Button variant="outline" className="w-full touch-none min-h-12">
+                      <ShoppingCart className="h-4 w-4 mr-2" />
+                      Liste de courses
+                    </Button>
+                  </DialogTrigger>
+                  <DialogContent className="max-w-2xl">
+                    <DialogHeader>
+                      <DialogTitle>Liste de courses</DialogTitle>
+                      <DialogDescription>
+                        Basée sur votre planning de repas
+                      </DialogDescription>
+                    </DialogHeader>
+                    <div className="max-h-96 overflow-y-auto space-y-4">
+                      {Object.entries(
+                        generateShoppingList().reduce((acc, item) => {
+                          if (!acc[item.category]) acc[item.category] = [];
+                          acc[item.category].push(item);
+                          return acc;
+                        }, {} as Record<string, any[]>)
+                      ).map(([category, items]) => (
+                        <div key={category}>
+                          <h4 className="font-semibold text-lg mb-2">{category}</h4>
+                          <div className="space-y-1">
+                            {items.map((item, index) => (
+                              <div key={index} className="flex justify-between items-center p-2 bg-gray-50 rounded">
+                                <span>{item.name}</span>
+                                <span className="text-sm text-gray-600">
+                                  {Math.round(item.quantity * 10) / 10} {item.unit}
+                                </span>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </DialogContent>
+                </Dialog>
+              </div>
+            </div>
+
+            {/* Desktop Layout */}
+            <div className="hidden sm:flex items-center justify-between">
               <div className="flex items-center space-x-4">
                 <Button
                   onClick={() => navigate('/')}
@@ -385,15 +457,15 @@ export default function MealPlanner() {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="grid grid-cols-1 md:grid-cols-7 gap-4">
+                <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-3 sm:gap-4">
                   {selectedWeek.map((date) => {
                     const dayMeals = mealPlans.filter(meal => 
                       meal.date === date.toISOString().split('T')[0]
                     );
 
                     return (
-                      <div key={date.toISOString()} className="border rounded-lg p-4">
-                        <h3 className="font-semibold text-center mb-3">
+                      <div key={date.toISOString()} className="border rounded-lg p-3 sm:p-4 min-h-64">
+                        <h3 className="font-semibold text-center mb-3 text-sm sm:text-base">
                           {date.toLocaleDateString('fr-FR', { 
                             weekday: 'short', 
                             day: 'numeric',
@@ -405,44 +477,45 @@ export default function MealPlanner() {
                           {['petit-dejeuner', 'dejeuner', 'diner'].map(mealType => {
                             const meal = dayMeals.find(m => m.mealType === mealType);
                             
-                            return (
-                              <div key={mealType} className="min-h-16 border-2 border-dashed border-gray-200 rounded p-2">
-                                <div className="text-xs font-medium text-gray-500 mb-1">
-                                  {getMealTypeLabel(mealType)}
-                                </div>
-                                {meal ? (
-                                  <div className="relative group">
-                                    <div className="text-sm font-medium">{meal.recipe.name}</div>
-                                    <div className="text-xs text-gray-500 flex items-center space-x-1">
-                                      <Clock className="h-3 w-3" />
-                                      <span>{meal.recipe.preparationTime}min</span>
-                                      <Users className="h-3 w-3 ml-1" />
-                                      <span>{meal.servings}</span>
+                              return (
+                                <div key={mealType} className="min-h-16 sm:min-h-20 border-2 border-dashed border-gray-200 rounded p-2 touch-none">
+                                  <div className="text-xs font-medium text-gray-500 mb-1 truncate">
+                                    {getMealTypeLabel(mealType)}
+                                  </div>
+                                  {meal ? (
+                                    <div className="relative group">
+                                      <div className="text-xs sm:text-sm font-medium truncate pr-6">{meal.recipe.name}</div>
+                                      <div className="text-xs text-gray-500 flex items-center space-x-1 flex-wrap">
+                                        <Clock className="h-3 w-3 flex-shrink-0" />
+                                        <span>{meal.recipe.preparationTime}min</span>
+                                        <Users className="h-3 w-3 ml-1 flex-shrink-0" />
+                                        <span>{meal.servings}</span>
+                                      </div>
+                                      <Button
+                                        size="sm"
+                                        variant="ghost"
+                                        className="absolute top-0 right-0 opacity-0 group-hover:opacity-100 touch:opacity-100 h-6 w-6 p-0 touch-none"
+                                        onClick={() => removeMealFromPlan(meal.id)}
+                                      >
+                                        <Trash2 className="h-3 w-3" />
+                                      </Button>
                                     </div>
+                                  ) : (
                                     <Button
                                       size="sm"
                                       variant="ghost"
-                                      className="absolute top-0 right-0 opacity-0 group-hover:opacity-100 h-6 w-6 p-0"
-                                      onClick={() => removeMealFromPlan(meal.id)}
+                                      className="w-full h-8 sm:h-10 text-xs touch-none"
+                                      onClick={() => {
+                                        setSelectedDate(date);
+                                        setSelectedMealType(mealType);
+                                        setIsAddingMeal(true);
+                                      }}
                                     >
-                                      <Trash2 className="h-3 w-3" />
+                                      <Plus className="h-3 w-3 mr-1" />
+                                      <span className="hidden xs:inline">Ajouter</span>
+                                      <span className="xs:hidden">+</span>
                                     </Button>
-                                  </div>
-                                ) : (
-                                  <Button
-                                    size="sm"
-                                    variant="ghost"
-                                    className="w-full h-8 text-xs"
-                                    onClick={() => {
-                                      setSelectedDate(date);
-                                      setSelectedMealType(mealType);
-                                      setIsAddingMeal(true);
-                                    }}
-                                  >
-                                    <Plus className="h-3 w-3 mr-1" />
-                                    Ajouter
-                                  </Button>
-                                )}
+                                  )}
                               </div>
                             );
                           })}

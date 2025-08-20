@@ -244,60 +244,85 @@ export default function ChoresManager() {
     <div className="min-h-screen bg-gradient-to-br from-green-50 to-blue-100">
       <PageContainer maxWidth="full" padding="md">
         <div className="py-4">
-          {/* Header */}
-          <div className="flex items-center justify-between mb-6">
-            <div className="flex items-center gap-3">
-              <div className="p-3 bg-green-200 rounded-lg">
-                <Users className="h-8 w-8 text-green-700" />
-              </div>
-              <div>
-                <h1 className="text-3xl font-bold text-gray-900">Gestionnaire de Corvées</h1>
-                <p className="text-gray-600">Organisez les tâches familiales avec motivation</p>
+          {/* Header responsive */}
+          <div className="space-y-4 mb-6">
+            {/* Mobile layout */}
+            <div className="flex flex-col space-y-3 sm:hidden">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-3 min-w-0 flex-1">
+                  <div className="p-2 sm:p-3 bg-green-200 rounded-lg flex-shrink-0">
+                    <Users className="h-6 w-6 sm:h-8 sm:w-8 text-green-700" />
+                  </div>
+                  <div className="min-w-0">
+                    <h1 className="text-xl sm:text-2xl font-bold text-gray-900 truncate">Gestionnaire Corvées</h1>
+                    <p className="text-sm text-gray-600 truncate">Tâches familiales motivantes</p>
+                  </div>
+                </div>
+                <Button 
+                  onClick={() => navigate("/")}
+                  size="sm"
+                  className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-bold px-4 py-2 rounded-full transition-all duration-300 hover:scale-105 flex-shrink-0"
+                >
+                  ← Accueil
+                </Button>
               </div>
             </div>
-            <Button 
-              onClick={() => navigate("/")}
-              className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-bold px-6 py-2 rounded-full transition-all duration-300 hover:scale-105"
-            >
-              ← Accueil
-            </Button>
+
+            {/* Desktop layout */}  
+            <div className="hidden sm:flex items-center justify-between">
+              <div className="flex items-center gap-4">
+                <div className="p-3 bg-green-200 rounded-lg">
+                  <Users className="h-8 w-8 text-green-700" />
+                </div>
+                <div>
+                  <h1 className="text-3xl font-bold text-gray-900">Gestionnaire de Corvées</h1>
+                  <p className="text-gray-600">Organisez les tâches familiales avec motivation</p>
+                </div>
+              </div>
+              <Button 
+                onClick={() => navigate("/")}
+                className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-bold px-6 py-2 rounded-full transition-all duration-300 hover:scale-105"
+              >
+                ← Accueil
+              </Button>
+            </div>
           </div>
 
-        {/* Stats familiales */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+        {/* Stats familiales responsive */}
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 mb-6">
           {familyMembers.map((member) => (
-            <Card key={member.id} className="text-center">
-              <CardContent className="p-4">
-                <div className="text-2xl mb-2">{member.avatar}</div>
-                <div className="font-semibold">{member.name}</div>
-                <div className="text-sm text-gray-600">Niveau {member.level}</div>
+            <Card key={member.id} className="text-center touch-none">
+              <CardContent className="p-3 sm:p-4">
+                <div className="text-xl sm:text-2xl mb-2">{member.avatar}</div>
+                <div className="font-semibold text-sm sm:text-base truncate">{member.name}</div>
+                <div className="text-xs sm:text-sm text-gray-600">Niveau {member.level}</div>
                 <div className="flex items-center justify-center gap-1 mt-2">
-                  <Star className="h-4 w-4 text-yellow-500" />
-                  <span className="font-bold text-yellow-600">{member.totalPoints}</span>
+                  <Star className="h-3 w-3 sm:h-4 sm:w-4 text-yellow-500" />
+                  <span className="font-bold text-yellow-600 text-xs sm:text-sm">{member.totalPoints}</span>
                 </div>
               </CardContent>
             </Card>
           ))}
         </div>
 
-        {/* Actions */}
-        <div className="flex flex-wrap gap-3 mb-6">
-          <Button onClick={() => setShowAddChore(true)} className="bg-green-600 hover:bg-green-700">
+        {/* Actions responsive */}
+        <div className="flex flex-col space-y-2 sm:flex-row sm:space-y-0 sm:flex-wrap sm:gap-3 mb-6">
+          <Button onClick={() => setShowAddChore(true)} className="bg-green-600 hover:bg-green-700 w-full sm:w-auto min-h-12 sm:min-h-10 touch-none">
             <Plus className="h-4 w-4 mr-2" />
             Ajouter une corvée
           </Button>
-          <Button onClick={() => setShowAddMember(true)} variant="outline">
+          <Button onClick={() => setShowAddMember(true)} variant="outline" className="w-full sm:w-auto min-h-12 sm:min-h-10 touch-none">
             <Users className="h-4 w-4 mr-2" />
             Ajouter un membre
           </Button>
-          <Button onClick={rotateChores} variant="outline">
+          <Button onClick={rotateChores} variant="outline" className="w-full sm:w-auto min-h-12 sm:min-h-10 touch-none">
             <RotateCcw className="h-4 w-4 mr-2" />
             Rotation automatique
           </Button>
         </div>
 
-        {/* Liste des corvées */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+        {/* Liste des corvées responsive */}
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3 sm:gap-4 mb-6">
           {chores.map((chore) => {
             const assignedMember = familyMembers.find(m => m.id === chore.assignedTo);
             return (

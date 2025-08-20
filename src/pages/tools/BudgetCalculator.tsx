@@ -154,86 +154,109 @@ export default function BudgetCalculator() {
     <div className="min-h-screen bg-gradient-to-br from-green-50 to-blue-100">
       <PageContainer maxWidth="full" padding="md">
         <div className="py-4">
-          {/* Header */}
-          <div className="flex items-center justify-between mb-6">
-            <div className="flex items-center space-x-4">
-              <Button
-                onClick={() => navigate('/')}
-                className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-bold px-6 py-2 rounded-full transition-all duration-300 hover:scale-105"
-              >
-                ← Accueil
-              </Button>
-            <div>
-              <h1 className="text-3xl font-bold text-gray-900 flex items-center space-x-2">
-                <Calculator className="h-8 w-8 text-green-600" />
-                <span>Calculateur Budget Familial</span>
-              </h1>
-              <p className="text-gray-600">Gérez efficacement vos finances familiales</p>
+          {/* Header responsive */}
+          <div className="space-y-4 mb-6">
+            {/* Mobile Layout */}
+            <div className="flex flex-col space-y-3 sm:hidden">
+              <div className="flex items-center justify-between">
+                <Button
+                  onClick={() => navigate('/')}
+                  size="sm"
+                  className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-bold px-4 py-2 rounded-full transition-all duration-300 hover:scale-105 flex-shrink-0"
+                >
+                  ← Accueil
+                </Button>
+                <div className="min-w-0 flex-1 ml-3">
+                  <h1 className="text-lg font-bold text-gray-900 flex items-center space-x-2 truncate">
+                    <Calculator className="h-5 w-5 text-green-600 flex-shrink-0" />
+                    <span className="truncate">Budget Familial</span>
+                  </h1>
+                  <p className="text-sm text-gray-600 truncate">Gérez vos finances</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Desktop Layout */}
+            <div className="hidden sm:flex items-center justify-between">
+              <div className="flex items-center space-x-4">
+                <Button
+                  onClick={() => navigate('/')}
+                  className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-bold px-6 py-2 rounded-full transition-all duration-300 hover:scale-105"
+                >
+                  ← Accueil
+                </Button>
+                <div>
+                  <h1 className="text-3xl font-bold text-gray-900 flex items-center space-x-2">
+                    <Calculator className="h-8 w-8 text-green-600" />
+                    <span>Calculateur Budget Familial</span>
+                  </h1>
+                  <p className="text-gray-600">Gérez efficacement vos finances familiales</p>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
 
-        {/* Summary Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-          <Card className="bg-blue-50 border-blue-200">
-            <CardHeader className="pb-3">
-              <CardTitle className="text-sm font-medium text-blue-700">Revenus Mensuels</CardTitle>
+        {/* Summary Cards responsive */}
+        <div className="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-6 sm:mb-8">
+          <Card className="bg-blue-50 border-blue-200 touch-none">
+            <CardHeader className="pb-2 sm:pb-3">
+              <CardTitle className="text-xs sm:text-sm font-medium text-blue-700">Revenus Mensuels</CardTitle>
             </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold text-blue-900">{monthlyIncome.toLocaleString()} €</div>
+            <CardContent className="p-3 sm:p-6 pt-0">
+              <div className="text-lg sm:text-2xl font-bold text-blue-900">{monthlyIncome.toLocaleString()} €</div>
               <div className="mt-2">
                 <Input
                   type="number"
                   value={monthlyIncome}
                   onChange={(e) => setMonthlyIncome(Number(e.target.value))}
-                  className="border-blue-200"
+                  className="border-blue-200 text-sm"
                   placeholder="Revenus mensuels"
                 />
               </div>
             </CardContent>
           </Card>
 
-          <Card className="bg-red-50 border-red-200">
-            <CardHeader className="pb-3">
-              <CardTitle className="text-sm font-medium text-red-700">Dépenses Totales</CardTitle>
+          <Card className="bg-red-50 border-red-200 touch-none">
+            <CardHeader className="pb-2 sm:pb-3">
+              <CardTitle className="text-xs sm:text-sm font-medium text-red-700">Dépenses Totales</CardTitle>
             </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold text-red-900">{totalSpent.toLocaleString()} €</div>
-              <div className="flex items-center mt-2 text-sm text-red-600">
-                <TrendingDown className="h-4 w-4 mr-1" />
+            <CardContent className="p-3 sm:p-6 pt-0">
+              <div className="text-lg sm:text-2xl font-bold text-red-900">{totalSpent.toLocaleString()} €</div>
+              <div className="flex items-center mt-2 text-xs sm:text-sm text-red-600">
+                <TrendingDown className="h-3 w-3 sm:h-4 sm:w-4 mr-1" />
                 {((totalSpent / monthlyIncome) * 100).toFixed(1)}% du revenu
               </div>
             </CardContent>
           </Card>
 
-          <Card className="bg-green-50 border-green-200">
-            <CardHeader className="pb-3">
-              <CardTitle className="text-sm font-medium text-green-700">Reste à Vivre</CardTitle>
+          <Card className="bg-green-50 border-green-200 touch-none">
+            <CardHeader className="pb-2 sm:pb-3">
+              <CardTitle className="text-xs sm:text-sm font-medium text-green-700">Reste à Vivre</CardTitle>
             </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold text-green-900">{remainingBudget.toLocaleString()} €</div>
-              <div className="flex items-center mt-2 text-sm text-green-600">
-                <PiggyBank className="h-4 w-4 mr-1" />
+            <CardContent className="p-3 sm:p-6 pt-0">
+              <div className="text-lg sm:text-2xl font-bold text-green-900">{remainingBudget.toLocaleString()} €</div>
+              <div className="flex items-center mt-2 text-xs sm:text-sm text-green-600">
+                <PiggyBank className="h-3 w-3 sm:h-4 sm:w-4 mr-1" />
                 {savingsRate.toFixed(1)}% d'épargne
               </div>
             </CardContent>
           </Card>
 
-          <Card className="bg-purple-50 border-purple-200">
-            <CardHeader className="pb-3">
-              <CardTitle className="text-sm font-medium text-purple-700">Budget Alloué</CardTitle>
+          <Card className="bg-purple-50 border-purple-200 touch-none">
+            <CardHeader className="pb-2 sm:pb-3">
+              <CardTitle className="text-xs sm:text-sm font-medium text-purple-700">Budget Alloué</CardTitle>
             </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold text-purple-900">{totalBudgeted.toLocaleString()} €</div>
-              <div className="flex items-center mt-2 text-sm text-purple-600">
-                <TrendingUp className="h-4 w-4 mr-1" />
+            <CardContent className="p-3 sm:p-6 pt-0">
+              <div className="text-lg sm:text-2xl font-bold text-purple-900">{totalBudgeted.toLocaleString()} €</div>
+              <div className="flex items-center mt-2 text-xs sm:text-sm text-purple-600">
+                <TrendingUp className="h-3 w-3 sm:h-4 sm:w-4 mr-1" />
                 {totalBudgeted > monthlyIncome ? 'Sur-budgétisé' : 'Équilibré'}
               </div>
             </CardContent>
           </Card>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 sm:gap-8">
           {/* Budget by Category */}
           <Card>
             <CardHeader>
