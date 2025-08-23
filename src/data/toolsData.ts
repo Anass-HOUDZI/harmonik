@@ -24,16 +24,6 @@ export const tools: Tool[] = [
     status: 'available'
   },
   {
-    id: 'meal-planner',
-    name: 'Planificateur Repas',
-    description: 'Planifiez des repas équilibrés et générez automatiquement vos listes de courses.',
-    category: 'Organisation',
-    icon: Utensils,
-    route: '/tools/meals',
-    priority: 1,
-    status: 'available'
-  },
-  {
     id: 'chores-manager',
     name: 'Gestionnaire Corvées',
     description: 'Répartissez équitablement les tâches ménagères avec gamification.',

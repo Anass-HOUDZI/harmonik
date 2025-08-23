@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { Home, Mail, Phone, Users, Wrench } from "lucide-react";
 
 const categories = [
-  { name: 'Organisation', count: 6 },
+  { name: 'Organisation', count: 5 },
   { name: 'Finances', count: 8 },
   { name: 'Éducation', count: 8 },
   { name: 'Santé', count: 8 },
@@ -16,7 +16,6 @@ const categories = [
 
 const popularTools = [
   { name: 'Calendrier Familial', route: '/tools/calendar' },
-  { name: 'Planificateur Repas', route: '/tools/meals' },
   { name: 'Calculateur Budget', route: '/tools/budget' },
   { name: 'Carnet de Santé', route: '/tools/health' },
   { name: 'Gestionnaire Temps', route: '/tools/time' },
@@ -45,7 +44,7 @@ export default function Footer() {
               </Link>
             </h3>
             <p className="text-gray-600 text-sm leading-relaxed">
-              Suite complète de 45 outils gratuits pour simplifier et enrichir la vie des familles modernes. 
+              Suite complète de 44 outils gratuits pour simplifier et enrichir la vie des familles modernes. 
               100% gratuit, sécurisé et utilisable hors ligne.
             </p>
             <div className="flex flex-wrap gap-2">

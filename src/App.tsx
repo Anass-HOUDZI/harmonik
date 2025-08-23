@@ -23,7 +23,7 @@ const HtmlStructureAnalyzer = lazy(() => import("./pages/tools/HtmlStructureAnal
 // Les autres pages gardent leur import classique/auto ou lazy as needed
 import FamilyCalendar from "./pages/tools/FamilyCalendar";
 import BudgetCalculator from "./pages/tools/BudgetCalculator";
-import MealPlanner from "./pages/tools/MealPlanner";
+
 import HealthTracker from "./pages/tools/HealthTracker";
 import TimeManager from "./pages/tools/TimeManager";
 import HomeworkPlanner from "./pages/tools/HomeworkPlanner";
@@ -109,7 +109,7 @@ const App = () => (
 
             <Route path="/tools/calendar" element={<FamilyCalendar />} />
             <Route path="/tools/budget" element={<BudgetCalculator />} />
-            <Route path="/tools/meals" element={<MealPlanner />} />
+            
             <Route path="/tools/health" element={<HealthTracker />} />
             <Route path="/tools/time" element={<TimeManager />} />
             <Route path="/tools/homework" element={<HomeworkPlanner />} />
