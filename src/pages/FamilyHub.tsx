@@ -47,14 +47,14 @@ export default function FamilyHub() {
       <ModernHeroSection />
 
       <main className="flex-grow">
-        <PageContainer className="py-4 sm:py-6 md:py-8 flex flex-col items-center">
+        <PageContainer className="py-2 sm:py-3 md:py-4 flex flex-col items-center">
           <FamilyHubSearchFilters
             selectedCategory={selectedCategory}
             setSelectedCategory={setSelectedCategory}
             categories={categories}
           />
 
-          <div className="w-full max-w-7xl mx-auto">
+          <div className="w-full max-w-7xl mx-auto mt-4 sm:mt-6">
 
             <Section variant="transparent" spacing="sm">
               {filteredTools.length > 0 ? (
@@ -88,7 +88,7 @@ export default function FamilyHub() {
 
             <Section 
               variant="transparent"
-              className="mt-12 sm:mt-16 md:mt-24"
+              className="mt-8 sm:mt-10 md:mt-12"
               spacing="lg"
             >
               <ModernCard variant="glass" className="p-6 sm:p-8 md:p-12">

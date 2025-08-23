@@ -15,7 +15,7 @@ export default function FamilyHubSearchFilters({
   categories
 }: FamilyHubSearchFiltersProps) {
   return (
-    <div className="w-full max-w-5xl mx-auto mb-8 sm:mb-12">
+    <div className="w-full max-w-5xl mx-auto mb-4 sm:mb-6">
       {/* Filtres par catégorie - responsive */}
       <div className="flex flex-wrap justify-center gap-2 sm:gap-3 px-2">
         {categories.map((category) => (
