@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { ModernHeroSection } from "@/components/ui/modern/ModernHeroSection";
 import FamilyHubSearchFilters from "@/components/family-hub/FamilyHubSearchFilters";
-import FamilyHubStats from "@/components/family-hub/FamilyHubStats";
+
 import ModernToolCard from "@/components/family-hub/ModernToolCard";
 import PWAStatus from "@/components/PWAStatus";
 import { PageContainer } from "@/components/ui/page-container";
@@ -54,23 +54,7 @@ export default function FamilyHub() {
             categories={categories}
           />
 
-          {/* Badges features - responsive */}
-          <div className="mt-8 sm:mt-12 md:mt-16 mb-6 sm:mb-8 flex flex-wrap items-center justify-center gap-2 sm:gap-3 md:gap-4 animate-fade-in px-2">
-            {['🔒 100% Privé', '💝 Totalement Gratuit', '📱 Multi-plateforme', '⚡ Hors Ligne'].map((feature, index) => (
-              <div 
-                key={feature}
-                className="glass-card px-3 sm:px-4 md:px-6 py-2 sm:py-3 text-xs sm:text-sm font-medium text-gray-700 hover:scale-105 transition-transform duration-300 shadow-lg touch-active"
-                style={{ animationDelay: `${1.2 + index * 0.1}s` }}
-              >
-                {feature}
-              </div>
-            ))}
-          </div>
-
           <div className="w-full max-w-7xl mx-auto">
-            <Section variant="transparent">
-              <FamilyHubStats />
-            </Section>
 
             <Section variant="transparent" spacing="sm">
               {filteredTools.length > 0 ? (

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Heart, Baby, Calendar, ActivitySquare, ShieldCheck } from 'lucide-react';
-import { StatsCounter } from './StatsCounter';
+
 import { cn } from '@/lib/utils';
 
 interface ModernHeroSectionProps {
@@ -10,23 +10,6 @@ interface ModernHeroSectionProps {
 export function ModernHeroSection({
   className
 }: ModernHeroSectionProps) {
-  const stats = [{
-    value: 45,
-    label: "Outils Gratuits",
-    suffix: "+"
-  }, {
-    value: 10000,
-    label: "Familles Aidées",
-    suffix: "+"
-  }, {
-    value: 100,
-    label: "Satisfaction",
-    suffix: "%"
-  }, {
-    value: 24,
-    label: "Support Disponible",
-    suffix: "h/7j"
-  }];
 
   return (
     <section className={cn(
@@ -54,21 +37,6 @@ export function ModernHeroSection({
           </p>
         </div>
 
-        {/* Statistiques dynamiques - responsive grid */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6 mt-8 sm:mt-12 animate-fade-in max-w-4xl mx-auto" style={{
-          animationDelay: '0.6s'
-        }}>
-          {stats.map((stat, index) => (
-            <StatsCounter 
-              key={stat.label} 
-              value={stat.value} 
-              label={stat.label} 
-              suffix={stat.suffix} 
-              delay={index * 200} 
-              className="p-3 sm:p-4 md:p-6 glass-card hover:scale-105 transition-transform duration-300 touch-active min-h-[80px] sm:min-h-[100px]" 
-            />
-          ))}
-        </div>
       </div>
     </section>
   );
