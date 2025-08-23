@@ -53,16 +53,6 @@ export const tools: Tool[] = [
     priority: 2,
     status: 'available'
   },
-  {
-    id: 'medical-appointments',
-    name: 'Tracker Rendez-vous Médicaux',
-    description: 'Centralisez le suivi santé avec rappels vaccins et gestion praticiens.',
-    category: 'Organisation',
-    icon: Stethoscope,
-    route: '/tools/medical-appointments',
-    priority: 2,
-    status: 'available'
-  },
 
   // Finances
   {
@@ -73,36 +63,6 @@ export const tools: Tool[] = [
     icon: Calculator,
     route: '/tools/budget',
     priority: 1,
-    status: 'available'
-  },
-  {
-    id: 'kids-expenses',
-    name: 'Tracker Dépenses Enfants',
-    description: 'Quantifiez et optimisez les coûts liés aux enfants par catégorie.',
-    category: 'Finances',
-    icon: PiggyBank,
-    route: '/tools/kids-expenses',
-    priority: 2,
-    status: 'available'
-  },
-  {
-    id: 'savings-simulator',
-    name: 'Simulateur Économies',
-    description: 'Maximisez votre capacité d\'épargne avec des défis gamifiés.',
-    category: 'Finances',
-    icon: TrendingUp,
-    route: '/tools/savings',
-    priority: 2,
-    status: 'available'
-  },
-  {
-    id: 'price-comparator',
-    name: 'Comparateur Prix',
-    description: 'Trouvez les meilleures offres avec alertes et codes promo automatiques.',
-    category: 'Finances',
-    icon: DollarSign,
-    route: '/tools/price-compare',
-    priority: 2,
     status: 'available'
   },
   {
@@ -311,16 +271,6 @@ export const tools: Tool[] = [
   },
 
   // Équilibre
-  {
-    id: 'time-manager',
-    name: 'Gestionnaire Temps',
-    description: 'Optimisez l\'équilibre entre vie professionnelle et familiale.',
-    category: 'Équilibre',
-    icon: Clock,
-    route: '/tools/time',
-    priority: 1,
-    status: 'available'
-  },
   {
     id: 'flexible-schedule',
     name: 'Planificateur Horaires Flexibles',

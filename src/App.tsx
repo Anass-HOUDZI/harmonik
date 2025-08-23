@@ -25,16 +25,16 @@ import FamilyCalendar from "./pages/tools/FamilyCalendar";
 import BudgetCalculator from "./pages/tools/BudgetCalculator";
 
 import HealthTracker from "./pages/tools/HealthTracker";
-import TimeManager from "./pages/tools/TimeManager";
+
 import HomeworkPlanner from "./pages/tools/HomeworkPlanner";
 import ChoresManager from "./pages/tools/ChoresManager";
 import ActivityOrganizer from "./pages/tools/ActivityOrganizer";
 import ShoppingList from "./pages/tools/ShoppingList";
 import ChildcarePlanner from "./pages/tools/ChildcarePlanner";
-import MedicalAppointments from "./pages/tools/MedicalAppointments";
-import KidsExpenses from "./pages/tools/KidsExpenses";
-import SavingsSimulator from "./pages/tools/SavingsSimulator";
-import PriceComparator from "./pages/tools/PriceComparator";
+
+
+
+
 import ChildcareCosts from "./pages/tools/ChildcareCosts";
 import VacationSavings from "./pages/tools/VacationSavings";
 import PocketMoney from "./pages/tools/PocketMoney";
@@ -111,7 +111,7 @@ const App = () => (
             <Route path="/tools/budget" element={<BudgetCalculator />} />
             
             <Route path="/tools/health" element={<HealthTracker />} />
-            <Route path="/tools/time" element={<TimeManager />} />
+            
             <Route path="/tools/homework" element={<HomeworkPlanner />} />
             <Route path="/tools/chores" element={<ChoresManager />} />
             <Route path="/tools/activities" element={<ActivityOrganizer />} />
@@ -119,12 +119,9 @@ const App = () => (
             {/* Organisation */}
             <Route path="/tools/shopping" element={<ShoppingList />} />
             <Route path="/tools/childcare" element={<ChildcarePlanner />} />
-            <Route path="/tools/medical-appointments" element={<MedicalAppointments />} />
+            
             
             {/* Finances */}
-            <Route path="/tools/kids-expenses" element={<KidsExpenses />} />
-            <Route path="/tools/savings" element={<SavingsSimulator />} />
-            <Route path="/tools/price-compare" element={<PriceComparator />} />
             <Route path="/tools/childcare-costs" element={<ChildcareCosts />} />
             <Route path="/tools/vacation-savings" element={<VacationSavings />} />
             <Route path="/tools/pocket-money" element={<PocketMoney />} />

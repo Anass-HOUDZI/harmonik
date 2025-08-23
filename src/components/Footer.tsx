@@ -4,11 +4,11 @@ import { Link } from "react-router-dom";
 import { Home, Mail, Phone, Users, Wrench } from "lucide-react";
 
 const categories = [
-  { name: 'Organisation', count: 5 },
-  { name: 'Finances', count: 8 },
+  { name: 'Organisation', count: 4 },
+  { name: 'Finances', count: 5 },
   { name: 'Éducation', count: 8 },
   { name: 'Santé', count: 8 },
-  { name: 'Équilibre', count: 8 },
+  { name: 'Équilibre', count: 7 },
   { name: 'Développement', count: 8 },
   { name: 'Loisirs', count: 8 },
   { name: 'Outils Pratiques', count: 4 }
@@ -18,8 +18,8 @@ const popularTools = [
   { name: 'Calendrier Familial', route: '/tools/calendar' },
   { name: 'Calculateur Budget', route: '/tools/budget' },
   { name: 'Carnet de Santé', route: '/tools/health' },
-  { name: 'Gestionnaire Temps', route: '/tools/time' },
-  { name: 'Planning Devoirs', route: '/tools/homework' }
+  { name: 'Planning Devoirs', route: '/tools/homework' },
+  { name: 'Gestionnaire Corvées', route: '/tools/chores' }
 ];
 
 export default function Footer() {
@@ -44,7 +44,7 @@ export default function Footer() {
               </Link>
             </h3>
             <p className="text-gray-600 text-sm leading-relaxed">
-              Suite complète de 44 outils gratuits pour simplifier et enrichir la vie des familles modernes. 
+              Suite complète de 39 outils gratuits pour simplifier et enrichir la vie des familles modernes. 
               100% gratuit, sécurisé et utilisable hors ligne.
             </p>
             <div className="flex flex-wrap gap-2">

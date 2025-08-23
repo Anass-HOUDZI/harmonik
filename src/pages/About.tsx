@@ -29,7 +29,7 @@ export default function About() {
             <CardContent>
               <p className="text-lg text-gray-700 leading-relaxed">
                 Nous croyons que chaque famille mérite d'avoir accès à des outils de qualité pour s'organiser, 
-                grandir et s'épanouir ensemble. Notre suite de 44 outils gratuits est conçue pour répondre aux
+                grandir et s'épanouir ensemble. Notre suite de 39 outils gratuits est conçue pour répondre aux
                 défis quotidiens des familles modernes, de la gestion du budget à l'éducation des enfants, 
                 en passant par l'organisation du quotidien et le bien-être familial.
               </p>
@@ -101,7 +101,7 @@ export default function About() {
                   <div className="flex items-start space-x-3">
                     <Home className="w-5 h-5 text-blue-600 mt-1" />
                     <div>
-                      <h4 className="font-semibold text-gray-900">Organisation (5 outils)</h4>
+                      <h4 className="font-semibold text-gray-900">Organisation (4 outils)</h4>
                       <p className="text-gray-600">Calendrier familial, gestionnaire corvées, listes courses...</p>
                     </div>
                   </div>
@@ -109,8 +109,8 @@ export default function About() {
                   <div className="flex items-start space-x-3">
                     <Zap className="w-5 h-5 text-green-600 mt-1" />
                     <div>
-                      <h4 className="font-semibold text-gray-900">Finances (8 outils)</h4>
-                      <p className="text-gray-600">Budget familial, économies, coûts enfants, comparateur prix...</p>
+                      <h4 className="font-semibold text-gray-900">Finances (5 outils)</h4>
+                      <p className="text-gray-600">Budget familial, épargne, frais garde, argent poche...</p>
                     </div>
                   </div>
 
@@ -135,7 +135,7 @@ export default function About() {
                   <div className="flex items-start space-x-3">
                     <Shield className="w-5 h-5 text-yellow-600 mt-1" />
                     <div>
-                      <h4 className="font-semibold text-gray-900">Équilibre (8 outils)</h4>
+                      <h4 className="font-semibold text-gray-900">Équilibre (7 outils)</h4>
                       <p className="text-gray-600">Gestion du temps, télétravail, productivité parentale...</p>
                     </div>
                   </div>
