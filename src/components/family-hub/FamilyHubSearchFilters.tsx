@@ -1,5 +1,5 @@
 
-import React from "react";
+import React, { memo } from "react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -9,7 +9,7 @@ interface FamilyHubSearchFiltersProps {
   categories: string[];
 }
 
-export default function FamilyHubSearchFilters({
+export default memo(function FamilyHubSearchFilters({
   selectedCategory,
   setSelectedCategory,
   categories
@@ -38,4 +38,4 @@ export default function FamilyHubSearchFilters({
       </div>
     </div>
   );
-}
+});

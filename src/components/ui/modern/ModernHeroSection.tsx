@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { cn } from '@/lib/utils';
 
 interface ModernHeroSectionProps {
   className?: string;
 }
 
-export function ModernHeroSection({
+export const ModernHeroSection = memo(function ModernHeroSection({
   className
 }: ModernHeroSectionProps) {
 
@@ -80,4 +80,4 @@ export function ModernHeroSection({
       <div className="absolute inset-0 bg-gradient-to-br from-orange-50/30 via-transparent to-red-50/30 pointer-events-none"></div>
     </section>
   );
-}
+});

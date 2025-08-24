@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useMemo, memo, useCallback } from 'react';
 import { ModernHeroSection } from "@/components/ui/modern/ModernHeroSection";
 import FamilyHubSearchFilters from "@/components/family-hub/FamilyHubSearchFilters";
 
@@ -34,12 +34,19 @@ const features = [
   }
 ];
 
-export default function FamilyHub() {
+export default memo(function FamilyHub() {
   const [selectedCategory, setSelectedCategory] = useState('Tous');
-  const filteredTools = tools.filter(tool => {
-    const matchesCategory = selectedCategory === 'Tous' || tool.category === selectedCategory;
-    return matchesCategory;
-  });
+  
+  const filteredTools = useMemo(() => 
+    tools.filter(tool => {
+      const matchesCategory = selectedCategory === 'Tous' || tool.category === selectedCategory;
+      return matchesCategory;
+    }), [selectedCategory]
+  );
+
+  const handleCategoryChange = useCallback((category: string) => {
+    setSelectedCategory(category);
+  }, []);
 
   return (
     <div className="min-h-screen bg-white flex flex-col">
@@ -50,7 +57,7 @@ export default function FamilyHub() {
         <PageContainer className="py-2 sm:py-3 md:py-4 flex flex-col items-center">
           <FamilyHubSearchFilters
             selectedCategory={selectedCategory}
-            setSelectedCategory={setSelectedCategory}
+            setSelectedCategory={handleCategoryChange}
             categories={categories}
           />
 
@@ -127,4 +134,4 @@ export default function FamilyHub() {
       </main>
     </div>
   );
-}
+});

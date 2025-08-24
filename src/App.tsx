@@ -1,4 +1,4 @@
-import React, { Suspense, lazy, useEffect } from "react";
+import React, { Suspense, lazy, useEffect, memo } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -20,81 +20,83 @@ const ReadabilityChecker = lazy(() => import("./pages/tools/ReadabilityChecker")
 const StructuredDataGen = lazy(() => import("./pages/tools/StructuredDataGen"));
 const HtmlStructureAnalyzer = lazy(() => import("./pages/tools/HtmlStructureAnalyzer"));
 
-// Les autres pages gardent leur import classique/auto ou lazy as needed
-import FamilyCalendar from "./pages/tools/FamilyCalendar";
-import BudgetCalculator from "./pages/tools/BudgetCalculator";
+// Lazy-load all tool pages for better performance
+const FamilyCalendar = lazy(() => import("./pages/tools/FamilyCalendar"));
+const BudgetCalculator = lazy(() => import("./pages/tools/BudgetCalculator"));
+const HealthTracker = lazy(() => import("./pages/tools/HealthTracker"));
+const HomeworkPlanner = lazy(() => import("./pages/tools/HomeworkPlanner"));
+const ChoresManager = lazy(() => import("./pages/tools/ChoresManager"));
+// Lazy-load all remaining tool pages for optimal performance
+const ActivityOrganizer = lazy(() => import("./pages/tools/ActivityOrganizer"));
+const ShoppingList = lazy(() => import("./pages/tools/ShoppingList"));
+const ChildcarePlanner = lazy(() => import("./pages/tools/ChildcarePlanner"));
+const ChildcareCosts = lazy(() => import("./pages/tools/ChildcareCosts"));
+const VacationSavings = lazy(() => import("./pages/tools/VacationSavings"));
+const PocketMoney = lazy(() => import("./pages/tools/PocketMoney"));
+const SchoolCosts = lazy(() => import("./pages/tools/SchoolCosts"));
+const EducationalActivities = lazy(() => import("./pages/tools/EducationalActivities"));
+const SchoolProgress = lazy(() => import("./pages/tools/SchoolProgress"));
+const EducationalResources = lazy(() => import("./pages/tools/EducationalResources"));
+const FamilyQuiz = lazy(() => import("./pages/tools/FamilyQuiz"));
+const ReadingTracker = lazy(() => import("./pages/tools/ReadingTracker"));
+const CulturalCalendar = lazy(() => import("./pages/tools/CulturalCalendar"));
+const HomeworkAssistant = lazy(() => import("./pages/tools/HomeworkAssistant"));
+const SleepTracker = lazy(() => import("./pages/tools/SleepTracker"));
+const FitnessPlanner = lazy(() => import("./pages/tools/FitnessPlanner"));
+const AllergyManager = lazy(() => import("./pages/tools/AllergyManager"));
+const BMICalculator = lazy(() => import("./pages/tools/BMICalculator"));
+const HydrationTracker = lazy(() => import("./pages/tools/HydrationTracker"));
+const NutritionGenerator = lazy(() => import("./pages/tools/NutritionGenerator"));
+const MedicalScheduler = lazy(() => import("./pages/tools/MedicalScheduler"));
+const FlexibleSchedule = lazy(() => import("./pages/tools/FlexibleSchedule"));
+const ProductivityTracker = lazy(() => import("./pages/tools/ProductivityTracker"));
+const FamilyMeetings = lazy(() => import("./pages/tools/FamilyMeetings"));
+const TransportCalculator = lazy(() => import("./pages/tools/TransportCalculator"));
+const StrategicLeave = lazy(() => import("./pages/tools/StrategicLeave"));
+const EnergyTracker = lazy(() => import("./pages/tools/EnergyTracker"));
+const TeleworkManager = lazy(() => import("./pages/tools/TeleworkManager"));
+const FamilyGoals = lazy(() => import("./pages/tools/FamilyGoals"));
+const GratitudeJournal = lazy(() => import("./pages/tools/GratitudeJournal"));
+const FamilyChallenges = lazy(() => import("./pages/tools/FamilyChallenges"));
+const CoupleTime = lazy(() => import("./pages/tools/CoupleTime"));
+const HabitsTracker = lazy(() => import("./pages/tools/HabitsTracker"));
+const RelaxationGenerator = lazy(() => import("./pages/tools/RelaxationGenerator"));
+const CommunicationAssistant = lazy(() => import("./pages/tools/CommunicationAssistant"));
+const FamilyProjects = lazy(() => import("./pages/tools/FamilyProjects"));
+const WeatherActivities = lazy(() => import("./pages/tools/WeatherActivities"));
+const IndoorActivities = lazy(() => import("./pages/tools/IndoorActivities"));
+const BirthdayOrganizer = lazy(() => import("./pages/tools/BirthdayOrganizer"));
+const FamilyGames = lazy(() => import("./pages/tools/FamilyGames"));
+const BudgetVacations = lazy(() => import("./pages/tools/BudgetVacations"));
+const CreativeTracker = lazy(() => import("./pages/tools/CreativeTracker"));
+const TreasureHunt = lazy(() => import("./pages/tools/TreasureHunt"));
+const PicnicOrganizer = lazy(() => import("./pages/tools/PicnicOrganizer"));
+const UnitConverter = lazy(() => import("./pages/tools/UnitConverter"));
+const LabelGenerator = lazy(() => import("./pages/tools/LabelGenerator"));
+const PortionCalculator = lazy(() => import("./pages/tools/PortionCalculator"));
+const ScreenTimer = lazy(() => import("./pages/tools/ScreenTimer"));
 
-import HealthTracker from "./pages/tools/HealthTracker";
-
-import HomeworkPlanner from "./pages/tools/HomeworkPlanner";
-import ChoresManager from "./pages/tools/ChoresManager";
-import ActivityOrganizer from "./pages/tools/ActivityOrganizer";
-import ShoppingList from "./pages/tools/ShoppingList";
-import ChildcarePlanner from "./pages/tools/ChildcarePlanner";
-
-
-
-
-import ChildcareCosts from "./pages/tools/ChildcareCosts";
-import VacationSavings from "./pages/tools/VacationSavings";
-import PocketMoney from "./pages/tools/PocketMoney";
-import SchoolCosts from "./pages/tools/SchoolCosts";
-import EducationalActivities from "./pages/tools/EducationalActivities";
-import SchoolProgress from "./pages/tools/SchoolProgress";
-import EducationalResources from "./pages/tools/EducationalResources";
-import FamilyQuiz from "./pages/tools/FamilyQuiz";
-import ReadingTracker from "./pages/tools/ReadingTracker";
-import CulturalCalendar from "./pages/tools/CulturalCalendar";
-import HomeworkAssistant from "./pages/tools/HomeworkAssistant";
-import SleepTracker from "./pages/tools/SleepTracker";
-import FitnessPlanner from "./pages/tools/FitnessPlanner";
-import AllergyManager from "./pages/tools/AllergyManager";
-import BMICalculator from "./pages/tools/BMICalculator";
-import HydrationTracker from "./pages/tools/HydrationTracker";
-import NutritionGenerator from "./pages/tools/NutritionGenerator";
-import MedicalScheduler from "./pages/tools/MedicalScheduler";
-import FlexibleSchedule from "./pages/tools/FlexibleSchedule";
-import ProductivityTracker from "./pages/tools/ProductivityTracker";
-import FamilyMeetings from "./pages/tools/FamilyMeetings";
-import TransportCalculator from "./pages/tools/TransportCalculator";
-import StrategicLeave from "./pages/tools/StrategicLeave";
-import EnergyTracker from "./pages/tools/EnergyTracker";
-import TeleworkManager from "./pages/tools/TeleworkManager";
-import FamilyGoals from "./pages/tools/FamilyGoals";
-import GratitudeJournal from "./pages/tools/GratitudeJournal";
-import FamilyChallenges from "./pages/tools/FamilyChallenges";
-import CoupleTime from "./pages/tools/CoupleTime";
-import HabitsTracker from "./pages/tools/HabitsTracker";
-import RelaxationGenerator from "./pages/tools/RelaxationGenerator";
-import CommunicationAssistant from "./pages/tools/CommunicationAssistant";
-import FamilyProjects from "./pages/tools/FamilyProjects";
-import WeatherActivities from "./pages/tools/WeatherActivities";
-import IndoorActivities from "./pages/tools/IndoorActivities";
-import BirthdayOrganizer from "./pages/tools/BirthdayOrganizer";
-import FamilyGames from "./pages/tools/FamilyGames";
-import BudgetVacations from "./pages/tools/BudgetVacations";
-import CreativeTracker from "./pages/tools/CreativeTracker";
-import TreasureHunt from "./pages/tools/TreasureHunt";
-import PicnicOrganizer from "./pages/tools/PicnicOrganizer";
-import UnitConverter from "./pages/tools/UnitConverter";
-import LabelGenerator from "./pages/tools/LabelGenerator";
-import PortionCalculator from "./pages/tools/PortionCalculator";
-import ScreenTimer from "./pages/tools/ScreenTimer";
-
-// Import des nouvelles pages
-import About from "./pages/About";
-import Contact from "./pages/Contact";
+// Lazy-load additional pages
+const About = lazy(() => import("./pages/About"));
+const Contact = lazy(() => import("./pages/Contact"));
 
 
 const queryClient = new QueryClient();
 
-const App = () => (
+const App = memo(() => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <BrowserRouter>
         <ScrollToTop />
         <Header />
-        <Suspense fallback={<div className="text-center mt-10 text-lg text-gray-400">Chargement…</div>}>
+        <Suspense fallback={
+          <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-white">
+            <div className="text-center space-y-4">
+              <div className="w-12 h-12 border-4 border-orange-500/30 border-t-orange-500 rounded-full animate-spin mx-auto"></div>
+              <p className="text-lg text-gray-600 font-medium">Chargement de l'outil...</p>
+            </div>
+          </div>
+        }>
           <Routes>
             <Route path="/" element={<FamilyHub />} />
             <Route path="/about" element={<About />} />
@@ -191,6 +193,6 @@ const App = () => (
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
-);
+));
 
 export default App;

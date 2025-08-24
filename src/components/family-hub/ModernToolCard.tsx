@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { memo, useCallback } from 'react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { useNavigate } from 'react-router-dom';
@@ -39,18 +39,18 @@ function getCategoryGradient(category: string) {
   return gradients[category as keyof typeof gradients] || 'from-gray-500/10 to-slate-500/10';
 }
 
-export default function ModernToolCard({ tool }: { tool: Tool }) {
+export default memo(function ModernToolCard({ tool }: { tool: Tool }) {
   const navigate = useNavigate();
   const IconComponent = tool.icon;
   const isAvailable = tool.status === 'available';
 
-  const handleClick = () => {
+  const handleClick = useCallback(() => {
     if (isAvailable) {
       // Scroll en haut avant la navigation
       window.scrollTo(0, 0);
       navigate(tool.route);
     }
-  };
+  }, [isAvailable, navigate, tool.route]);
 
   return (
     <ModernCard
@@ -132,4 +132,4 @@ export default function ModernToolCard({ tool }: { tool: Tool }) {
       )} />
     </ModernCard>
   );
-}
+});
