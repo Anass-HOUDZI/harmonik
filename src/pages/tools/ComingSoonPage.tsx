@@ -74,7 +74,7 @@ export default function ComingSoonPage({ toolName }: ComingSoonPageProps) {
             </Button>
             <Button 
               variant="outline"
-              onClick={() => window.location.reload()}
+              onClick={() => navigate(0)}
             >
               Actualiser la page
             </Button>

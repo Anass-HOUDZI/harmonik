@@ -8,6 +8,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import PWAStatus from "@/components/PWAStatus";
 import { ScrollToTop } from "@/components/ScrollToTop";
+import { ErrorBoundary } from "@/components/common/ErrorBoundary";
 
 // Lazy-load pages non critiques
 const FamilyHub = lazy(() => import("./pages/FamilyHub"));
@@ -84,19 +85,20 @@ const Contact = lazy(() => import("./pages/Contact"));
 const queryClient = new QueryClient();
 
 const App = memo(() => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <BrowserRouter>
-        <ScrollToTop />
-        <Header />
-        <Suspense fallback={
-          <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-white">
-            <div className="text-center space-y-4">
-              <div className="w-12 h-12 border-4 border-orange-500/30 border-t-orange-500 rounded-full animate-spin mx-auto"></div>
-              <p className="text-lg text-gray-600 font-medium">Chargement de l'outil...</p>
+  <ErrorBoundary>
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <BrowserRouter>
+          <ScrollToTop />
+          <Header />
+          <Suspense fallback={
+            <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-white">
+              <div className="text-center space-y-4">
+                <div className="w-12 h-12 border-4 border-orange-500/30 border-t-orange-500 rounded-full animate-spin mx-auto"></div>
+                <p className="text-lg text-gray-600 font-medium">Chargement de l'outil...</p>
+              </div>
             </div>
-          </div>
-        }>
+          }>
           <Routes>
             <Route path="/" element={<FamilyHub />} />
             <Route path="/about" element={<About />} />
@@ -182,17 +184,18 @@ const App = memo(() => (
             <Route path="/tools/portion-calculator" element={<PortionCalculator />} />
             <Route path="/tools/screen-timer" element={<ScreenTimer />} />
             
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </Suspense>
-        <Footer />
-        <PWAStatus />
-        <Toaster />
-        <Sonner />
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
+              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </Suspense>
+          <Footer />
+          <PWAStatus />
+          <Toaster />
+          <Sonner />
+        </BrowserRouter>
+      </TooltipProvider>
+    </QueryClientProvider>
+  </ErrorBoundary>
 ));
 
 export default App;

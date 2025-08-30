@@ -35,6 +35,9 @@ export default function Footer() {
                 src="/lovable-uploads/c68d3497-59b8-49bb-96e4-67b0721c905e.png" 
                 alt="Harmonik" 
                 className="h-8 w-auto object-contain mr-3"
+                onError={(e) => {
+                  e.currentTarget.src = "/harmonik-logo.svg";
+                }}
               />
             </div>
             <h3 className="text-lg font-semibold text-gray-900 flex items-center">

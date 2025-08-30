@@ -39,8 +39,13 @@ function useNetworkStatus() {
 function useLocalCacheStatus() {
   const [cached, setCached] = useState(false);
   useEffect(() => {
-    if ("caches" in window) {
-      caches.has && caches.has("static-v2-suitefamille").then(setCached);
+    if ("caches" in window && caches.keys) {
+      caches.keys().then(cacheNames => {
+        setCached(cacheNames.some(name => name.includes("suitefamille")));
+      }).catch(() => setCached(false));
+    } else {
+      // Fallback pour les navigateurs sans support cache
+      setCached(!!localStorage.getItem('app-cached'));
     }
   }, []);
   return cached;
