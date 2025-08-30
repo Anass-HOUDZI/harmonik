@@ -63,14 +63,8 @@ export const familyProfileSchema = z.object({
   updatedAt: z.string().datetime()
 });
 
-// Utility function to sanitize HTML content
-export function sanitizeInput(input: string): string {
-  return input
-    .replace(/[<>]/g, '') // Remove HTML tags
-    .replace(/javascript:/gi, '') // Remove javascript: protocols
-    .replace(/on\w+=/gi, '') // Remove event handlers
-    .trim();
-}
+// Enhanced input sanitization with DOMPurify
+export { sanitizeInput, sanitizeUrl } from '../utils/security';
 
 // Validate localStorage data
 export function validateLocalStorageData<T>(

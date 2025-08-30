@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { z } from 'zod';
 import { validateLocalStorageData } from '@/schemas/validation';
 import { useErrorHandler } from '@/hooks/useErrorHandler';
+import { generateDataHash, generateSecureId } from '@/utils/security';
 
 export function useSecureLocalStorage<T>(
   key: string,
@@ -30,7 +31,7 @@ export function useSecureLocalStorage<T>(
     }
   });
 
-  const setValue = (value: T | ((val: T) => T)) => {
+  const setValue = async (value: T | ((val: T) => T)) => {
     try {
       const valueToStore = value instanceof Function ? value(storedValue) : value;
       
@@ -42,8 +43,20 @@ export function useSecureLocalStorage<T>(
         }
       }
       
+      // Generate data integrity hash
+      const dataString = JSON.stringify(valueToStore);
+      const hash = await generateDataHash(dataString);
+      
+      const secureData = {
+        data: valueToStore,
+        hash,
+        timestamp: Date.now(),
+        version: '1.0'
+      };
+      
       setStoredValue(valueToStore);
-      window.localStorage.setItem(key, JSON.stringify(valueToStore));
+      window.localStorage.setItem(key, JSON.stringify(secureData));
+      window.localStorage.setItem(`${key}_hash`, hash);
     } catch (error) {
       handleError(error as Error, `Saving to localStorage key "${key}"`);
     }

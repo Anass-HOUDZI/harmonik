@@ -98,22 +98,15 @@ export class FamilyStorage {
     });
   }
 
-  // Chiffrement simple pour les données sensibles
-  encrypt(data: string, password: string): string {
-    // Implémentation simple de chiffrement (en production, utiliser crypto-js)
-    const encrypted = btoa(data + '::' + password);
-    return encrypted;
+  // Secure encryption for sensitive data using Web Crypto API
+  async encrypt(data: string): Promise<string> {
+    const { secureStorage } = await import('./security');
+    return await secureStorage.encrypt(data);
   }
 
-  decrypt(encryptedData: string, password: string): string {
-    try {
-      const decoded = atob(encryptedData);
-      const [data, pass] = decoded.split('::');
-      if (pass !== password) throw new Error('Invalid password');
-      return data;
-    } catch (error) {
-      throw new Error('Decryption failed');
-    }
+  async decrypt(encryptedData: string): Promise<string> {
+    const { secureStorage } = await import('./security');
+    return await secureStorage.decrypt(encryptedData);
   }
 
   // Export des données familiales
